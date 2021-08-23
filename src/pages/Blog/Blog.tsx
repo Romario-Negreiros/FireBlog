@@ -1,10 +1,17 @@
 import { FC } from 'react';
+// import { firebaseDatabase } from '../../firebase';
+
 import { Container } from './styles';
 
-const Blog: FC = () => {
+import Props from './types/Props';
+
+const Blog: FC<Props> = ({ userID }) => {
+
+    // if(userID) firebaseDatabase.child('users').child(userID).child('posts').push({title: 'hello world', content: 'banana', category: 'sports'})
+
     return (
         <Container>
-            Hello world
+            
         </Container>
     )
 }

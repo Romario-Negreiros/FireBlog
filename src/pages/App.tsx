@@ -1,16 +1,31 @@
-import { FC, useState } from 'react';
-// import Blog from "./Blog/Blog";
+import { FC, useState, useEffect } from 'react';
+import { Switch, Route } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+
+import Blog from './Blog/Blog';
 import Login from './Login/Login';
-// import { firebaseAuth, firebaseDatabase, firebaseStorage } from "../firebase";
 
 const App: FC = () => {
     const [userID, setUserID] = useState<string>('');
-    console.log(userID)
+    const history = useHistory();
+
+    useEffect(() => {
+
+        if(userID) history.push('/blog')
+        else history.push('/login')
+
+    }, [userID, history])
 
     return (
         <>
-            {/* <Blog /> */}
-            <Login setUserID={setUserID} />
+            <Switch>
+                <Route path="/blog">
+                    <Blog userID={userID} />
+                </Route>
+                <Route path="/login">
+                    <Login setUserID={setUserID} />
+                </Route>
+            </Switch>
         </>
     );
 };
