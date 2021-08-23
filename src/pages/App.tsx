@@ -1,19 +1,18 @@
-import { FC } from "react";
-import Blog from "./Blog/Blog";
-import Login from "./Login/Login";
-import { firebaseAuth, firebaseDatabase, firebaseStorage } from "../firebase";
+import { FC, useState } from 'react';
+// import Blog from "./Blog/Blog";
+import Login from './Login/Login';
+// import { firebaseAuth, firebaseDatabase, firebaseStorage } from "../firebase";
 
 const App: FC = () => {
-  console.log(firebaseAuth, firebaseDatabase, firebaseStorage);
+    const [userID, setUserID] = useState<string>('');
+    console.log(userID)
 
-  firebaseDatabase.child('hello').push({name: 'oi'})
-
-  return (
-    <>
-      <Blog />
-      <Login />
-    </>
-  );
+    return (
+        <>
+            {/* <Blog /> */}
+            <Login setUserID={setUserID} />
+        </>
+    );
 };
 
 export default App;
