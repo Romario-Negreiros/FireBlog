@@ -1,4 +1,5 @@
 import Inputs from '../types/Inputs';
+import signIn from './signIn';
 import { firebaseAuth } from '../../../firebase';
 
 const createAccount = async (
@@ -11,7 +12,9 @@ const createAccount = async (
             data.email,
             data.password
         );
-        if (response.user) setUserID(response.user.uid);
+        if (response.user) {
+            signIn(setUserID, data, setError)  
+        };
     } catch (err) {
         setError(err.message);
     }

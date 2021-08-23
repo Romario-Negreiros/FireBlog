@@ -1,3 +1,3 @@
 export default interface Props {
-    setUserID: (userID: string) => void
+    setUserID: (userID: string) => void,
 }
