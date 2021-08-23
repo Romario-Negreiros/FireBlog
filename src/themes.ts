@@ -11,8 +11,8 @@ const themes = {
     },
     clamps: {
         headings: 'clamp(2rem, 1rem + 1.5vw, 5rem)',
-        labels: 'clamp(1.3rem, 1.5vw, 3rem)',
-        texts: 'clamp(1rem, 1vw, 2.5rem)',
+        labels: 'clamp(1.3rem, 1.5vw, 3.3rem)',
+        texts: 'clamp(1rem, 1.3vw, 3rem)',
     },
 };
 
