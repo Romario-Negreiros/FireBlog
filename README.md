@@ -1,46 +1,65 @@
-# Getting Started with Create React App
+<h2 style="text-align: center">FireBlog</h2>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A blog system, built with react, typescript and firebase 🔥
 
-## Available Scripts
+-----------------------------------------------------------------------------------------------------------------------------
 
-In the project directory, you can run:
+#### Brief
 
-### `npm start`
+The project's mvp is: make a blog system where you can create your own posts, and see other people's posts,
+users can only edit or delete their own posts, while the others are readonly.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Then, after the mvp is done, some features I would like to add
+* Comments
+* Rating
+* Users profile page
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+-----------------------------------------------------------------------------------------------------------------------------
 
-### `npm test`
+### Libs used so far
+* Styled components
+* React router dom
+* React hook form
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+-----------------------------------------------------------------------------------------------------------------------------
 
-### `npm run build`
+### Snapshot
+Not ready yeeet
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+-----------------------------------------------------------------------------------------------------------------------------
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+##### Progress to MVP
+- [] Users' login, and account creation options
+- [] Posts creation
+- [] See other posts
+- [] Filter by categories
+- [] Users should be able to edit only their own posts
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+-----------------------------------------------------------------------------------------------------------------------------
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### How to contribute 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+    ## Fork this repository
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+    ## Create a new branch containing your feature
+    git checkout -b feature
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+    ## Commit your changes
+    git commit -m "new feature"
 
-## Learn More
+    ## Push to your branch
+    git push origin feature
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    ## After your pull request's merge has been done, you can delete your branch
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+### Author
+
+- Website - [Romario Negreiros](https://romario-negreiros.github.io/Romario-frontend/)
+- Frontend Mentor - [@Romario-Negreiros](https://www.frontendmentor.io/profile/Romario-Negreiros)
+- Github profile - [Romario-Negreiros](https://github.com/Romario-Negreiros)
