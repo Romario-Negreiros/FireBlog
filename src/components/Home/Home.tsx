@@ -1,5 +1,4 @@
 import { FC } from 'react';
-
 import { Container } from './styles';
 
 const Home: FC = () => {
@@ -10,4 +9,4 @@ const Home: FC = () => {
     )
 }
 
-export default Home;
+export default Home

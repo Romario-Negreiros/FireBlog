@@ -1,18 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './pages/App';
-import themes from './themes';
-import { ThemeProvider } from 'styled-components';
-import './reset.css';
 import { BrowserRouter as Router } from 'react-router-dom';
+import Reset from './reset';
 
 ReactDOM.render(
     <React.StrictMode>
-        <ThemeProvider theme={themes}>
             <Router>
+                <Reset />
                 <App />
             </Router>
-        </ThemeProvider>
     </React.StrictMode>,
     document.getElementById('root')
 );

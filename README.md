@@ -1,18 +1,13 @@
 <h2 style="text-align: center">FireBlog</h2>
 
-A blog system, built with react, typescript and firebase 🔥
+My blog, built with react, typescript and firebase 🔥
 
 -----------------------------------------------------------------------------------------------------------------------------
 
 #### Brief
 
-The project's mvp is: make a blog system where you can create your own posts, and see other people's posts,
-users can only edit or delete their own posts, while the others are readonly.
-
-Then, after the mvp is done, some features I would like to add
-* Comments
-* Rating
-* Users profile page
+I'll be creating this blog, to showcase some skills I've learned, and also for practicing a bit more
+my front end skills.
 
 -----------------------------------------------------------------------------------------------------------------------------
 
@@ -28,13 +23,10 @@ Not ready yeeet
 
 -----------------------------------------------------------------------------------------------------------------------------
 
-##### Progress to MVP
-- [] Users' login, and account creation options
-- [] Posts creation
-- [] See other posts
-- [] Filter by categories
-- [] Users should be able to edit only their own posts
-
+##### Progress
+- [ ] Main page, with some of the most recent posts
+- [ ] Dedicated page to each post
+- [ ] Make posts editable for me, and readonly for visitors
 
 -----------------------------------------------------------------------------------------------------------------------------
 
