@@ -5,6 +5,7 @@ const themes = {
     },
     colors: {
         pink: '#ec5990',
+        weakerpink: '#ff99ff',
         error: '#ff0008',
     },
 };
