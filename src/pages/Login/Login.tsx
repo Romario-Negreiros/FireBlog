@@ -4,20 +4,17 @@ import signIn from './modules/signIn';
 
 import bg from '../../assets/bg.jpg';
 
-import {
-    BannerArea,
-    ContentArea,
-    Form,
-    Fieldset,
-    Input,
-    Link,
-    LoaderSpin,
-    LoadingMessage,
-} from './styles';
+import { Loader, Portal, CreateAccount } from '../../components/index';
+
+import { BannerArea, ContentArea, Form, Fieldset, Input, Link } from './styles';
 
 import { Inputs, Props } from './types';
 
 const Login: FC<Props> = ({ setUserID }) => {
+
+    const [error, setError] = useState<string>('');
+    const [isLoaded, setIsLoaded] = useState<boolean>(true);
+
     const {
         register,
         handleSubmit,
@@ -43,15 +40,11 @@ const Login: FC<Props> = ({ setUserID }) => {
         })();
     };
 
-    const [error, setError] = useState<string>('');
-    const [isLoaded, setIsLoaded] = useState<boolean>(true);
-
     if (!isLoaded) {
         return (
             <BannerArea bg={bg}>
                 <ContentArea>
-                    <LoaderSpin />
-                    <LoadingMessage>Loading</LoadingMessage>
+                    <Loader />
                 </ContentArea>
             </BannerArea>
         );
@@ -98,6 +91,9 @@ const Login: FC<Props> = ({ setUserID }) => {
                         </div>
                     </Form>
                 </ContentArea>
+                <Portal>
+                    <CreateAccount />
+                </Portal>
             </BannerArea>
         );
     }

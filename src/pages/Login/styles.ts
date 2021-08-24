@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { keyframes } from 'styled-components';
 
 import { Link as ReactRouterLink } from 'react-router-dom';
 
@@ -7,23 +6,11 @@ interface StyledProps {
     bg: string;
 }
 
-const spin = keyframes`
-    to {
-        transform: rotate(1turn)
-    }
-`;
-
-const writing = keyframes`
-    0% { content: '' }
-    33% { content: '.'}
-    66% { content: '..'}
-    100% { content: '...'}
-`;
-
 export const BannerArea = styled.section<StyledProps>`
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
         ${props => `url(${props.bg})`};
     background-size: cover;
+    position: relative;
     width: 100vw;
     height: 100vh;
     p {
@@ -130,32 +117,5 @@ export const Link = styled(ReactRouterLink)`
     font-size: 1.4rem;
     :hover {
         text-decoration: underline;
-    }
-`;
-
-export const LoaderSpin = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    ::after {
-        content: '';
-        width: 25vw;
-        height: 25vw;
-        border-radius: 50%;
-        border: 10px solid #c1d5e4;
-        border-top: 10px solid #068bef;
-        animation: ${spin} 1s linear infinite;
-    }
-`;
-
-export const LoadingMessage = styled.p`
-    color: #fff;
-    font-size: 1.6rem;
-    margin-top: 10px;
-    ::after {
-        content: '';
-        font-size: 1.6rem;
-        color: #fff;
-        animation: ${writing} 3s infinite;
     }
 `;
