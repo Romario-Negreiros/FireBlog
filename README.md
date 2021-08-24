@@ -31,6 +31,7 @@ Not ready yeeet
 -----------------------------------------------------------------------------------------------------------------------------
 
 ##### Progress
+- [ ] Login page
 - [ ] Main page, with some of the most recent posts
 - [ ] Dedicated page to each post
 - [ ] Users can only edit their own posts
