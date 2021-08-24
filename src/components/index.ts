@@ -1,2 +1,8 @@
-export { default as Home } from './Home/Home';
-export { default as NavBar } from './NavBar/NavBar';
+// Main page
+export { Home } from './Main/index';
+export { NavBar } from './Main/index';
+
+// Login page
+
+
+// Create Account page

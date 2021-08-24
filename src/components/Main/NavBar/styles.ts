@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import StyledProps from './types/StyledProps';
+import StyledProps from './types';
 
 import { Link as ReactRouterLink } from 'react-router-dom';
 
@@ -93,6 +93,7 @@ export const Link = styled(ReactRouterLink)`
     height: 100%;
     display: block;
     line-height: 55px;
+    transition: background .3s ease, color .3s ease;
     :hover {
         background: rgba(25%, 29%, 58%, 0.5);
         color: #ec5990;

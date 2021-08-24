@@ -36,10 +36,7 @@ const NavBar: FC = () => {
                         <Link to="/">Most visited</Link>
                     </li>
                     <li>
-                        <Link to="/">Portfólio</Link>
-                    </li>
-                    <li>
-                        <Link to="/">Github</Link>
+                        <Link to="/login">Login</Link>
                     </li>
                 </NavList>
             </Navigation>
