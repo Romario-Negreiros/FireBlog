@@ -8,7 +8,7 @@ export const Container = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 clamp(1rem, 1rem + 1vw, 2.5rem);
+    padding: 0 1.5rem;
     height: 70px;
     background: #191d3a;
     border-bottom: 3px solid #ec5990;
@@ -25,7 +25,6 @@ export const Navigation = styled.nav`
         height: 100%;
         @media screen and (max-width: 600px) {
             margin-left: 0;
-            margin-top: 3rem;
         }
     }
 `;
@@ -35,10 +34,11 @@ export const NavList = styled.ul<StyledProps>`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 60rem) {
         ${props => props.isOpen ? 'visibility: visible' : 'visibility: hidden' };
         ${props => props.isOpen ? 'transform: translateY(0)' : 'transform: translateY(-600px)' };
         position: absolute;
+        padding-top: 70px;
         top: 0;
         left: 0;
         flex-direction: column;
@@ -47,6 +47,9 @@ export const NavList = styled.ul<StyledProps>`
         background: #191d3a;
         z-index: 10;
         transition: visibility .5s ease-in-out, transform .5s ease-in-out;
+        @media screen and (max-height: 15rem) {
+            height: fit-content;
+        }
     }
 `;
 
@@ -63,7 +66,7 @@ export const Burguer = styled.div`
 `;
 
 export const Line = styled.span`
-        @media screen and (max-width: 600px) {
+        @media screen and (max-width: 60rem) {
             background: #ec5990;
             width: 15px;
             height: 2px;
