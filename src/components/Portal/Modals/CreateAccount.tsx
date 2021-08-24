@@ -83,7 +83,8 @@ const CreateAccount: FC = () => {
                             })}
                         ></Input>
                         <p>{errors.email?.message}</p>
-
+                    </Fieldset>
+                    <Fieldset>
                         <label htmlFor="password">Password</label>
                         <Input
                             {...register('password', {
