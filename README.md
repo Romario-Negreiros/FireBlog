@@ -22,6 +22,8 @@ Some features I would like to add after mvp is done:
 * Styled components
 * React router dom
 * React hook form
+* React toastify
+* Firebase lib
 
 -----------------------------------------------------------------------------------------------------------------------------
 
