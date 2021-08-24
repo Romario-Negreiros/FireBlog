@@ -28,6 +28,7 @@ export const BannerArea = styled.section<StyledProps>`
     height: 100vh;
     p {
         font-size: 1.4rem;
+        text-align: center;
         color: ${({ theme: { colors } }) => colors.error};
         margin-bottom: 1.5rem;
     }
@@ -138,8 +139,8 @@ export const LoaderSpin = styled.div`
     align-items: center;
     ::after {
         content: '';
-        width: clamp(20rem, 5vw, 40rem);
-        height: clamp(20rem, 5vw, 40rem);
+        width: 25vw;
+        height: 25vw;
         border-radius: 50%;
         border: 10px solid #c1d5e4;
         border-top: 10px solid #068bef;
