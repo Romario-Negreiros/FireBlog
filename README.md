@@ -1,13 +1,20 @@
 <h2 style="text-align: center">FireBlog</h2>
 
-My blog, built with react, typescript and firebase 🔥
+A blog system, built with react, typescript and firebase 🔥
 
 -----------------------------------------------------------------------------------------------------------------------------
 
 #### Brief
 
-I'll be creating this blog, to showcase some skills I've learned, and also for practicing a bit more
-my front end skills.
+The mvp, basically is:
+* Users can create their account, or simply login they have created already, create and edit their own posts, if they're not
+logged in, all posts are readonly.
+
+Some features I would like to add after mvp is done:
+* Toggle light / dark mode
+* Comments
+* Posts rating
+* User's profile page
 
 -----------------------------------------------------------------------------------------------------------------------------
 
@@ -26,7 +33,7 @@ Not ready yeeet
 ##### Progress
 - [ ] Main page, with some of the most recent posts
 - [ ] Dedicated page to each post
-- [ ] Make posts editable for me, and readonly for visitors
+- [ ] Users can only edit their own posts
 
 -----------------------------------------------------------------------------------------------------------------------------
 
