@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { Form as LoginForm } from '../../../pages/Login/styles';
+
 export const Background = styled.section`
     padding: 2rem;
     display: flex;
@@ -40,6 +42,13 @@ export const Background = styled.section`
         }
     }
 `;
+
+export const Form = styled(LoginForm)`
+    @media screen and (max-height: 300px) {
+        height: 300px;
+        overflow: auto;
+    }
+`;  
 
 export const Container = styled.div`
     display: flex;

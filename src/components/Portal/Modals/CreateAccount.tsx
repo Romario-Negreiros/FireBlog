@@ -2,8 +2,8 @@ import { FC, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import createAccount from './modules/createAccount';
 
-import { Background, Container } from './styles';
-import { Fieldset, Form, Input } from '../../../pages/Login/styles';
+import { Background, Form, Container } from './styles';
+import { Fieldset, Input } from '../../../pages/Login/styles';
 
 import { Inputs } from './types';
 import Loader from '../../Loader/Loader';

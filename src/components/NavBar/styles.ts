@@ -10,7 +10,7 @@ export const Container = styled.header`
     align-items: center;
     padding: 0 1.5rem;
     height: 70px;
-    background: ${({theme: { backgrounds }}) => backgrounds.secondaryblue };
+    background: ${({theme: { backgrounds }}) => backgrounds.primaryblue };
     border-bottom: 3px solid ${({theme: { colors }}) => colors.pink };
     color: ${({theme: { colors }}) => colors.pink };
     h2 {
