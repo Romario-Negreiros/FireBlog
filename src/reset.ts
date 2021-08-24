@@ -26,6 +26,18 @@ const Reset = createGlobalStyle`
             outline: 0;
         }
     }
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #081229;
+}
+::-webkit-scrollbar-thumb {
+  background: #ff99ff;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ec5990;
+}
 `;
 
 export default Reset;
