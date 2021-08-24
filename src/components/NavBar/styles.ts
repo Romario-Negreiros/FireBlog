@@ -34,7 +34,7 @@ export const NavList = styled.ul<StyledProps>`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    @media screen and (max-width: 60rem) {
+    @media screen and (max-width: 600px) {
         ${props => props.isOpen ? 'visibility: visible' : 'visibility: hidden' };
         ${props => props.isOpen ? 'transform: translateY(0)' : 'transform: translateY(-600px)' };
         position: absolute;
@@ -47,7 +47,7 @@ export const NavList = styled.ul<StyledProps>`
         background: #191d3a;
         z-index: 10;
         transition: visibility .5s ease-in-out, transform .5s ease-in-out;
-        @media screen and (max-height: 15rem) {
+        @media screen and (max-height: 200px) {
             height: fit-content;
         }
     }
@@ -66,7 +66,7 @@ export const Burguer = styled.div`
 `;
 
 export const Line = styled.span`
-        @media screen and (max-width: 60rem) {
+        @media screen and (max-width: 600px) {
             background: #ec5990;
             width: 15px;
             height: 2px;
