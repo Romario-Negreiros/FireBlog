@@ -27,7 +27,7 @@ export const BannerArea = styled.section<StyledProps>`
     width: 100vw;
     height: 100vh;
     p {
-        font-size: ${({ theme: { clamps } }) => clamps.texts};
+        font-size: 1.4rem;
         color: ${({ theme: { colors } }) => colors.error};
         margin-bottom: 1.5rem;
     }
@@ -40,7 +40,7 @@ export const BannerArea = styled.section<StyledProps>`
         border-radius: 5px;
         background: ${({ theme: { backgrounds } }) => backgrounds.primaryblue};
         color: #fff;
-        font-size: ${({ theme: { clamps } }) => clamps.texts};
+        font-size: 1.4rem;
         cursor: pointer;
         border: 1px solid transparent;
         transition: filter 0.4s, border 0.3s ease;
@@ -51,10 +51,6 @@ export const BannerArea = styled.section<StyledProps>`
             border-color: ${({ theme: { colors } }) => colors.pink};
         }
     }
-`;
-
-export const Container = styled.div`
-    
 `;
 
 export const ContentArea = styled.div`
@@ -104,7 +100,7 @@ export const Fieldset = styled.fieldset`
     }
     label {
         color: #ffffff;
-        font-size: ${({ theme: { clamps } }) => clamps.labels};
+        font-size: 1.6rem;
         margin-bottom: 0.4rem;
     }
 `;
@@ -118,6 +114,7 @@ export const Input = styled.input`
     transition: background 0.5s ease-in-out;
     color: #ffffff;
     font-size: 1.2rem;
+    width: 100%;
     outline: 0;
     :hover,
     :focus {
@@ -129,7 +126,7 @@ export const Link = styled(ReactRouterLink)`
     display: inline-block;
     margin: 1.5rem 0;
     color: ${({ theme: { colors } }) => colors.pink};
-    font-size: ${({ theme: { clamps } }) => clamps.texts};
+    font-size: 1.4rem;
     :hover {
         text-decoration: underline;
     }
@@ -152,11 +149,11 @@ export const LoaderSpin = styled.div`
 
 export const LoadingMessage = styled.p`
     color: #fff;
-    font-size: ${({ theme: { clamps } }) => clamps.texts};
+    font-size: 1.6rem;
     margin-top: 10px;
     ::after {
         content: '';
-        font-size: ${({ theme: { clamps } }) => clamps.texts};
+        font-size: 1.6rem;
         color: #fff;
         animation: ${writing} 3s infinite;
     }
