@@ -1,17 +1,34 @@
-import { FC } from 'react';
-import { Container, Navigation, Link, Burguer } from './styles';
+import React, { FC, useState } from 'react';
+import { Container, Navigation, NavList, Link, Burguer, Line } from './styles';
 
 const NavBar: FC = () => {
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+
+    const handleMenuOpen = (event: React.MouseEvent<HTMLDivElement>) => {
+        setIsOpen(!isOpen);
+        if (event.currentTarget.firstElementChild)
+            event.currentTarget.firstElementChild.classList.toggle(
+                'close-left'
+            );
+        if (event.currentTarget.firstElementChild?.nextElementSibling)
+            event.currentTarget.firstElementChild.nextElementSibling.classList.toggle(
+                'close-right'
+            );
+        if (event.currentTarget.lastElementChild) {
+            event.currentTarget.lastElementChild.classList.toggle('fade');
+        }
+    };
+
     return (
         <Container>
             <h2>FireBlog</h2>
             <Navigation>
-                <Burguer>
-                    <span className="close-right"></span>
-                    <span className="close-left"></span>
-                    <span className="fade"></span>
+                <Burguer onClick={event => handleMenuOpen(event)}>
+                    <Line></Line>
+                    <Line></Line>
+                    <Line></Line>
                 </Burguer>
-                <ul>
+                <NavList isOpen={isOpen}>
                     <li>
                         <Link to="/">Home</Link>
                     </li>
@@ -24,7 +41,7 @@ const NavBar: FC = () => {
                     <li>
                         <Link to="/">Github</Link>
                     </li>
-                </ul>
+                </NavList>
             </Navigation>
         </Container>
     );

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import StyledProps from './types/StyledProps';
+
 import { Link as ReactRouterLink } from 'react-router-dom';
 
 export const Container = styled.header`
@@ -18,26 +20,6 @@ export const Container = styled.header`
 
 export const Navigation = styled.nav`
     height: 100%;
-    ul {
-        height: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        @media screen and (max-width: 600px) {
-            display: none;
-            position: absolute;
-            top: 0;
-            left: 0;
-            flex-direction: column;
-            height: 100vh;
-            width: 100vw;
-            background: #191d3a;
-            z-index: 10;
-        }
-        .mobile-nav--active {
-            display: flex;
-        }
-    }
     li {
         margin-left: 30px;
         height: 100%;
@@ -45,6 +27,26 @@ export const Navigation = styled.nav`
             margin-left: 0;
             margin-top: 3rem;
         }
+    }
+`;
+
+export const NavList = styled.ul<StyledProps>`
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @media screen and (max-width: 600px) {
+        ${props => props.isOpen ? 'visibility: visible' : 'visibility: hidden' };
+        ${props => props.isOpen ? 'transform: translateY(0)' : 'transform: translateY(-600px)' };
+        position: absolute;
+        top: 0;
+        left: 0;
+        flex-direction: column;
+        height: 100vh;
+        width: 100vw;
+        background: #191d3a;
+        z-index: 10;
+        transition: visibility .5s ease-in-out, transform .5s ease-in-out;
     }
 `;
 
@@ -58,7 +60,9 @@ export const Burguer = styled.div`
         right: 25px;
         z-index: 11;
     }
-    span {
+`;
+
+export const Line = styled.span`
         @media screen and (max-width: 600px) {
             background: #ec5990;
             width: 15px;
@@ -68,16 +72,15 @@ export const Burguer = styled.div`
             background: $weakGray;
             transition: all 0.4s ease-in-out;
         }
-        .close-left {
+        &.close-left {
             transform: translate(0, 2px) rotate(45deg);
         }
-        .close-right {
+        &.close-right {
             transform: translate(0, -3px) rotate(135deg);
         }
-        .fade {
+        &.fade {
             opacity: 0;
         }
-    }
 `;
 
 export const Link = styled(ReactRouterLink)`
