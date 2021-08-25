@@ -1,19 +1,38 @@
 import { FC, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import signIn from './modules/signIn';
+import { useHistory } from 'react-router';
 
+import Eye from '../../assets/eye-solid.svg';
+import SlashedEye from '../../assets/eye-slash-solid.svg';
 import bg from '../../assets/bg.jpg';
 
 import { Loader, Portal, CreateAccount } from '../../components/index';
 
-import { BannerArea, ContentArea, Form, Fieldset, Input, Link } from './styles';
+import {
+    InputWrapper,
+    IconWrapper,
+} from '../../components/Portal/Modals/styles';
+import {
+    BannerArea,
+    ContentArea,
+    Form,
+    Fieldset,
+    Input,
+    OpenModal,
+    BottomContentWrapper,
+} from './styles';
 
 import { Inputs, Props } from './types';
+import { ToastContainer } from 'react-toastify';
 
 const Login: FC<Props> = ({ setUserID }) => {
-
     const [error, setError] = useState<string>('');
     const [isLoaded, setIsLoaded] = useState<boolean>(true);
+    const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+    const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+
+    const history = useHistory();
 
     const {
         register,
@@ -30,7 +49,7 @@ const Login: FC<Props> = ({ setUserID }) => {
                 const { deliverability, is_valid_format } =
                     await response.json();
                 if (deliverability === 'DELIVERABLE' && is_valid_format.value) {
-                    signIn(setUserID, data, setError);
+                    signIn(setUserID, data, setError, history);
                 } else setError("This email doesn't exist!");
             } catch (err) {
                 setError(err.message);
@@ -60,6 +79,11 @@ const Login: FC<Props> = ({ setUserID }) => {
     } else {
         return (
             <BannerArea bg={bg}>
+                <ToastContainer
+                    autoClose={3000}
+                    closeButton={false}
+                    style={{ fontSize: '16px' }}
+                />
                 <ContentArea>
                     <Form onSubmit={handleSubmit(onSubmit)}>
                         <Fieldset>
@@ -73,27 +97,49 @@ const Login: FC<Props> = ({ setUserID }) => {
                             <p>{errors.email?.message}</p>
 
                             <label htmlFor="password">Password</label>
-                            <Input
-                                {...register('password', {
-                                    required: 'Password cannot be empty!',
-                                    minLength: {
-                                        value: 5,
-                                        message: 'Minimum of 5 characters.',
-                                    },
-                                })}
-                            ></Input>
+                            <InputWrapper>
+                                <input
+                                    autoComplete=""
+                                    type={
+                                        isPasswordVisible ? 'text' : 'password'
+                                    }
+                                    {...register('password', {
+                                        required: 'Password cannot be empty!',
+                                        minLength: {
+                                            value: 5,
+                                            message: 'Minimum of 5 characters.',
+                                        },
+                                    })}
+                                ></input>
+                                <IconWrapper
+                                    onClick={() =>
+                                        setIsPasswordVisible(!isPasswordVisible)
+                                    }
+                                >
+                                    <img
+                                        src={
+                                            isPasswordVisible ? SlashedEye : Eye
+                                        }
+                                        alt="toggle visiblity"
+                                    />
+                                </IconWrapper>
+                            </InputWrapper>
                             <p>{errors.password?.message}</p>
                         </Fieldset>
-                        <div>
+                        <BottomContentWrapper>
                             <button type="submit">Sign in</button>
                             <small> Don't have an account yet? </small> <br />
-                            <Link to="/createAccount">Create account</Link>
-                        </div>
+                            <OpenModal onClick={() => setIsModalVisible(true)}>
+                                Create account
+                            </OpenModal>
+                        </BottomContentWrapper>
                     </Form>
                 </ContentArea>
-                <Portal>
-                    <CreateAccount />
-                </Portal>
+                {isModalVisible && (
+                    <Portal>
+                        <CreateAccount setIsModalVisible={setIsModalVisible} />
+                    </Portal>
+                )}
             </BannerArea>
         );
     }

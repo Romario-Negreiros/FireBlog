@@ -1,13 +1,11 @@
 import styled from 'styled-components';
 
-import { Link as ReactRouterLink } from 'react-router-dom';
-
 interface StyledProps {
     bg: string;
 }
 
 export const BannerArea = styled.section<StyledProps>`
-    background: ${({ theme: { backgrounds } }) => backgrounds.secondaryblue};
+    background: ${({ theme: { backgrounds } }) => backgrounds.primaryblue};
     position: relative;
     width: 100vw;
     height: 100vh;
@@ -73,14 +71,15 @@ export const Form = styled.form`
         color: #fff;
         font-size: 1.2rem;
     }
-    div {
-        width: 100%;
-        max-width: 300px;
-        text-align: center;
-        @media screen and (max-height: 400px) {
-            width: 45%;
-            max-width: unset;
-        }
+`;
+
+export const BottomContentWrapper = styled.div`
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    @media screen and (max-height: 400px) {
+        width: 45%;
+        max-width: unset;
     }
 `;
 
@@ -102,21 +101,20 @@ export const Fieldset = styled.fieldset`
 export const Input = styled.input`
     padding: 1rem;
     background: transparent;
-    border: 0 none;
     border-bottom: 2px solid ${({ theme: { colors } }) => colors.pink};
     margin-bottom: 1rem;
     transition: background 0.5s ease-in-out;
     color: #ffffff;
     font-size: 1.2rem;
     width: 100%;
-    outline: 0;
     :hover,
     :focus {
         background: ${({ theme: { backgrounds } }) => backgrounds.primaryblue};
     }
 `;
 
-export const Link = styled(ReactRouterLink)`
+export const OpenModal = styled.a`
+    cursor: pointer;
     display: inline-block;
     margin: 1.5rem 0;
     color: ${({ theme: { colors } }) => colors.pink};
