@@ -40,6 +40,9 @@ export const Background = styled.section`
         :active {
             border-color: ${({ theme: { colors } }) => colors.pink};
         }
+        @media screen and (max-height: 400px) {
+            max-width: none;
+        }
     }
 `;
 
@@ -69,6 +72,7 @@ export const InputWrapper = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 1rem;
     border-bottom: 2px solid ${({ theme: { colors } }) => colors.pink};
     input {
         padding: 1rem;
@@ -106,5 +110,9 @@ export const Close = styled.a`
     font-size: 1.2rem;
     :hover {
         text-decoration: underline;
+    }
+    @media screen and (max-height: 400px) {
+        width: 100%;
+        margin-bottom: 1.5rem;
     }
 `;
