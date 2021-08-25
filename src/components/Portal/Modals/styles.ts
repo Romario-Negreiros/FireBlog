@@ -56,8 +56,8 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
     background: ${({ theme: { backgrounds } }) => backgrounds.secondaryblue};
-    height: 60vh;
+    height: 70vh;
     width: 100%;
     max-width: 500px;
-    padding: 3rem 1.5rem;
+    padding: 2.5rem 1.5rem;
 `;

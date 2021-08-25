@@ -10,7 +10,7 @@ export const Container = styled.header`
     align-items: center;
     padding: 0 1.5rem;
     height: 70px;
-    background: ${({theme: { backgrounds }}) => backgrounds.primaryblue };
+    background: ${({theme: { backgrounds }}) => backgrounds.secondaryblue };
     border-bottom: 3px solid ${({theme: { colors }}) => colors.pink };
     color: ${({theme: { colors }}) => colors.pink };
     h2 {
@@ -88,11 +88,11 @@ export const Line = styled.span`
 
 export const Link = styled(ReactRouterLink)`
     color: ${({theme: { colors }}) => colors.weakerpink };
-    padding: 0.5rem;
+    padding: 0 3rem;
     font-size: 1.6rem;
     height: 100%;
     display: block;
-    line-height: 55px;
+    line-height: 65px;
     transition: background .3s ease, color .3s ease;
     :hover {
         background: rgba(25%, 29%, 58%, 0.5);

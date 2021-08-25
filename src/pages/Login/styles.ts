@@ -7,12 +7,18 @@ interface StyledProps {
 }
 
 export const BannerArea = styled.section<StyledProps>`
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        ${props => `url(${props.bg})`};
-    background-size: cover;
+    background: ${({ theme: { backgrounds } }) => backgrounds.secondaryblue};
     position: relative;
     width: 100vw;
     height: 100vh;
+    @media screen and (min-width: 600px) {
+        background-image: linear-gradient(
+                rgba(0, 0, 0, 0.5),
+                rgba(0, 0, 0, 0.5)
+            ),
+            ${props => `url(${props.bg})`};
+        background-size: cover;
+    }
     p {
         font-size: 1.4rem;
         text-align: center;
