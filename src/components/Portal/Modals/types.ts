@@ -4,3 +4,7 @@ export type Inputs = {
     password: string,
     confirmpwd: string,
 }
+
+export interface Props {
+    setIsModalVisible: (isModalVisible: boolean) => void
+}

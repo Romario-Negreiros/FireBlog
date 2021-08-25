@@ -1,16 +1,19 @@
 import { Inputs } from "../types";
 
-import { firebaseAuth } from "../../../../firebase";
+import { toast } from 'react-toastify';
+import { firebaseAuth } from "../../../../lib/firebase";
 
 const createAccount = async (
     data: Inputs,
-    setError: (error: string) => void
+    setError: (error: string) => void,
+    setIsModalVisible: (isModalVisible: boolean) => void,
 ) => {
     try {
-        const response = await firebaseAuth.createUserWithEmailAndPassword(data.email, data.password)
-        console.log(response);
+        await firebaseAuth.createUserWithEmailAndPassword(data.email, data.password);
+        toast.success('User created!');
+        setIsModalVisible(false);
     } catch(err) {
-        setError(err.message)
+        setError(err.message);
     }
 }
 

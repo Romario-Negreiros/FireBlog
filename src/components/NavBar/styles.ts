@@ -88,7 +88,7 @@ export const Line = styled.span`
 
 export const Link = styled(ReactRouterLink)`
     color: ${({theme: { colors }}) => colors.weakerpink };
-    padding: 0 3rem;
+    padding: 0 2rem;
     font-size: 1.6rem;
     height: 100%;
     display: block;

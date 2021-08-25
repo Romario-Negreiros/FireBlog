@@ -2,15 +2,28 @@ import { FC, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import createAccount from './modules/createAccount';
 
-import { Background, Form, Container } from './styles';
+import Eye from '../../../assets/eye-solid.svg';
+import SlashedEye from '../../../assets/eye-slash-solid.svg';
+
+import {
+    Background,
+    Form,
+    Container,
+    IconWrapper,
+    InputWrapper,
+    Close,
+} from './styles';
 import { Fieldset, Input } from '../../../pages/Login/styles';
 
-import { Inputs } from './types';
+import { Inputs, Props } from './types';
 import Loader from '../../Loader/Loader';
 
-const CreateAccount: FC = () => {
+const CreateAccount: FC<Props> = ({ setIsModalVisible }) => {
     const [error, setError] = useState<string>('');
     const [isLoaded, setIsLoaded] = useState<boolean>(true);
+    const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+    const [isConfirmPwdVisible, setIsConfirmPwdVisible] =
+        useState<boolean>(false);
 
     const {
         register,
@@ -32,7 +45,7 @@ const CreateAccount: FC = () => {
                         deliverability === 'DELIVERABLE' &&
                         is_valid_format.value
                     ) {
-                        createAccount(data, setError);
+                        createAccount(data, setError, setIsModalVisible);
                     } else setError("This email doesn't exist!");
                 } catch (err) {
                     setError(err.message);
@@ -62,10 +75,13 @@ const CreateAccount: FC = () => {
         return (
             <Background>
                 <Form onSubmit={handleSubmit(onSubmit)}>
+                    <Close onClick={() => setIsModalVisible(false)}>
+                        Close
+                    </Close>
                     <Fieldset>
                         <label htmlFor="name">Name</label>
                         <Input
-                            {...register('password', {
+                            {...register('name', {
                                 required: 'Name cannot be empty!',
                                 minLength: {
                                     value: 6,
@@ -86,27 +102,55 @@ const CreateAccount: FC = () => {
                     </Fieldset>
                     <Fieldset>
                         <label htmlFor="password">Password</label>
-                        <Input
-                            {...register('password', {
-                                required: 'Password cannot be empty!',
-                                minLength: {
-                                    value: 5,
-                                    message: 'Minimum of 5 characters.',
-                                },
-                            })}
-                        ></Input>
+                        <InputWrapper>
+                            <input
+                                autoComplete=""
+                                type={isPasswordVisible ? 'text' : 'password'}
+                                {...register('password', {
+                                    required: 'Password cannot be empty!',
+                                    minLength: {
+                                        value: 5,
+                                        message: 'Minimum of 5 characters.',
+                                    },
+                                })}
+                            ></input>
+                            <IconWrapper
+                                onClick={() =>
+                                    setIsPasswordVisible(!isPasswordVisible)
+                                }
+                            >
+                                <img
+                                    src={isPasswordVisible ? SlashedEye : Eye}
+                                    alt="toggle visiblity"
+                                />
+                            </IconWrapper>
+                        </InputWrapper>
                         <p>{errors.password?.message}</p>
 
                         <label htmlFor="confirmpwd">Confirm password</label>
-                        <Input
-                            {...register('password', {
-                                required: 'Password cannot be empty!',
-                                minLength: {
-                                    value: 5,
-                                    message: 'Minimum of 5 characters.',
-                                },
-                            })}
-                        />
+                        <InputWrapper>
+                            <input
+                                autoComplete=""
+                                type={isConfirmPwdVisible ? 'text' : 'password'}
+                                {...register('confirmpwd', {
+                                    required: 'Password cannot be empty!',
+                                    minLength: {
+                                        value: 5,
+                                        message: 'Minimum of 5 characters.',
+                                    },
+                                })}
+                            ></input>
+                            <IconWrapper
+                                onClick={() =>
+                                    setIsConfirmPwdVisible(!isConfirmPwdVisible)
+                                }
+                            >
+                                <img
+                                    src={isConfirmPwdVisible ? SlashedEye : Eye}
+                                    alt="toggle visiblity"
+                                />
+                            </IconWrapper>
+                        </InputWrapper>
                         <p>{errors.confirmpwd?.message}</p>
                     </Fieldset>
 
