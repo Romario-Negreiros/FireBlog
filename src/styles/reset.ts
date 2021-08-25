@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 const Reset = createGlobalStyle`
     * {
@@ -26,18 +26,22 @@ const Reset = createGlobalStyle`
             outline: 0;
         }
     }
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #081229;
-}
-::-webkit-scrollbar-thumb {
-  background: #ff99ff;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #ec5990;
-}
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #081229;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #ff99ff;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #ec5990;
+    }
+    input::-ms-reveal,
+    input::-ms-clear {
+      display: none;
+    }
 `;
 
 export default Reset;
