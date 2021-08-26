@@ -1,9 +1,10 @@
 import { History } from 'history';
-import { firebaseAuth } from '../../../lib/firebase';
-import { Inputs } from '../types';
+import { UserData } from '../../../context/UserContext';
+import { firebaseAuth, firebaseDatabase } from '../../../lib/firebase';
+import { Inputs, DatabaseResponse } from '../types';
 
 const signIn = async (
-    setUserID: (userID: string) => void,
+    setUserData: (userData: UserData | null) => void,
     data: Inputs,
     setError: (error: string) => void,
     history: History<unknown> | string[]
@@ -14,11 +15,21 @@ const signIn = async (
             data.password
         );
         if (response.user) {
-            setUserID(response.user.uid);
-            history.push('/');
-        }
+            const userId = response.user.uid;
+            try {
+                const response = await firebaseDatabase
+                    .child('users')
+                    .child(userId)
+                    .get();
+                const user = Object.values(response.val())[0] as DatabaseResponse;
+                setUserData({...user, userID: userId });
+                history.push('/');
+            } catch (err) {
+                setError(err.message);
+            }
+        } 
     } catch (err) {
-        setError(err.message)
+        setError(err.message);
     }
 };
 

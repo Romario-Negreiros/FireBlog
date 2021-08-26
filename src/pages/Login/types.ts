@@ -7,3 +7,8 @@ export interface Props {
     setUserID: (userID: string) => void,
 }
 
+export interface DatabaseResponse {
+    name: string,
+    email: string
+}
+

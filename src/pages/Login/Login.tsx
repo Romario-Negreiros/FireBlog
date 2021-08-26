@@ -1,14 +1,15 @@
-import { FC, useState } from 'react';
+// Modules or lib content
+import { FC, useState, useContext } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import signIn from './modules/signIn';
 import { useHistory } from 'react-router';
-
+import { ToastContainer } from 'react-toastify';
+// Images
 import Eye from '../../assets/eye-solid.svg';
 import SlashedEye from '../../assets/eye-slash-solid.svg';
 import bg from '../../assets/bg.jpg';
-
+// Components
 import { Loader, Portal, CreateAccount } from '../../components/index';
-
 import {
     InputWrapper,
     IconWrapper,
@@ -22,11 +23,14 @@ import {
     OpenModal,
     BottomContentWrapper,
 } from './styles';
+// Types
+import { Inputs } from './types';
+// Contexts
+import userContext from '../../context/UserContext';
 
-import { Inputs, Props } from './types';
-import { ToastContainer } from 'react-toastify';
+const Login: FC = () => {
+    const userData = useContext(userContext);
 
-const Login: FC<Props> = ({ setUserID }) => {
     const [error, setError] = useState<string>('');
     const [isLoaded, setIsLoaded] = useState<boolean>(true);
     const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
@@ -49,7 +53,9 @@ const Login: FC<Props> = ({ setUserID }) => {
                 const { deliverability, is_valid_format } =
                     await response.json();
                 if (deliverability === 'DELIVERABLE' && is_valid_format.value) {
-                    signIn(setUserID, data, setError, history);
+                    if (userData?.setUserData) {
+                        signIn(userData.setUserData, data, setError, history);
+                    }
                 } else setError("This email doesn't exist!");
             } catch (err) {
                 setError(err.message);
