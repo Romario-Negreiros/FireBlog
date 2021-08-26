@@ -11,7 +11,7 @@ export const Container = styled.header`
     height: 70px;
     padding: 0 0.5rem;
     background: ${({ theme: { backgrounds } }) => backgrounds.secondaryblue};
-    border-bottom: 3px solid ${({ theme: { colors } }) => colors.pink};
+    border-bottom: 2px solid ${({ theme: { colors } }) => colors.pink};
     color: ${({ theme: { colors } }) => colors.pink};
     @media screen and (min-width: 300px) {
         padding: 0 1.5rem;

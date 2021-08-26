@@ -1,26 +1,11 @@
 // Modules or libs content
-import { FC,} from 'react';
-// Images
-import PlusIcon from '../../assets/plus-solid.svg';
-import ManageIcon from '../../assets/hammer-solid.svg';
+import { FC } from 'react';
 // Components
-import { Container, UserOption, Post, Link } from './styles';
-// Context
-// import userContext from '../../context/UserContext';
+import { Container, Post, Link } from './styles';
 
-const Home: FC = () => {
-    // const context = useContext(userContext);
-
+const ManagePosts: FC = () => {
     return (
         <Container>
-            <UserOption to="/home/create">
-                <p>Create new post</p>
-                <img src={PlusIcon} alt="plus icon"></img>
-            </UserOption>
-            <UserOption to="/home/manage">
-                <p>Manage posts</p>
-                <img src={ManageIcon} alt="manage icon"></img>
-            </UserOption>
             <Post>
                 <h2>Lorem ipsum dolor sit.</h2>
                 <small>
@@ -154,4 +139,4 @@ const Home: FC = () => {
     );
 };
 
-export default Home;
+export default ManagePosts;
