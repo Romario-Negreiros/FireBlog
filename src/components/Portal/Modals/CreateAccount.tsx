@@ -1,10 +1,11 @@
+// Modules or libs content
 import { FC, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import createAccount from './modules/createAccount';
-
+// Images
 import Eye from '../../../assets/eye-solid.svg';
 import SlashedEye from '../../../assets/eye-slash-solid.svg';
-
+// Components
 import {
     Background,
     Form,
@@ -14,9 +15,9 @@ import {
     Close,
 } from './styles';
 import { Fieldset, Input } from '../../../pages/Login/styles';
-
-import { Inputs, Props } from './types';
 import Loader from '../../Loader/Loader';
+// Types
+import { Inputs, Props } from './types';
 
 const CreateAccount: FC<Props> = ({ setIsModalVisible }) => {
     const [error, setError] = useState<string>('');

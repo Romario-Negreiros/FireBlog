@@ -1,29 +1,40 @@
-import React, { FC, useState } from 'react';
-import { Container, Navigation, NavList, Link, Burguer, Line } from './styles';
+// Modules or libs content
+import { FC, useState, useContext } from 'react';
+import handleMenuOpen from './modules/handleMenuOpen';
+// Images
+import UserIcon from '../../assets/user-solid.svg';
+// Components
+import {
+    Container,
+    Navigation,
+    NavList,
+    Link,
+    Burguer,
+    Line,
+    UserWrapper,
+} from './styles';
+// Context
+import userContext from '../../context/UserContext';
 
 const NavBar: FC = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
-
-    const handleMenuOpen = (event: React.MouseEvent<HTMLDivElement>) => {
-        setIsOpen(!isOpen);
-        if (event.currentTarget.firstElementChild)
-            event.currentTarget.firstElementChild.classList.toggle(
-                'close-left'
-            );
-        if (event.currentTarget.firstElementChild?.nextElementSibling)
-            event.currentTarget.firstElementChild.nextElementSibling.classList.toggle(
-                'close-right'
-            );
-        if (event.currentTarget.lastElementChild) {
-            event.currentTarget.lastElementChild.classList.toggle('fade');
-        }
-    };
+    const context = useContext(userContext);
 
     return (
         <Container>
             <h2>FireBlog</h2>
+            {context?.userData && (
+                <UserWrapper>
+                    <p>{context?.userData?.name}</p>
+                    <div>
+                        <img src={UserIcon} alt="user icon"></img>
+                    </div>
+                </UserWrapper>
+            )}
             <Navigation>
-                <Burguer onClick={event => handleMenuOpen(event)}>
+                <Burguer
+                    onClick={event => handleMenuOpen(event, setIsOpen, isOpen)}
+                >
                     <Line></Line>
                     <Line></Line>
                     <Line></Line>
