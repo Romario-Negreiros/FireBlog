@@ -29,6 +29,12 @@ const Reset = createGlobalStyle`
             outline: 0;
         }
     }
+    textarea {
+      border: 0 none;
+      :focus {
+        outline: 0;
+      }
+    }
     ::-webkit-scrollbar {
       width: 6px;
     }
