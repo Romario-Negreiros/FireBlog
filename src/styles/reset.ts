@@ -10,6 +10,9 @@ const Reset = createGlobalStyle`
     html {
         font-size: 10px;
     }
+    body {
+      background: #f5f5f5;
+    }
     fieldset {
         border: 0 none;
     }

@@ -1,19 +1,17 @@
+// Modules or lib content
 import { FC } from 'react';
-
+// Components
 import { NavBar, Home } from '../../components/index';
 
-import { Props } from './types';
-
-const App: FC<Props> = ({ userID }) => {
+const Main: FC = () => {
 
 
     return (
         <>
             <NavBar />
             <Home />
-            <p>{userID}</p>
         </>
     )
 }
 
-export default App
+export default Main;

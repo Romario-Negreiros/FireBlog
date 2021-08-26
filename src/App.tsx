@@ -1,24 +1,29 @@
+// Modules or lib content
 import { FC, useState } from 'react';
+import { Route, Switch } from 'react-router-dom';
+// Components
 import Main from './pages/Main/Main';
 import Login from './pages/Login/Login';
-import { Route, Switch } from 'react-router-dom';
+// Context
+import userContext, { UserData } from './context/UserContext';
 
 const App: FC = () => {
-
-    const [userID, setUserID] = useState<string>('');
+    const [userData, setUserData] = useState<UserData | null>(null);
 
     return (
-        <div>
-        <Switch>
-            <Route exact path="/">
-                <Main userID={userID} />
-            </Route>
-            <Route path="/login">
-                <Login setUserID={setUserID}/>
-            </Route>
-        </Switch>
-        </div>
-    )
-}
+        <>
+            <userContext.Provider value={{ userData, setUserData }}>
+                <Switch>
+                    <Route exact path="/">
+                        <Main />
+                    </Route>
+                    <Route path="/login">
+                        <Login />
+                    </Route>
+                </Switch>
+            </userContext.Provider>
+        </>
+    );
+};
 
-export default App
+export default App;
