@@ -30,6 +30,7 @@ import { Inputs } from './types';
 import userContext from '../../context/UserContext';
 
 const Login: FC = () => {
+    
     const userData = useContext(userContext);
 
     const [error, setError] = useState<string>('');

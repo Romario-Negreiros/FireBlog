@@ -1,7 +1,8 @@
 // Modules or libs content
-import { FC, useState } from 'react';
+import { FC, useState, useContext } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import createAccount from './modules/createAccount';
+import { useHistory } from 'react-router-dom';
 // Images
 import Eye from '../../../assets/eye-solid.svg';
 import SlashedEye from '../../../assets/eye-slash-solid.svg';
@@ -18,13 +19,20 @@ import { Fieldset, Input } from '../../../pages/Login/styles';
 import Loader from '../../Loader/Loader';
 // Types
 import { Inputs, Props } from './types';
+// Contexts
+import userContext from '../../../context/UserContext';
 
 const CreateAccount: FC<Props> = ({ setIsModalVisible }) => {
+
+    const userData = useContext(userContext);
+
     const [error, setError] = useState<string>('');
     const [isLoaded, setIsLoaded] = useState<boolean>(true);
     const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
     const [isConfirmPwdVisible, setIsConfirmPwdVisible] =
         useState<boolean>(false);
+
+    const history = useHistory();
 
     const {
         register,
@@ -44,9 +52,10 @@ const CreateAccount: FC<Props> = ({ setIsModalVisible }) => {
                         await response.json();
                     if (
                         deliverability === 'DELIVERABLE' &&
-                        is_valid_format.value
+                        is_valid_format.value &&
+                        userData
                     ) {
-                        createAccount(data, setError, setIsModalVisible);
+                        createAccount(userData.setUserData, data, setError, setIsModalVisible, history);
                     } else setError("This email doesn't exist!");
                 } catch (err) {
                     setError(err.message);
@@ -88,6 +97,10 @@ const CreateAccount: FC<Props> = ({ setIsModalVisible }) => {
                                     value: 6,
                                     message: 'Minimum of 6 characters',
                                 },
+                                maxLength: {
+                                    value: 30,
+                                    message: 'Maximum of 30 characters'
+                                }
                             })}
                         />
                         <p>{errors.name?.message}</p>
