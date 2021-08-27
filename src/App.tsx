@@ -13,8 +13,8 @@ const App: FC = () => {
     const history = useHistory();
 
     useEffect(() => {
-        history.push('/home')    
-    }, [history])
+        history.push('/home');
+    }, [history]);
 
     return (
         <>
