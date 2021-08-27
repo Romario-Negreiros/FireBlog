@@ -1,158 +1,72 @@
 // Modules or libs content
-import { FC, useEffect, useCallback} from 'react';
-import { useHistory } from 'react-router';
-import { firebaseAuth } from '../../lib/firebase';
+import { FC, useState, useEffect, useCallback } from 'react';
+import { useParams, useHistory } from 'react-router';
+import { firebaseAuth, firebaseDatabase } from '../../lib/firebase';
 // Components
 import { Container, Post, Link } from './styles';
+import { Loader } from '..';
+import { CenteredContainer } from '../Home/styles';
+// Types
+import { Posts } from './types';
 
 const ManagePosts: FC = () => {
-
-    // const { userID } = useParams<{ userID: string }>();
+    const { userID } = useParams<{ userID: string }>();
 
     const history = useHistory();
     const user = firebaseAuth.currentUser;
-
+    const [posts, setPosts] = useState<Posts | null>(null);
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
+    const [error, setError] = useState<string>('');
+console.log(posts)
     const userNotLogged = useCallback(() => {
         history.push('/login');
     }, [history]);
 
     useEffect(() => {
         if (!user) userNotLogged();
-    }, [user, userNotLogged]);
+        else {
+            (async () => {
+                try {
+                    const response = await firebaseDatabase
+                        .child('posts')
+                        .child(userID)
+                        .get();
+                    setPosts(Object.entries(response.val()));
+                } catch (err) {
+                    setError(err.message);
+                } finally {
+                    setIsLoaded(true);
+                }
+            })();
+        }
+    }, [user, userNotLogged, userID]);
 
-    return (
-        <Container>
-            <Post>
-                <h2>Lorem ipsum dolor sit.</h2>
-                <small>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex.
-                </small>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Temporibus quos nobis earum voluptas. Voluptatem ab
-                    voluptatibus, laborum quam a quisquam voluptatum excepturi
-                    rerum quae assumenda sit praesentium fugit ullam nisi alias
-                    nostrum aut quod! Excepturi facilis voluptates
-                    necessitatibus aperiam assumenda.
-                </p>
-                <Link to="/">
-                    Nadnadnadna
-                </Link>
-            </Post><Post>
-                <h2>Lorem ipsum dolor sit.</h2>
-                <small>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex.
-                </small>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Temporibus quos nobis earum voluptas. Voluptatem ab
-                    voluptatibus, laborum quam a quisquam voluptatum excepturi
-                    rerum quae assumenda sit praesentium fugit ullam nisi alias
-                    nostrum aut quod! Excepturi facilis voluptates
-                    necessitatibus aperiam assumenda.
-                </p>
-                <Link to="/">
-                    Nadnadnadna
-                </Link>
-            </Post><Post>
-                <h2>Lorem ipsum dolor sit.</h2>
-                <small>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex.
-                </small>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Temporibus quos nobis earum voluptas. Voluptatem ab
-                    voluptatibus, laborum quam a quisquam voluptatum excepturi
-                    rerum quae assumenda sit praesentium fugit ullam nisi alias
-                    nostrum aut quod! Excepturi facilis voluptates
-                    necessitatibus aperiam assumenda.
-                </p>
-                <Link to="/">
-                    Nadnadnadna
-                </Link>
-            </Post><Post>
-                <h2>Lorem ipsum dolor sit.</h2>
-                <small>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex.
-                </small>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Temporibus quos nobis earum voluptas. Voluptatem ab
-                    voluptatibus, laborum quam a quisquam voluptatum excepturi
-                    rerum quae assumenda sit praesentium fugit ullam nisi alias
-                    nostrum aut quod! Excepturi facilis voluptates
-                    necessitatibus aperiam assumenda.
-                </p>
-                <Link to="/">
-                    Nadnadnadna
-                </Link>
-            </Post><Post>
-                <h2>Lorem ipsum dolor sit.</h2>
-                <small>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex.
-                </small>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Temporibus quos nobis earum voluptas. Voluptatem ab
-                    voluptatibus, laborum quam a quisquam voluptatum excepturi
-                    rerum quae assumenda sit praesentium fugit ullam nisi alias
-                    nostrum aut quod! Excepturi facilis voluptates
-                    necessitatibus aperiam assumenda.
-                </p>
-                <Link to="/">
-                    Nadnadnadna
-                </Link>
-            </Post><Post>
-                <h2>Lorem ipsum dolor sit.</h2>
-                <small>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex.
-                </small>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Temporibus quos nobis earum voluptas. Voluptatem ab
-                    voluptatibus, laborum quam a quisquam voluptatum excepturi
-                    rerum quae assumenda sit praesentium fugit ullam nisi alias
-                    nostrum aut quod! Excepturi facilis voluptates
-                    necessitatibus aperiam assumenda.
-                </p>
-                <Link to="/">
-                    Nadnadnadna
-                </Link>
-            </Post><Post>
-                <h2>Lorem ipsum dolor sit.</h2>
-                <small>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex.
-                </small>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Temporibus quos nobis earum voluptas. Voluptatem ab
-                    voluptatibus, laborum quam a quisquam voluptatum excepturi
-                    rerum quae assumenda sit praesentium fugit ullam nisi alias
-                    nostrum aut quod! Excepturi facilis voluptates
-                    necessitatibus aperiam assumenda.
-                </p>
-                <Link to="/">
-                    Nadnadnadna
-                </Link>
-            </Post><Post>
-                <h2>Lorem ipsum dolor sit.</h2>
-                <small>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex.
-                </small>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Temporibus quos nobis earum voluptas. Voluptatem ab
-                    voluptatibus, laborum quam a quisquam voluptatum excepturi
-                    rerum quae assumenda sit praesentium fugit ullam nisi alias
-                    nostrum aut quod! Excepturi facilis voluptates
-                    necessitatibus aperiam assumenda.
-                </p>
-                <Link to="/">
-                    Nadnadnadna
-                </Link>
-            </Post>
-        </Container>
-    );
+    if (!isLoaded) {
+        return (
+            <CenteredContainer>
+                <Loader />
+            </CenteredContainer>
+        );
+    } else if (error) {
+        return (
+            <CenteredContainer>
+                <p>{error}</p>
+            </CenteredContainer>
+        );
+    } else {
+        return (
+            <Container>
+                {posts?.map(post => (
+                    <Post key={post[0]}>
+                        <h2>{post[1].title}</h2>
+                        <small>{post[1].category}</small>
+                        <p>{post[1].description}</p>
+                        <Link to={`/home/edit/${post[0]}`}>Edit post</Link>
+                    </Post>
+                ))};
+            </Container>
+        );
+    }
 };
 
 export default ManagePosts;

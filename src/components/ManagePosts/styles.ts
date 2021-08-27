@@ -29,14 +29,17 @@ export const Post = styled.li`
     h2 {
         font-size: 2.4rem;
         margin-bottom: 1rem;
+        word-break: break-all;
     }
     small {
         font-size: 1.2rem;
         margin-bottom: 1rem;
+        word-break: break-all;
     }
     p {
         font-size: 1.4rem;
         margin-bottom: 1rem;
+        word-break: break-all;
     }
 `;
 
