@@ -17,7 +17,7 @@ const ManagePosts: FC = () => {
     const [posts, setPosts] = useState<Posts | null>(null);
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
-console.log(posts)
+
     const userNotLogged = useCallback(() => {
         history.push('/login');
     }, [history]);
@@ -31,7 +31,8 @@ console.log(posts)
                         .child('posts')
                         .child(userID)
                         .get();
-                    setPosts(Object.entries(response.val()));
+                    if(response.val()) setPosts(Object.entries(response.val()));
+                    else return
                 } catch (err) {
                     setError(err.message);
                 } finally {
@@ -53,6 +54,12 @@ console.log(posts)
                 <p>{error}</p>
             </CenteredContainer>
         );
+    } else if (!posts) {
+        return (
+            <CenteredContainer>
+                <p>You haven't created any post yet!</p>
+            </CenteredContainer>
+        )
     } else {
         return (
             <Container>
