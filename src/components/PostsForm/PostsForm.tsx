@@ -1,21 +1,44 @@
 // Modules or libs content
 import { FC } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { firebaseDatabase } from '../../lib/firebase';
+import { useParams } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 // Components
 import { Fieldset, Form } from './styles';
 // Types
 import { Inputs } from './types';
 
 const PostsForm: FC = () => {
+
+    const { userID } = useParams<{userID: string}>();
+
     const {
         register,
+        reset,
         handleSubmit,
         formState: { errors },
     } = useForm<Inputs>();
-    const onSubmit: SubmitHandler<Inputs> = data => console.log(data);
+
+    const onSubmit: SubmitHandler<Inputs> = data => {
+        (async () => {
+            try {
+                await firebaseDatabase.child('posts').child(userID).push(data);
+                toast.success('Succesfully created the post!')
+                reset();
+            } catch(err) {
+                toast.error('We couldn\'t create the post, please try again');
+            }
+        })();
+    };
 
     return (
             <Form onSubmit={handleSubmit(onSubmit)}>
+                <ToastContainer
+                    autoClose={3000}
+                    closeButton={false}
+                    style={{ fontSize: '16px' }}
+                />
                 <Fieldset>
                     <div>
                         <label htmlFor="title">Title</label>

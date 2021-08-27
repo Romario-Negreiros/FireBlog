@@ -2,6 +2,19 @@ import styled from 'styled-components';
 
 import { Link as ReactRouterLink } from 'react-router-dom';
 
+export const CenteredContainer = styled.main`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    p {
+        font-size: 1.4rem;
+        text-align: center;
+        color: ${({ theme: { colors } }) => colors.error};
+        margin-bottom: 1.5rem;
+    }
+`;
+
 export const Container = styled.main`
     padding: 2rem;
     display: grid;
@@ -56,6 +69,7 @@ export const Post = styled.div`
     padding: 1.5rem;
     border-radius: 5px;
     margin-bottom: 1rem;
+    width: 100%;
     @media screen and (min-width: 700px) {
         margin: 0rem;
     }

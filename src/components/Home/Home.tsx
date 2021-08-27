@@ -1,157 +1,105 @@
 // Modules or libs content
-import { FC, useContext } from 'react';
+import { FC, useContext, useState, useEffect } from 'react';
+import { firebaseDatabase, firebaseAuth } from '../../lib/firebase';
 // Images
 import PlusIcon from '../../assets/plus-solid.svg';
 import ManageIcon from '../../assets/hammer-solid.svg';
 // Components
-import { Container, UserOption, Post, Link } from './styles';
+import { Container, UserOption, Post, Link, CenteredContainer } from './styles';
+import Loader from '../Loader/Loader';
+// Types
+import { Posts } from './types';
+import { DatabaseResponse } from '../../pages/Login/types';
 // Context
 import userContext from '../../context/UserContext';
 
 const Home: FC = () => {
-    const context = useContext(userContext);
+    const [currentUser, setCurrentUser] =
+        useState<firebase.default.User | null>(null);
+    firebaseAuth.onAuthStateChanged(currentUser => setCurrentUser(currentUser));
 
-    return (
-        <Container>
-            <UserOption to={`/home/create/${context?.userData?.userID}`}>
-                <p>Create new post</p>
-                <img src={PlusIcon} alt="plus icon"></img>
-            </UserOption>
-            <UserOption to={`/home/manage/${context?.userData?.userID}`}>
-                <p>Manage posts</p>
-                <img src={ManageIcon} alt="manage icon"></img>
-            </UserOption>
-            <Post>
-                <h2>Lorem ipsum dolor sit.</h2>
-                <small>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex.
-                </small>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Temporibus quos nobis earum voluptas. Voluptatem ab
-                    voluptatibus, laborum quam a quisquam voluptatum excepturi
-                    rerum quae assumenda sit praesentium fugit ullam nisi alias
-                    nostrum aut quod! Excepturi facilis voluptates
-                    necessitatibus aperiam assumenda.
-                </p>
-                <Link to="/">
-                    Nadnadnadna
-                </Link>
-            </Post><Post>
-                <h2>Lorem ipsum dolor sit.</h2>
-                <small>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex.
-                </small>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Temporibus quos nobis earum voluptas. Voluptatem ab
-                    voluptatibus, laborum quam a quisquam voluptatum excepturi
-                    rerum quae assumenda sit praesentium fugit ullam nisi alias
-                    nostrum aut quod! Excepturi facilis voluptates
-                    necessitatibus aperiam assumenda.
-                </p>
-                <Link to="/">
-                    Nadnadnadna
-                </Link>
-            </Post><Post>
-                <h2>Lorem ipsum dolor sit.</h2>
-                <small>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex.
-                </small>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Temporibus quos nobis earum voluptas. Voluptatem ab
-                    voluptatibus, laborum quam a quisquam voluptatum excepturi
-                    rerum quae assumenda sit praesentium fugit ullam nisi alias
-                    nostrum aut quod! Excepturi facilis voluptates
-                    necessitatibus aperiam assumenda.
-                </p>
-                <Link to="/">
-                    Nadnadnadna
-                </Link>
-            </Post><Post>
-                <h2>Lorem ipsum dolor sit.</h2>
-                <small>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex.
-                </small>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Temporibus quos nobis earum voluptas. Voluptatem ab
-                    voluptatibus, laborum quam a quisquam voluptatum excepturi
-                    rerum quae assumenda sit praesentium fugit ullam nisi alias
-                    nostrum aut quod! Excepturi facilis voluptates
-                    necessitatibus aperiam assumenda.
-                </p>
-                <Link to="/">
-                    Nadnadnadna
-                </Link>
-            </Post><Post>
-                <h2>Lorem ipsum dolor sit.</h2>
-                <small>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex.
-                </small>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Temporibus quos nobis earum voluptas. Voluptatem ab
-                    voluptatibus, laborum quam a quisquam voluptatum excepturi
-                    rerum quae assumenda sit praesentium fugit ullam nisi alias
-                    nostrum aut quod! Excepturi facilis voluptates
-                    necessitatibus aperiam assumenda.
-                </p>
-                <Link to="/">
-                    Nadnadnadna
-                </Link>
-            </Post><Post>
-                <h2>Lorem ipsum dolor sit.</h2>
-                <small>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex.
-                </small>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Temporibus quos nobis earum voluptas. Voluptatem ab
-                    voluptatibus, laborum quam a quisquam voluptatum excepturi
-                    rerum quae assumenda sit praesentium fugit ullam nisi alias
-                    nostrum aut quod! Excepturi facilis voluptates
-                    necessitatibus aperiam assumenda.
-                </p>
-                <Link to="/">
-                    Nadnadnadna
-                </Link>
-            </Post><Post>
-                <h2>Lorem ipsum dolor sit.</h2>
-                <small>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex.
-                </small>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Temporibus quos nobis earum voluptas. Voluptatem ab
-                    voluptatibus, laborum quam a quisquam voluptatum excepturi
-                    rerum quae assumenda sit praesentium fugit ullam nisi alias
-                    nostrum aut quod! Excepturi facilis voluptates
-                    necessitatibus aperiam assumenda.
-                </p>
-                <Link to="/">
-                    Nadnadnadna
-                </Link>
-            </Post><Post>
-                <h2>Lorem ipsum dolor sit.</h2>
-                <small>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex.
-                </small>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Temporibus quos nobis earum voluptas. Voluptatem ab
-                    voluptatibus, laborum quam a quisquam voluptatum excepturi
-                    rerum quae assumenda sit praesentium fugit ullam nisi alias
-                    nostrum aut quod! Excepturi facilis voluptates
-                    necessitatibus aperiam assumenda.
-                </p>
-                <Link to="/">
-                    Nadnadnadna
-                </Link>
-            </Post>
-        </Container>
-    );
+    const context = useContext(userContext);
+    const [posts, setPosts] = useState<Posts | null>(null);
+    const [error, setError] = useState<string>('');
+    const [isLoaded, setIsLoaded] = useState<boolean>(true);
+
+    useEffect(() => {
+        if (context?.userData?.userID === undefined) {
+            (async () => {
+                if (currentUser) {
+                    try {
+                        const response = await firebaseDatabase
+                            .child('users')
+                            .child(currentUser.uid)
+                            .get();
+                        const userData = Object.values(
+                            response.val()
+                        )[0] as DatabaseResponse;
+                        context?.setUserData({
+                            ...userData,
+                            userID: currentUser.uid,
+                        });
+                    } catch (err) {
+                        console.error(err.message);
+                    }
+                }
+            })();
+        }
+        if (posts === null) {
+            (async () => {
+                try {
+                    const response = await firebaseDatabase
+                        .child('posts')
+                        .get();
+                    setPosts(Object.values(response.val()));
+                } catch (err) {
+                    setError(err.message);
+                } finally {
+                    setIsLoaded(true);
+                }
+            })();
+        }
+    }, [currentUser, context, posts]);
+
+    if (!isLoaded) {
+        return (
+            <CenteredContainer>
+                <Loader />
+            </CenteredContainer>
+        );
+    } else if (error) {
+        return (
+            <CenteredContainer>
+                <p>{error}</p>
+            </CenteredContainer>
+        );
+    } else {
+        const postsArray = posts?.map(post => Object.entries(post));
+        return (
+            <Container>
+                <UserOption to={`/home/create/${context?.userData?.userID}`}>
+                    <p>Create new post</p>
+                    <img src={PlusIcon} alt="plus icon"></img>
+                </UserOption>
+                <UserOption to={`/home/manage/${context?.userData?.userID}`}>
+                    <p>Manage posts</p>
+                    <img src={ManageIcon} alt="manage icon"></img>
+                </UserOption>
+                {postsArray?.map(keyValPair => (
+                    keyValPair.map(post => {
+                        return (
+                            <Post key={post[0]}>
+                                <h2>{post[1].title}</h2>
+                                <small>{post[1].category}</small>
+                                <p>{post[1].description}</p>
+                                <Link to={`/home/posts/${post[0]}`}>Read more</Link>
+                            </Post>
+                        );
+                    })
+                ))};
+            </Container>
+        );
+    }
 };
 
 export default Home;

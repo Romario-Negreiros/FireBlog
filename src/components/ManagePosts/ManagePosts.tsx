@@ -1,17 +1,17 @@
 // Modules or libs content
 import { FC, useEffect, useCallback} from 'react';
-import { useParams, useHistory } from 'react-router';
+import { useHistory } from 'react-router';
 import { firebaseAuth } from '../../lib/firebase';
 // Components
 import { Container, Post, Link } from './styles';
 
 const ManagePosts: FC = () => {
 
-    const { userID } = useParams<{ userID: string }>();
-    console.log(userID)
+    // const { userID } = useParams<{ userID: string }>();
+
     const history = useHistory();
     const user = firebaseAuth.currentUser;
-    console.log(user)
+
     const userNotLogged = useCallback(() => {
         history.push('/login');
     }, [history]);
