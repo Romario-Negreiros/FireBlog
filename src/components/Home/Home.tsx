@@ -21,7 +21,7 @@ const Home: FC = () => {
     const context = useContext(userContext);
     const [posts, setPosts] = useState<Posts | null>(null);
     const [error, setError] = useState<string>('');
-    const [isLoaded, setIsLoaded] = useState<boolean>(true);
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
     useEffect(() => {
         if (context?.userData?.userID === undefined) {

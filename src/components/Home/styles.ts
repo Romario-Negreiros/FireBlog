@@ -16,6 +16,7 @@ export const CenteredContainer = styled.main`
 `;
 
 export const Container = styled.main`
+    width: 100%;
     padding: 2rem;
     display: grid;
     grid-template-columns: 1fr;
@@ -48,12 +49,12 @@ export const UserOption = styled(ReactRouterLink)`
         width: 70%;
     }
     :hover {
-        border-color: ${({theme: { colors }}) => colors.weakerpink };
+        border-color: ${({ theme: { colors } }) => colors.weakerpink};
     }
     p {
         color: #333;
         font-size: 1.4rem;
-    }   
+    }
     img {
         width: 20px;
         object-fit: cover;
@@ -68,29 +69,33 @@ export const Post = styled.div`
     background: #fff;
     padding: 1.5rem;
     border-radius: 5px;
-    margin-bottom: 1rem;
     width: 100%;
+    margin-bottom: 1rem;
+
     @media screen and (min-width: 700px) {
         margin: 0rem;
     }
     h2 {
         font-size: 2.4rem;
         margin-bottom: 1rem;
+        word-break: break-all;
     }
     small {
         font-size: 1.2rem;
         margin-bottom: 1rem;
+        word-break: break-all;
     }
     p {
         font-size: 1.4rem;
         margin-bottom: 1rem;
+        word-break: break-all;
     }
 `;
 
 export const Link = styled(ReactRouterLink)`
-    color: ${({theme: { colors }}) => colors.weakerpink };
+    color: ${({ theme: { colors } }) => colors.weakerpink};
     font-size: 1.4rem;
     :hover {
-        color: ${({theme: { colors }}) => colors.pink };
+        color: ${({ theme: { colors } }) => colors.pink};
     }
 `;
