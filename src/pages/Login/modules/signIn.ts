@@ -23,7 +23,7 @@ const signIn = async (
                     .get();
                 const user = Object.values(response.val())[0] as DatabaseResponse;
                 setUserData({...user, userID: userId });
-                history.push('/');
+                history.push('/home');
             } catch (err) {
                 setError(err.message);
             }

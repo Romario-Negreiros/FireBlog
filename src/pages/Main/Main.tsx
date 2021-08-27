@@ -11,10 +11,10 @@ const Main: FC = () => {
                 <Route exact path="/home">
                     <Home />
                 </Route>
-                <Route path="/home/create">
+                <Route path="/home/create/:userID">
                     <CreatePosts />
                 </Route>
-                <Route path="/home/manage">
+                <Route path="/home/manage/:userID">
                     <ManagePosts />
                 </Route>
             </Switch>

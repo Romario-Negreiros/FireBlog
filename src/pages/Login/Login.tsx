@@ -22,6 +22,7 @@ import {
     Input,
     OpenModal,
     BottomContentWrapper,
+    Close,
 } from './styles';
 // Types
 import { Inputs } from './types';
@@ -92,6 +93,7 @@ const Login: FC = () => {
                 />
                 <ContentArea>
                     <Form onSubmit={handleSubmit(onSubmit)}>
+                    <Close to="/home">Back to home</Close>
                         <Fieldset>
                             <label htmlFor="email">E-mail</label>
                             <Input

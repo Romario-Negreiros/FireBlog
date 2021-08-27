@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { Link as ReactRouterLink } from 'react-router-dom';
+
 interface StyledProps {
     bg: string;
 }
@@ -121,5 +123,20 @@ export const OpenModal = styled.a`
     font-size: 1.4rem;
     :hover {
         text-decoration: underline;
+    }
+`;
+
+export const Close = styled(ReactRouterLink)`
+    align-self: flex-end;
+    display: inline-block;
+    cursor: pointer;
+    color: #fff;
+    font-size: 1.2rem;
+    :hover {
+        text-decoration: underline;
+    }
+    @media screen and (max-height: 400px) {
+        width: 100%;
+        margin-bottom: 1.5rem;
     }
 `;
