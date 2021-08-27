@@ -33,21 +33,21 @@ const NavBar: FC = () => {
             )}
             <Navigation>
                 <Burguer
-                    onClick={event => handleMenuOpen(event, setIsOpen, isOpen)}
+                    onClick={() => handleMenuOpen(setIsOpen, isOpen)}
                 >
-                    <Line></Line>
-                    <Line></Line>
-                    <Line></Line>
+                    <Line className="first"></Line>
+                    <Line className="second"></Line>
+                    <Line className="third"></Line>
                 </Burguer>
                 <NavList isOpen={isOpen}>
                     <li>
-                        <Link to="/home">Home</Link>
+                        <Link to="/home" onClick={() => handleMenuOpen(setIsOpen, isOpen)}>Home</Link>
                     </li>
                     <li>
-                        <Link to="/home">Categores</Link>
+                        <Link to="/home" onClick={() => handleMenuOpen(setIsOpen, isOpen)}>Categores</Link>
                     </li>
                     <li>
-                        <Link to="/login">Login</Link>
+                        <Link to="/login" onClick={() => handleMenuOpen(setIsOpen, isOpen)}>Login</Link>
                     </li>
                 </NavList>
             </Navigation>
