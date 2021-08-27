@@ -1,7 +1,10 @@
+// Modules or libs content
 import { History } from 'history';
-import { UserData } from '../../../context/UserContext';
 import { firebaseAuth, firebaseDatabase } from '../../../lib/firebase';
+// Types
 import { Inputs, DatabaseResponse } from '../types';
+// Context
+import { UserData } from '../../../context/UserContext';
 
 const signIn = async (
     setUserData: (userData: UserData | null) => void,
