@@ -113,6 +113,30 @@ export const Link = styled(ReactRouterLink)`
     }
 `;
 
+export const Button = styled.button`
+    color: ${({ theme: { colors } }) => colors.weakerpink};
+    padding: 0 1.5rem;
+    font-size: 1.6rem;
+    height: 100%;
+    display: block;
+    background: unset;
+    border: 0 none;
+    cursor: pointer;
+    line-height: 65px;
+    transition: background 0.3s ease, color 0.3s ease;
+    :hover {
+        background: rgba(25%, 29%, 58%, 0.5);
+        color: ${({ theme: { colors } }) => colors.pink};
+    }
+    @media screen and (max-width: 600px) {
+        line-height: 0;
+        height: fit-content;
+        padding: 2rem 0;
+        width: 100vw;
+        text-align: center;
+    }
+`;
+
 export const UserWrapper = styled.div`
     display: flex;
     align-items: center;

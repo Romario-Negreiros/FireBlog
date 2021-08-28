@@ -32,13 +32,13 @@ export const LoaderSpin = styled.div`
 `;
 
 export const LoadingMessage = styled.p`
-    color: #fff !important;
+    color: ${({theme: { colors }}) => colors.pink } !important;
     font-size: 1.6rem;
     margin-top: 10px;
     ::after {
         content: '';
         font-size: 1.6rem;
-        color: #fff;
+        color: ${({theme: { colors }}) => colors.pink };
         animation: ${writing} 3s infinite;
     }
 `;

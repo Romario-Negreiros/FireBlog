@@ -1,6 +1,8 @@
 // Modules or libs content
 import { FC, useState, useContext } from 'react';
 import handleMenuOpen from './modules/handleMenuOpen';
+import { firebaseAuth } from '../../lib/firebase';
+import { ToastContainer, toast } from 'react-toastify';
 // Images
 import UserIcon from '../../assets/user-solid.svg';
 // Components
@@ -9,6 +11,7 @@ import {
     Navigation,
     NavList,
     Link,
+    Button,
     Burguer,
     Line,
     UserWrapper,
@@ -21,37 +24,85 @@ const NavBar: FC = () => {
     const context = useContext(userContext);
 
     return (
-        <Container>
-            <h2>FireBlog</h2>
-            {context?.userData && (
-                <UserWrapper>
-                    <p>{context?.userData?.name}</p>
-                    <div>
-                        <img src={UserIcon} alt="user icon"></img>
-                    </div>
-                </UserWrapper>
-            )}
-            <Navigation>
-                <Burguer
-                    onClick={() => handleMenuOpen(setIsOpen, isOpen)}
-                >
-                    <Line className="first"></Line>
-                    <Line className="second"></Line>
-                    <Line className="third"></Line>
-                </Burguer>
-                <NavList isOpen={isOpen}>
-                    <li>
-                        <Link to="/home" onClick={() => handleMenuOpen(setIsOpen, isOpen)}>Home</Link>
-                    </li>
-                    <li>
-                        <Link to="/home" onClick={() => handleMenuOpen(setIsOpen, isOpen)}>Categores</Link>
-                    </li>
-                    <li>
-                        <Link to="/login" onClick={() => handleMenuOpen(setIsOpen, isOpen)}>Login</Link>
-                    </li>
-                </NavList>
-            </Navigation>
-        </Container>
+        <>
+            <ToastContainer
+                autoClose={3000}
+                closeButton={false}
+                style={{ fontSize: '16px' }}
+            />
+            <Container>
+                <h2>FireBlog</h2>
+                {context?.userData && (
+                    <UserWrapper>
+                        <p>{context?.userData?.name}</p>
+                        <div>
+                            <img src={UserIcon} alt="user icon"></img>
+                        </div>
+                    </UserWrapper>
+                )}
+                <Navigation>
+                    <Burguer onClick={() => handleMenuOpen(setIsOpen, isOpen)}>
+                        <Line className="first"></Line>
+                        <Line className="second"></Line>
+                        <Line className="third"></Line>
+                    </Burguer>
+                    <NavList isOpen={isOpen}>
+                        <li>
+                            <Link
+                                to="/home"
+                                onClick={() =>
+                                    handleMenuOpen(setIsOpen, isOpen)
+                                }
+                            >
+                                Home
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to="/home"
+                                onClick={() =>
+                                    handleMenuOpen(setIsOpen, isOpen)
+                                }
+                            >
+                                Categores
+                            </Link>
+                        </li>
+                        <li>
+                            {context?.userData ? (
+                                <Button
+                                    onClick={() => {
+                                        (async () => {
+                                            try {
+                                                await firebaseAuth.signOut();
+                                                toast.success(
+                                                    'Sucesfully signed out'
+                                                );
+                                                context.setUserData(null);
+                                            } catch (err) {
+                                                toast.error(
+                                                    'Failed to sign out'
+                                                );
+                                            }
+                                        })();
+                                    }}
+                                >
+                                    Sign out
+                                </Button>
+                            ) : (
+                                <Link
+                                    to="/login"
+                                    onClick={() =>
+                                        handleMenuOpen(setIsOpen, isOpen)
+                                    }
+                                >
+                                    Sign in
+                                </Link>
+                            )}
+                        </li>
+                    </NavList>
+                </Navigation>
+            </Container>
+        </>
     );
 };
 
