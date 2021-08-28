@@ -1,17 +1,20 @@
 // Modules or libs content
 import { FC } from 'react';
+import { useHistory } from 'react-router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { firebaseDatabase } from '../../lib/firebase';
 import { useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 // Components
-import { Fieldset, Form } from './styles';
+import { Fieldset, Form, CustomButton } from './styles';
 // Types
 import { Inputs } from './types';
 
 const PostsForm: FC = () => {
 
     const { userID } = useParams<{userID: string}>();
+
+    const history = useHistory();
 
     const {
         register,
@@ -39,6 +42,7 @@ const PostsForm: FC = () => {
                     closeButton={false}
                     style={{ fontSize: '16px' }}
                 />
+                <CustomButton onClick={() => history.goBack()}>Go back</CustomButton>
                 <Fieldset>
                     <div>
                         <label htmlFor="title">Title</label>

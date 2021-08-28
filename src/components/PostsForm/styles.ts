@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Form = styled.form`
     border-radius: 5px;
@@ -28,6 +28,15 @@ export const Form = styled.form`
         :active {
             border-color: ${({ theme: { colors } }) => colors.pink};
         }
+    }
+`;
+
+export const CustomButton = styled.p`
+    cursor: pointer;
+    font-size: 1.4rem;
+    color: ${({ theme: { colors } }) => colors.weakerpink};
+    :hover {
+        color: ${({ theme: { colors } }) => colors.pink};
     }
 `;
 
