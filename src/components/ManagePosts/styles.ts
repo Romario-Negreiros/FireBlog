@@ -38,7 +38,7 @@ export const Post = styled.li`
     }
     p {
         font-size: 1.4rem;
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
         word-break: break-all;
     }
 `;
