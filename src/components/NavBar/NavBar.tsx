@@ -64,7 +64,7 @@ const NavBar: FC = () => {
                                     handleMenuOpen(setIsOpen, isOpen)
                                 }
                             >
-                                Categores
+                                Categories
                             </Link>
                         </li>
                         <li>
