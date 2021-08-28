@@ -5,7 +5,16 @@ import { firebaseDatabase, firebaseAuth } from '../../lib/firebase';
 import PlusIcon from '../../assets/plus-solid.svg';
 import ManageIcon from '../../assets/hammer-solid.svg';
 // Components
-import { Container, UserOption, Post, Link, CenteredContainer } from './styles';
+import {
+    Container,
+    UserOption,
+    Post,
+    Link,
+    CenteredContainer,
+    InputWrapper,
+    Input,
+    NoMatches,
+} from './styles';
 import Loader from '../Loader/Loader';
 // Types
 import { Posts } from './types';
@@ -19,9 +28,11 @@ const Home: FC = () => {
     firebaseAuth.onAuthStateChanged(currentUser => setCurrentUser(currentUser));
 
     const context = useContext(userContext);
+
     const [posts, setPosts] = useState<Posts | null>(null);
     const [error, setError] = useState<string>('');
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
+    const [filterValue, setFilterValue] = useState<string>('');
 
     useEffect(() => {
         if (context?.userData?.userID === undefined) {
@@ -75,8 +86,47 @@ const Home: FC = () => {
         );
     } else {
         const postsArray = posts?.map(post => Object.entries(post));
+        const filteredPosts: JSX.Element[] = [];
+        postsArray?.forEach(keyValPair =>
+            keyValPair.forEach(post => {
+                if (!filterValue) {
+                    filteredPosts.push(
+                        <Post key={post[0]}>
+                            <h2>{post[1].title}</h2>
+                            <small>{post[1].category}</small>
+                            <p>{post[1].description}</p>
+                            <Link to={`/home/posts/${post[0]}`}>Read more</Link>
+                        </Post>
+                    );
+                } else if (post[1].title.includes(filterValue)) {
+                    filteredPosts.push(
+                        <Post key={post[0]}>
+                            <h2>{post[1].title}</h2>
+                            <small>{post[1].category}</small>
+                            <p>{post[1].description}</p>
+                            <Link to={`/home/posts/${post[0]}`}>Read more</Link>
+                        </Post>
+                    );
+                }
+            })
+        );
+
         return (
             <Container>
+                <InputWrapper>
+                    <Input
+                        onChange={event =>
+                            setFilterValue(event.currentTarget.value)
+                        }
+                        onKeyPress={event =>
+                            event.key === 'Enter'
+                                ? setFilterValue(event.currentTarget.value)
+                                : ''
+                        }
+                        placeholder="Search for posts"
+                        value={filterValue}
+                    />
+                </InputWrapper>
                 <UserOption to={`/home/create/${context?.userData?.userID}`}>
                     <p>Create new post</p>
                     <img src={PlusIcon} alt="plus icon"></img>
@@ -85,18 +135,7 @@ const Home: FC = () => {
                     <p>Manage posts</p>
                     <img src={ManageIcon} alt="manage icon"></img>
                 </UserOption>
-                {postsArray?.map(keyValPair => (
-                    keyValPair.map(post => {
-                        return (
-                            <Post key={post[0]}>
-                                <h2>{post[1].title}</h2>
-                                <small>{post[1].category}</small>
-                                <p>{post[1].description}</p>
-                                <Link to={`/home/posts/${post[0]}`}>Read more</Link>
-                            </Post>
-                        );
-                    })
-                ))};
+                {filteredPosts.length > 0 ? filteredPosts : <NoMatches>No matches were found!</NoMatches> };
             </Container>
         );
     }

@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 import { Link as ReactRouterLink } from 'react-router-dom';
 
+import { Input as LoginInput } from '../../pages/Login/styles';
+
 export const CenteredContainer = styled.main`
     display: flex;
     flex-direction: column;
@@ -17,15 +19,16 @@ export const CenteredContainer = styled.main`
 `;
 
 export const Container = styled.main`
+    position: relative;
     width: 100%;
     padding: 2rem;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 50px 50px auto;
+    grid-template-rows: repeat(3, 50px) auto;
     justify-items: center;
     @media screen and (min-width: 700px) {
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 50px auto;
+        grid-template-rows: 50px 50px auto;
         gap: 2rem;
     }
     @media screen and (min-width: 1300px) {
@@ -99,4 +102,32 @@ export const Link = styled(ReactRouterLink)`
     :hover {
         color: ${({ theme: { colors } }) => colors.pink};
     }
+`;
+
+export const InputWrapper = styled.div`
+    width: 100%;
+    text-align: center;
+    @media screen and (min-width: 700px) {
+        grid-column: span 2;
+    }
+`;
+
+export const Input = styled(LoginInput)`
+    :focus,
+    :hover {
+        ::placeholder {
+            color: #fff;
+        }
+    }
+    @media screen and (min-width: 700px) {
+        width: 50%;
+    }
+`;
+
+export const NoMatches = styled.p`
+    font-size: 1.5rem;
+    color: ${({theme: { colors }}) => colors.red };
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%);
 `;
