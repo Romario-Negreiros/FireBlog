@@ -37,8 +37,11 @@ Not ready yeeet
 - [x] Create account modal
 - [x] Main page, with some of the most recent posts
 - [ ] Dedicated page to each post
-- [ ] Users can only edit their own posts
+- [x] Users can only edit their own posts
+- [x] Users can delete their own posts
 - [x] Page for posts creation
+- [ ] Posts filtering
+- [ ] Search posts for categories
 
 -----------------------------------------------------------------------------------------------------------------------------
 
