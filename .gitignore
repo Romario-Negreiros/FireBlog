@@ -26,4 +26,4 @@ yarn-error.log*
 *.txt
 
 # environment variables
-*.env
+.env
