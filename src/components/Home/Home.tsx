@@ -95,16 +95,30 @@ const Home: FC = () => {
                             <h2>{post[1].title}</h2>
                             <small>{post[1].category}</small>
                             <p>{post[1].description}</p>
-                            <Link to={`/home/posts/${post[0]}`}>Read more</Link>
+                            <Link
+                                to={{
+                                    pathname: `/home/posts/${post[0]}`,
+                                    state: post,
+                                }}
+                            >
+                                Read more
+                            </Link>
                         </Post>
                     );
-                } else if (post[1].title.includes(filterValue)) {
+                } else if (post[1].title.toLowerCase().includes(filterValue.toLowerCase())) {
                     filteredPosts.push(
                         <Post key={post[0]}>
                             <h2>{post[1].title}</h2>
                             <small>{post[1].category}</small>
                             <p>{post[1].description}</p>
-                            <Link to={`/home/posts/${post[0]}`}>Read more</Link>
+                            <Link
+                                to={{
+                                    pathname: `/home/posts/${post[0]}`,
+                                    state: post,
+                                }}
+                            >
+                                Read more
+                            </Link>
                         </Post>
                     );
                 }
@@ -135,7 +149,12 @@ const Home: FC = () => {
                     <p>Manage posts</p>
                     <img src={ManageIcon} alt="manage icon"></img>
                 </UserOption>
-                {filteredPosts.length > 0 ? filteredPosts : <NoMatches>No matches were found!</NoMatches> };
+                {filteredPosts.length > 0 ? (
+                    filteredPosts
+                ) : (
+                    <NoMatches>No matches were found!</NoMatches>
+                )}
+                ;
             </Container>
         );
     }
