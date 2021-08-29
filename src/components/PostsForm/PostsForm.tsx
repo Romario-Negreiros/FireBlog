@@ -8,9 +8,9 @@ import { ToastContainer, toast } from 'react-toastify';
 // Components
 import { Fieldset, Form, CustomButton } from './styles';
 // Types
-import { Inputs } from './types';
+import { Inputs, Props } from './types';
 
-const PostsForm: FC = () => {
+const PostsForm: FC<Props> = ({ setHasPostsChanged }) => {
 
     const { userID } = useParams<{userID: string}>();
 
@@ -29,6 +29,7 @@ const PostsForm: FC = () => {
                 await firebaseDatabase.child('posts').child(userID).push(data);
                 toast.success('Succesfully created the post!')
                 reset();
+                setHasPostsChanged(true);
             } catch(err) {
                 toast.error('We couldn\'t create the post, please try again');
             }

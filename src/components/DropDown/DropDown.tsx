@@ -6,13 +6,9 @@ import { Container, Link, CustomButton } from './styles';
 // Types
 import { Props, Post } from './types';
 
-const DropDown: FC<Props> = ({ isDropDownVisible, setIsDropDownVisible }) => {
+const DropDown: FC<Props> = ({ isDropDownVisible, setIsDropDownVisible, hasPostsChanged, setHasPostsChanged }) => {
+    
     const [categories, setCategories] = useState<string[]>([]);
-    const [hasPostsChanged, setHasPostsChanged] = useState<boolean>(false);
-
-    firebaseDatabase
-        .child('posts')
-        .once('value', () => setHasPostsChanged(true));
 
     useEffect(() => {
         (async () => {
@@ -38,10 +34,10 @@ const DropDown: FC<Props> = ({ isDropDownVisible, setIsDropDownVisible }) => {
             } catch (err) {
                 console.error(err.message);
             } finally {
-                setHasPostsChanged(false);
+                if(hasPostsChanged) setHasPostsChanged(false);
             }
         })();
-    }, []);
+    }, [hasPostsChanged, setHasPostsChanged]);
 
     return (
         <Container isDropDownVisible={isDropDownVisible}>

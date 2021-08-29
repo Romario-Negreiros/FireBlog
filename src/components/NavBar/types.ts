@@ -1,3 +1,8 @@
 export default interface StyledProps {
-    isOpen: boolean
+    isOpen: boolean;
+}
+
+export interface Props {
+    hasPostsChanged: boolean;
+    setHasPostsChanged: (hasPostsChanged: boolean) => void;
 }

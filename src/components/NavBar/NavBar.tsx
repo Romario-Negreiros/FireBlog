@@ -17,10 +17,12 @@ import {
     UserWrapper,
 } from './styles';
 import DropDown from '../DropDown/DropDown';
+// Types
+import { Props } from './types';
 // Context
 import userContext from '../../context/UserContext';
 
-const NavBar: FC = () => {
+const NavBar: FC<Props> = ({ hasPostsChanged, setHasPostsChanged }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [isDropDownVisible, setIsDropDownVisible] = useState<boolean>(false);
     const context = useContext(userContext);
@@ -35,6 +37,8 @@ const NavBar: FC = () => {
             <DropDown
                 isDropDownVisible={isDropDownVisible}
                 setIsDropDownVisible={setIsDropDownVisible}
+                hasPostsChanged={hasPostsChanged}
+                setHasPostsChanged={setHasPostsChanged}
             />
             <Container>
                 <h2>FireBlog</h2>

@@ -5,8 +5,10 @@ import { firebaseAuth } from '../../lib/firebase';
 // Components
 import { Container } from './styles';
 import PostsForm from '../PostsForm/PostsForm';
+// Types
+import { Props } from '../PostsForm/types';
 
-const CreatePosts: FC = () => {
+const CreatePosts: FC<Props> = ({ setHasPostsChanged}) => {
     
     const history = useHistory();
     const user = firebaseAuth.currentUser;
@@ -21,7 +23,7 @@ const CreatePosts: FC = () => {
 
     return (
         <Container>
-            <PostsForm />
+            <PostsForm setHasPostsChanged={setHasPostsChanged} />
         </Container>
     );
 };
