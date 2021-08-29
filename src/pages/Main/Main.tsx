@@ -2,7 +2,7 @@
 import { FC } from 'react';
 import { Switch, Route } from 'react-router-dom';
 // Components
-import { NavBar, Home, CreatePosts, ManagePosts, EditPosts } from '../../components/index';
+import { NavBar, Home, CreatePosts, ManagePosts, EditPosts, Post } from '../../components/index';
 const Main: FC = () => {
     return (
         <>
@@ -19,6 +19,9 @@ const Main: FC = () => {
                 </Route>
                 <Route path="/home/edit/:userID">
                     <EditPosts />
+                </Route>
+                <Route path="/home/posts/:postID">
+                    <Post />
                 </Route>
             </Switch>
         </>
