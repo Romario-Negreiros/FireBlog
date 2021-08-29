@@ -12,6 +12,7 @@ const Reset = createGlobalStyle`
     }
     body {
       background: #f5f5f5;
+      overflow-x: hidden;
     }
     fieldset {
         border: 0 none;

@@ -35,9 +35,8 @@ const Home: FC = () => {
     const [filterValue, setFilterValue] = useState<string>('');
 
     useEffect(() => {
-        if (context?.userData?.userID === undefined) {
+        if (context?.userData?.userID === undefined && currentUser) {
             (async () => {
-                if (currentUser) {
                     try {
                         const response = await firebaseDatabase
                             .child('users')
@@ -53,7 +52,6 @@ const Home: FC = () => {
                     } catch (err) {
                         console.error(err.message);
                     }
-                }
             })();
         }
         if (posts === null) {
