@@ -16,11 +16,13 @@ import {
     Line,
     UserWrapper,
 } from './styles';
+import DropDown from '../DropDown/DropDown';
 // Context
 import userContext from '../../context/UserContext';
 
 const NavBar: FC = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [isDropDownVisible, setIsDropDownVisible] = useState<boolean>(false);
     const context = useContext(userContext);
 
     return (
@@ -29,6 +31,10 @@ const NavBar: FC = () => {
                 autoClose={3000}
                 closeButton={false}
                 style={{ fontSize: '16px' }}
+            />
+            <DropDown
+                isDropDownVisible={isDropDownVisible}
+                setIsDropDownVisible={setIsDropDownVisible}
             />
             <Container>
                 <h2>FireBlog</h2>
@@ -58,14 +64,9 @@ const NavBar: FC = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link
-                                to="/home"
-                                onClick={() =>
-                                    handleMenuOpen(setIsOpen, isOpen)
-                                }
-                            >
+                            <Button onClick={() => setIsDropDownVisible(true)}>
                                 Categories
-                            </Link>
+                            </Button>
                         </li>
                         <li>
                             {context?.userData ? (
@@ -75,7 +76,7 @@ const NavBar: FC = () => {
                                             try {
                                                 await firebaseAuth.signOut();
                                                 toast.success(
-                                                    'Sucesfully signed out'
+                                                    'Succesfully signed out'
                                                 );
                                                 context.setUserData(null);
                                             } catch (err) {
