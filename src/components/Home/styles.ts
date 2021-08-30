@@ -125,9 +125,12 @@ export const Input = styled(LoginInput)`
 `;
 
 export const NoMatches = styled.p`
+    display: block;
+    width: 100%;
+    text-align: center;
     font-size: 1.5rem;
-    color: ${({theme: { colors }}) => colors.red };
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%);
+    color: ${({ theme: { colors } }) => colors.red};
+    @media screen and (min-width: 700px) {
+        grid-column: span 2;
+    }
 `;
