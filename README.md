@@ -45,7 +45,8 @@ Some features I would like to add after mvp is done:
 - [x] Users can delete their own posts
 - [x] Page for posts creation
 - [x] Posts filtering
-- [ ] Search posts for categories
+- [x] Search posts for categories
+- [ ] Comments
 
 -----------------------------------------------------------------------------------------------------------------------------
 
