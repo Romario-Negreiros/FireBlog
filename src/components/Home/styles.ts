@@ -113,6 +113,9 @@ export const InputWrapper = styled.div`
 `;
 
 export const Input = styled(LoginInput)`
+    ::placeholder {
+        color: #333;
+    }
     :focus,
     :hover {
         ::placeholder {
