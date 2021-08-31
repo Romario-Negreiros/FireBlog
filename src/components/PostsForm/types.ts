@@ -3,6 +3,8 @@ export type Inputs = {
     category: string;
     description: string;
     content: string;
+    comment: string[];
+    rate: string;
 };
 
 export interface Props {

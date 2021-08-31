@@ -26,7 +26,7 @@ const PostsForm: FC<Props> = ({ setHasPostsChanged }) => {
     const onSubmit: SubmitHandler<Inputs> = data => {
         (async () => {
             try {
-                await firebaseDatabase.child('posts').child(userID).push(data);
+                await firebaseDatabase.child('posts').child(userID).push({...data, comments: [], rate: '0'});
                 toast.success('Succesfully created the post!')
                 reset();
                 setHasPostsChanged(true);
@@ -39,7 +39,7 @@ const PostsForm: FC<Props> = ({ setHasPostsChanged }) => {
     return (
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <ToastContainer
-                    autoClose={3000}
+                    autoClose={2000}
                     closeButton={false}
                     style={{ fontSize: '16px' }}
                 />

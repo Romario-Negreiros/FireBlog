@@ -17,7 +17,7 @@ import {
 } from './styles';
 import Loader from '../Loader/Loader';
 // Types
-import { Posts } from './types';
+import { Posts, PostsArray, PostObject } from './types';
 import { DatabaseResponse } from '../../pages/Login/types';
 // Context
 import userContext from '../../context/UserContext';
@@ -37,21 +37,21 @@ const Home: FC = () => {
     useEffect(() => {
         if (context?.userData?.userID === undefined && currentUser) {
             (async () => {
-                    try {
-                        const response = await firebaseDatabase
-                            .child('users')
-                            .child(currentUser.uid)
-                            .get();
-                        const userData = Object.values(
-                            response.val()
-                        )[0] as DatabaseResponse;
-                        context?.setUserData({
-                            ...userData,
-                            userID: currentUser.uid,
-                        });
-                    } catch (err) {
-                        console.error(err.message);
-                    }
+                try {
+                    const response = await firebaseDatabase
+                        .child('users')
+                        .child(currentUser.uid)
+                        .get();
+                    const userData = Object.values(
+                        response.val()
+                    )[0] as DatabaseResponse;
+                    context?.setUserData({
+                        ...userData,
+                        userID: currentUser.uid,
+                    });
+                } catch (err) {
+                    console.error(err.message);
+                }
             })();
         }
         if (posts === null) {
@@ -60,7 +60,12 @@ const Home: FC = () => {
                     const response = await firebaseDatabase
                         .child('posts')
                         .get();
-                    setPosts(Object.values(response.val()));
+                    if (
+                        response.val() !== null &&
+                        response.val() !== undefined
+                    ) {
+                        setPosts(Object.entries(response.val()));
+                    }
                 } catch (err) {
                     setError(err.message);
                 } finally {
@@ -82,11 +87,27 @@ const Home: FC = () => {
                 <p>{error}</p>
             </CenteredContainer>
         );
+    } else if (posts === null) {
+        return (
+            <CenteredContainer>
+                 <UserOption to={`/home/create/${context?.userData?.userID}`}>
+                    <p>Create new post</p>
+                    <img src={PlusIcon} alt="plus icon"></img>
+                </UserOption>
+                <UserOption to={`/home/manage/${context?.userData?.userID}`}>
+                    <p>Manage posts</p>
+                    <img src={ManageIcon} alt="manage icon"></img>
+                </UserOption>
+                <p>Hmmm, something went wrong!</p>
+            </CenteredContainer>
+        );
     } else {
-        const postsArray = posts?.map(post => Object.entries(post));
         const filteredPosts: JSX.Element[] = [];
-        postsArray?.forEach(keyValPair =>
-            keyValPair.forEach(post => {
+        posts?.forEach(keyValPair => {
+            const postsForId: PostsArray[] = Object.entries(
+                keyValPair[1] as unknown as PostObject
+            );
+            postsForId.forEach(post => {
                 if (!filterValue) {
                     filteredPosts.push(
                         <Post key={post[0]}>
@@ -96,14 +117,18 @@ const Home: FC = () => {
                             <Link
                                 to={{
                                     pathname: `/home/posts/${post[0]}`,
-                                    state: post,
+                                    state: [keyValPair[0], post],
                                 }}
                             >
                                 Read more
                             </Link>
                         </Post>
                     );
-                } else if (post[1].title.toLowerCase().includes(filterValue.toLowerCase())) {
+                } else if (
+                    post[1].title
+                        .toLowerCase()
+                        .includes(filterValue.toLowerCase())
+                ) {
                     filteredPosts.push(
                         <Post key={post[0]}>
                             <h2>{post[1].title}</h2>
@@ -112,7 +137,7 @@ const Home: FC = () => {
                             <Link
                                 to={{
                                     pathname: `/home/posts/${post[0]}`,
-                                    state: post,
+                                    state: [keyValPair[0], post],
                                 }}
                             >
                                 Read more
@@ -120,8 +145,8 @@ const Home: FC = () => {
                         </Post>
                     );
                 }
-            })
-        );
+            });
+        });
 
         return (
             <Container>

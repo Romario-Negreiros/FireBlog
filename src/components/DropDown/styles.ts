@@ -64,5 +64,6 @@ export const CustomButton = styled(Button)`
     @media screen and (min-width: 600px) {
         text-align: left;
         margin: 0 0 2rem;
+        background: unset;
     }
 `;

@@ -8,9 +8,9 @@ import { firebaseAuth, firebaseDatabase } from '../../lib/firebase';
 import { Container } from '../CreatePosts/styles';
 import { Form, Fieldset, CustomButton } from '../PostsForm/styles';
 // Types
-import { State, Inputs } from './types';
+import { State, Inputs, Props } from './types';
 
-const EditPosts: FC = () => {
+const EditPosts: FC<Props> = ({ setHasPostsChanged }) => {
     const { state } = useLocation<State>();
     const { userID } = useParams<{ userID: string }>();
     const history = useHistory();
@@ -30,10 +30,12 @@ const EditPosts: FC = () => {
                     .child('posts')
                     .child(userID)
                     .child(state[0])
-                    .update({ ...data });
+                    .update({...data, comments: JSON.stringify(state[1].comments), rate: String(state[1].rate)})
                 toast.success('Update succeeded!');
             } catch (err) {
                 toast.error('Update failed, please try again!');
+            } finally {
+                setHasPostsChanged(true);
             }
         })();
     };
@@ -50,7 +52,7 @@ const EditPosts: FC = () => {
         <Container>
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <ToastContainer
-                    autoClose={3000}
+                    autoClose={2000}
                     closeButton={false}
                     style={{ fontSize: '16px' }}
                 />

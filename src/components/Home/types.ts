@@ -1,12 +1,19 @@
 type Data = {
-    title: string,
-    category: string,
-    description: string,
-    content: string,
-}
+    title: string;
+    category: string;
+    description: string;
+    content: string;
+    comment: string[];
+    rate: string;
+};
 
-type Post = {
-    PostId: Data
-}
+export type PostObject = {
+    PostId: Data;
+};
 
-export type Posts = Post[]
+export type PostsArray = [
+    string,
+    Data
+]
+
+export type Posts = [string, PostObject[]][];

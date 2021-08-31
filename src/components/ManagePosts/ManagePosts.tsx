@@ -4,12 +4,11 @@ import { useParams, useHistory } from 'react-router';
 import { firebaseAuth, firebaseDatabase } from '../../lib/firebase';
 import { ToastContainer, toast } from 'react-toastify';
 // Components
-import { Container, Post, Link } from './styles';
+import { Container, Post, Link, Delete } from './styles';
 import { Loader } from '..';
 import { CenteredContainer } from '../Home/styles';
 // Types
 import { Posts } from './types';
-import { CustomButton } from '../PostsForm/styles';
 
 const ManagePosts: FC = () => {
 
@@ -104,9 +103,9 @@ const ManagePosts: FC = () => {
                             >
                                 Edit post
                             </Link>
-                            <CustomButton onClick={() => deletePost(post[0])}>
+                            <Delete onClick={() => deletePost(post[0])}>
                                 Delete
-                            </CustomButton>
+                            </Delete>
                         </Post>
                     ))}
                     ;

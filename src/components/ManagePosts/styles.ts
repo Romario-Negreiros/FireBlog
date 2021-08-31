@@ -44,9 +44,19 @@ export const Post = styled.li`
 `;
 
 export const Link = styled(ReactRouterLink)`
-    color: ${({theme: { colors }}) => colors.weakerpink };
+    color: ${({ theme: { colors } }) => colors.weakerpink};
     font-size: 1.4rem;
     :hover {
-        color: ${({theme: { colors }}) => colors.pink };
+        color: ${({ theme: { colors } }) => colors.pink};
+    }
+`;
+
+export const Delete = styled.span`
+    cursor: pointer;
+    color: ${({ theme: { colors } }) => colors.weakerpink};
+    font-size: 1.4rem;
+    margin-top: 1rem;
+    :hover {
+        color: ${({ theme: { colors } }) => colors.pink};
     }
 `;

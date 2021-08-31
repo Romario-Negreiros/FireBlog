@@ -31,12 +31,14 @@ export const Form = styled.form`
     }
 `;
 
-export const CustomButton = styled.p`
+export const CustomButton = styled.span`
     cursor: pointer;
     font-size: 1.4rem;
-    color: ${({ theme: { colors } }) => colors.weakerpink};
+    color: ${({ theme: { colors } }) => colors.pink};
+    background: #f5f5f5;
+    padding: 1.5rem;
     :hover {
-        color: ${({ theme: { colors } }) => colors.pink};
+        opacity: 0.5;
     }
 `;
 
