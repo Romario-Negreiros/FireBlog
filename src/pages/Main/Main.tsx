@@ -21,7 +21,7 @@ const Main: FC = () => {
                     <ManagePosts />
                 </Route>
                 <Route path="/home/edit/:userID">
-                    <EditPosts />
+                    <EditPosts setHasPostsChanged={setHasPostsChanged} />
                 </Route>
                 <Route path="/home/posts/:postID">
                     <Post />

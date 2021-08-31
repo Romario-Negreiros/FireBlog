@@ -89,7 +89,7 @@ const Login: FC = () => {
         return (
             <BannerArea bg={bg}>
                 <ToastContainer
-                    autoClose={3000}
+                    autoClose={2000}
                     closeButton={false}
                     style={{ fontSize: '16px' }}
                 />
