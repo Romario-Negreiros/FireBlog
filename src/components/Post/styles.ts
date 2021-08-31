@@ -45,3 +45,19 @@ export const PostContainer = styled.div`
         font-size: 1.4rem;
     }
 `;
+
+export const AvaliationSection = styled.aside`
+    margin-top: 10rem;
+    h2 {
+        font-weight: bolder;
+        margin-bottom: 2rem;
+    }
+    small {
+        display: block;
+        margin: -1.4rem 0 2rem;
+        text-decoration: underline;
+    }
+    .react-stars {
+        margin-top: -2rem;
+    }
+`;
