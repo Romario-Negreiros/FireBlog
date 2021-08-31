@@ -24,6 +24,7 @@ Some features I would like to add after mvp is done:
 * React hook form
 * React toastify
 * Firebase lib
+* React stars
 
 -----------------------------------------------------------------------------------------------------------------------------
 
@@ -47,6 +48,7 @@ Some features I would like to add after mvp is done:
 - [x] Posts filtering
 - [x] Search posts for categories
 - [ ] Comments
+- [x] Rate
 
 -----------------------------------------------------------------------------------------------------------------------------
 
