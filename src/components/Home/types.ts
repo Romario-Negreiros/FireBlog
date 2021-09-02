@@ -1,9 +1,9 @@
-type Data = {
+export type Data = {
     title: string;
     category: string;
     description: string;
     content: string;
-    comment: string[];
+    comments: string;
     rate: string;
 };
 

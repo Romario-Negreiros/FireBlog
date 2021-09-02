@@ -3,7 +3,7 @@ export interface Post {
     category: string;
     description: string;
     content: string;
-    comments: string[];
+    comments: string;
     rate: string;
 }
 

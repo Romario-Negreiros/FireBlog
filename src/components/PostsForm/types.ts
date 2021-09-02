@@ -4,7 +4,7 @@ export type Inputs = {
     description: string;
     content: string;
     comment: string[];
-    rate: string;
+    rate: string[];
 };
 
 export interface Props {

@@ -3,7 +3,7 @@ export type Post = {
     category: string;
     description: string;
     content: string;
-    comment: string[];
+    comment: string;
     rate: string;
 };
 

@@ -26,7 +26,7 @@ const PostsForm: FC<Props> = ({ setHasPostsChanged }) => {
     const onSubmit: SubmitHandler<Inputs> = data => {
         (async () => {
             try {
-                await firebaseDatabase.child('posts').child(userID).push({...data, comments: [], rate: '0'});
+                await firebaseDatabase.child('posts').child(userID).push({...data, comments: [], rate: JSON.stringify(['0'])});
                 toast.success('Succesfully created the post!')
                 reset();
                 setHasPostsChanged(true);

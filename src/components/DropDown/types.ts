@@ -15,7 +15,7 @@ export type Post = {
         description: string;
         category: string;
         content: string;
-        comment: string[];
+        comment: string;
         rate: string;
     };
 };

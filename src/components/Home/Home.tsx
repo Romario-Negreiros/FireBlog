@@ -108,7 +108,7 @@ const Home: FC = () => {
                 keyValPair[1] as unknown as PostObject
             );
             postsForId.forEach(post => {
-                if (!filterValue) {
+                if (!filterValue) {         
                     filteredPosts.push(
                         <Post key={post[0]}>
                             <h2>{post[1].title}</h2>

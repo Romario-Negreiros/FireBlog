@@ -1,5 +1,7 @@
-import { Post } from "../ManagePosts/types";
+import { Data } from "../Home/types";
 
-export interface PostObject {
-    postId: Post
-}
+export type Posts = [
+    string,
+    string,
+    Data
+]

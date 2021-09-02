@@ -4,15 +4,16 @@ import { useParams } from 'react-router-dom';
 import { firebaseDatabase } from '../../lib/firebase';
 // Components
 import { Loader } from '..';
-import { CenteredContainer, Post, Link, NoMatches } from '../Home/styles';
+import { CenteredContainer, Post, Link } from '../Home/styles';
 import { Container, Title } from './styles';
 // Types
-import { PostObject } from './types';
-import { Posts } from '../ManagePosts/types';
+import { Posts } from './types';
+import { PostsArray, PostObject } from '../Home/types';
+
 const PostsForCategory: FC = () => {
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
-    const [postsForCategory, setPostsForCategory] = useState<Posts>([]);
+    const [postsForCategory, setPostsForCategory] = useState<Posts[]>([]);
 
     const { category } = useParams<{ category: string }>();
 
@@ -20,20 +21,24 @@ const PostsForCategory: FC = () => {
         (async () => {
             try {
                 const response = await firebaseDatabase.child('posts').get();
-                const getValues: PostObject[] = Object.values(response.val());
-                console.log(getValues);
-                const getEntries: Posts[] = getValues.map(value =>
-                    Object.entries(value)
-                );
-                const postsForCategory: Posts = [];
-                getEntries.forEach(postsArr => {
-                    postsArr.forEach(post => {
+                const getIdAndPostsObject = Object.entries(response.val());
+                const getIdAndPostsArray: [string, PostsArray[]][] =
+                    getIdAndPostsObject.map(v => {
+                        return [v[0], Object.entries(v[1] as PostObject)];
+                    });
+                const postsForCategory: Posts[] = [];
+                getIdAndPostsArray.forEach(uidAndPostsArr => {
+                    uidAndPostsArr[1].forEach(post => {
                         if (post[1].category === category) {
-                            postsForCategory.push(post);
+                            postsForCategory.push([uidAndPostsArr[0], ...post]);
                         }
                     });
                 });
-                setPostsForCategory(postsForCategory);
+                if(!postsForCategory.length) {
+                    throw new Error('This category either doesn\'t exist or is empty')
+                } else {
+                    setPostsForCategory(postsForCategory);
+                }
             } catch (err) {
                 setError(err.message);
             } finally {
@@ -54,32 +59,26 @@ const PostsForCategory: FC = () => {
                 <p>{error}</p>
             </CenteredContainer>
         );
-    } else if (!postsForCategory.length) {
-        return (
-            <CenteredContainer>
-                <NoMatches> No posts for this category were found </NoMatches>
-            </CenteredContainer>
-        );
     } else {
         return (
             <>
-                <Title>{category.charAt(0).toUpperCase() + category.substring(1)}</Title>
+                <Title>
+                    {category.charAt(0).toUpperCase() + category.substring(1)}
+                </Title>
                 <Container>
                     {postsForCategory.map(post => (
-                        <Post>
-                            <Post key={post[0]}>
-                                <h2>{post[1].title}</h2>
-                                <small>{post[1].category}</small>
-                                <p>{post[1].description}</p>
-                                <Link
-                                    to={{
-                                        pathname: `/home/posts/${post[0]}`,
-                                        state: post,
-                                    }}
-                                >
-                                    Read more
-                                </Link>
-                            </Post>
+                        <Post key={post[1]}>
+                            <h2>{post[2].title}</h2>
+                            <small>{post[2].category}</small>
+                            <p>{post[2].description}</p>
+                            <Link
+                                to={{
+                                    pathname: `/home/posts/${post[0]}`,
+                                    state: [post[0], [post[1], post[2]]],
+                                }}
+                            >
+                                Read more
+                            </Link>
                         </Post>
                     ))}
                 </Container>

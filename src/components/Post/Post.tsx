@@ -14,23 +14,40 @@ import {
 import { State } from './types';
 
 const Post: FC = () => {
+    const getAverage = (
+        rate: string[],
+        setAverage: (average: number) => void
+    ) => {
+        const toNumber = rate.map(rate => parseInt(rate));
+        const sumAll: number = toNumber.reduce((a, v) => a + v, 0);
+        const average: number = sumAll / rate.length;
+        setAverage(average);
+    };
+
     const history = useHistory();
     const { state } = useLocation<State>();
-    const [rate, setRate] = useState<number>(Number(state[1][1].rate));
-
+    const [rate, setRate] = useState<string[]>(JSON.parse(state[1][1].rate));
+    const [average, setAverage] = useState<number>();
+    console.log(rate);
     useEffect(() => {
+        getAverage(rate, setAverage);
         return () => {
             (async () => {
                 try {
-                    await firebaseDatabase.child('posts').child(state[0]).child(state[1][0]).update({
-                        rate: String(rate)
-                    })
+                    await firebaseDatabase
+                        .child('posts')
+                        .child(state[0])
+                        .child(state[1][0])
+                        .update({
+                            rate: JSON.stringify(rate),
+                        });
                 } catch (err) {
                     console.error(err.message);
                 }
             })();
         };
-    });
+    }, [rate, state]);
+
     return (
         <Container>
             <PostContainer>
@@ -52,10 +69,10 @@ const Post: FC = () => {
                     <h2>Rate</h2>
                     <small>You must be logged in to avaliate the post!</small>
                     <ReactStars
-                        className='react-stars'
-                        value={rate}
+                        className="react-stars"
+                        value={average}
                         onChange={rate => {
-                            setRate(rate);
+                            setRate(oldRate => [...oldRate, String(rate)]);
                         }}
                         size={30}
                         color2={'#ffd700'}
