@@ -15,7 +15,6 @@ ${props =>
                 : 'transform: translateY(-600px)'};
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
     position: absolute;
     top: 0;
@@ -31,6 +30,7 @@ ${props =>
         height: 40vh;
         padding: 2rem;
         flex-flow: row wrap;
+        justify-content: space-between;
     }
     @media screen and (max-height: 200px) {
         height: fit-content;
@@ -40,6 +40,7 @@ ${props =>
 export const Link = styled(ReactRouterLink)`
     color: ${({ theme: { colors } }) => colors.weakerpink};
     margin-bottom: 1.5rem;
+    
     padding: 2rem 0;
     font-size: 1.6rem;
     display: block;
@@ -61,9 +62,9 @@ export const CustomButton = styled(Button)`
     width: 100%;
     text-align: center;
     margin-top: 2rem;
+    background: unset;
     @media screen and (min-width: 600px) {
         text-align: left;
         margin: 0 0 2rem;
-        background: unset;
     }
 `;

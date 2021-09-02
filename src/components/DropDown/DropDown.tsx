@@ -6,7 +6,7 @@ import { Container, Link, CustomButton } from './styles';
 // Types
 import { Props, Post } from './types';
 
-const DropDown: FC<Props> = ({ isDropDownVisible, setIsDropDownVisible, hasPostsChanged, setHasPostsChanged }) => {
+const DropDown: FC<Props> = ({ isDropDownVisible, setIsDropDownVisible, setIsOpen, hasPostsChanged, setHasPostsChanged }) => {
     
     const [categories, setCategories] = useState<string[]>([]);
 
@@ -50,7 +50,10 @@ const DropDown: FC<Props> = ({ isDropDownVisible, setIsDropDownVisible, hasPosts
                     to={{
                         pathname: `/home/categories/${category}`
                     }}
-                    onClick={() => setIsDropDownVisible(false)}
+                    onClick={() => {
+                        setIsDropDownVisible(false)
+                        setIsOpen(false)
+                    }}
                 >
                     {category}
                 </Link>

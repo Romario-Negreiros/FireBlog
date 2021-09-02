@@ -1,6 +1,7 @@
 export interface Props {
     isDropDownVisible: boolean;
     setIsDropDownVisible: (isDropDownVisible: boolean) => void;
+    setIsOpen: (isOpen: boolean) => void;
     hasPostsChanged: boolean;
     setHasPostsChanged: (hasPostsChanged: boolean) => void;
 }
