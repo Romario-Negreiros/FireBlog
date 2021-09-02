@@ -38,6 +38,7 @@ const NavBar: FC<Props> = ({ hasPostsChanged, setHasPostsChanged }) => {
             <DropDown
                 isDropDownVisible={isDropDownVisible}
                 setIsDropDownVisible={setIsDropDownVisible}
+                setIsOpen={setIsOpen}
                 hasPostsChanged={hasPostsChanged}
                 setHasPostsChanged={setHasPostsChanged}
             />
