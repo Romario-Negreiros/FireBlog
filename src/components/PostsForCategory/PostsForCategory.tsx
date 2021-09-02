@@ -40,7 +40,7 @@ const PostsForCategory: FC = () => {
                     setPostsForCategory(postsForCategory);
                 }
             } catch (err) {
-                setError(err.message);
+                if (err instanceof TypeError || err instanceof Error) setError(err.message);
             } finally {
                 setIsLoaded(true);
             }

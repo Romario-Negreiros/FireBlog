@@ -32,7 +32,7 @@ const DropDown: FC<Props> = ({ isDropDownVisible, setIsDropDownVisible, hasPosts
                 });
                 setCategories(getCategories);
             } catch (err) {
-                console.error(err.message);
+                if(err instanceof TypeError) console.log(err.message)
             } finally {
                 if(hasPostsChanged) setHasPostsChanged(false);
             }

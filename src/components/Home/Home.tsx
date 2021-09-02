@@ -50,7 +50,7 @@ const Home: FC = () => {
                         userID: currentUser.uid,
                     });
                 } catch (err) {
-                    console.error(err.message);
+                    if(err instanceof TypeError) console.log(err.message)
                 }
             })();
         }
@@ -67,7 +67,7 @@ const Home: FC = () => {
                         setPosts(Object.entries(response.val()));
                     }
                 } catch (err) {
-                    setError(err.message);
+                    if(err instanceof TypeError) setError(err.message)
                 } finally {
                     setIsLoaded(true);
                 }

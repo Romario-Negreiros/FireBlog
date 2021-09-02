@@ -54,7 +54,7 @@ const ManagePosts: FC = () => {
                         setPosts(Object.entries(response.val()));
                     else setPosts(null);
                 } catch (err) {
-                    setError(err.message);
+                    if(err instanceof TypeError) setError(err.message);
                 } finally {
                     setIsLoaded(true);
                     setWasDeleted(false);

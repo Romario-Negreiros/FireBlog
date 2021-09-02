@@ -23,6 +23,7 @@ import { Props } from './types';
 import userContext from '../../context/UserContext';
 
 const NavBar: FC<Props> = ({ hasPostsChanged, setHasPostsChanged }) => {
+    
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [isDropDownVisible, setIsDropDownVisible] = useState<boolean>(false);
     const context = useContext(userContext);

@@ -27,12 +27,18 @@ const signIn = async (
                 const user = Object.values(response.val())[0] as DatabaseResponse;
                 setUserData({...user, userID: userId });
                 history.push('/home');
-            } catch (err) {
-                setError(err.message);
+            } catch (err) {        
+                if (err instanceof SyntaxError) {
+                    setError(err.message);
+                    console.log(err)
+                }
+                else {
+                    console.log(err)
+                }
             }
         } 
     } catch (err) {
-        setError(err.message);
+        if (err instanceof TypeError) setError(err.message);
     }
 };
 

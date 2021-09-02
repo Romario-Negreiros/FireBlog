@@ -30,7 +30,6 @@ import { Inputs } from './types';
 import userContext from '../../context/UserContext';
 
 const Login: FC = () => {
-    
     const userData = useContext(userContext);
 
     const [error, setError] = useState<string>('');
@@ -45,23 +44,16 @@ const Login: FC = () => {
         handleSubmit,
         formState: { errors },
     } = useForm<Inputs>();
-    
+
     const onSubmit: SubmitHandler<Inputs> = data => {
         (async () => {
             setIsLoaded(false);
             try {
-                const response = await fetch(
-                    `https://emailvalidation.abstractapi.com/v1/?api_key=${process.env.REACT_APP_EMAIL_APIKEY}&email=${data.email}`
-                );
-                const { deliverability, is_valid_format } =
-                    await response.json();
-                if (deliverability === 'DELIVERABLE' && is_valid_format.value) {
-                    if (userData?.setUserData) {
-                        signIn(userData.setUserData, data, setError, history);
-                    }
-                } else setError("This email doesn't exist!");
+                if (userData?.setUserData) {
+                    signIn(userData.setUserData, data, setError, history);
+                }
             } catch (err) {
-                setError(err.message);
+                if(err instanceof TypeError) console.log(err.message)
             } finally {
                 setIsLoaded(true);
             }
@@ -95,7 +87,7 @@ const Login: FC = () => {
                 />
                 <ContentArea>
                     <Form onSubmit={handleSubmit(onSubmit)}>
-                    <Close to="/home">Back to home</Close>
+                        <Close to="/home">Back to home</Close>
                         <Fieldset>
                             <label htmlFor="email">E-mail</label>
                             <Input
