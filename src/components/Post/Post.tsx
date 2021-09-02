@@ -29,6 +29,16 @@ const Post: FC = () => {
         }
     };
 
+    const getPersonalRateInitialValue = (
+        rate: Rate,
+        setPersonalRate: (personalRate: number) => void,
+        userID: string
+    ) => {
+        const personalRate: {userid: string, rate: string} | undefined = rate.find(rateObj => rateObj.userid === userID);
+        if(personalRate !== undefined) setPersonalRate(Number(personalRate.rate));
+        else setPersonalRate(0);
+    };
+
     const { state } = useLocation<State>();
     const [rate, setRate] = useState<Rate>(
         state && JSON.parse(state[1][1].rate)
@@ -42,6 +52,10 @@ const Post: FC = () => {
 
     useEffect(() => {
         getAverageRate(rate, setAverageRate);
+        if (context !== null && context.userData !== null && user !== null) {
+            const { userID } = context.userData;
+            getPersonalRateInitialValue(rate, setPersonalRate, userID);
+        }
         return () => {
             (async () => {
                 try {
@@ -57,7 +71,7 @@ const Post: FC = () => {
                 }
             })();
         };
-    }, [rate, state]);
+    }, [rate, state, context, user]);
     if (state === undefined) {
         return (
             <CenteredContainer>
@@ -119,7 +133,9 @@ const Post: FC = () => {
                                                 if (rateObj.userid === userID) {
                                                     return {
                                                         userid: rateObj.userid,
-                                                        rate: String(personalRate),
+                                                        rate: String(
+                                                            personalRate
+                                                        ),
                                                     };
                                                 } else return rateObj;
                                             }
