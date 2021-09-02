@@ -40,6 +40,10 @@ export const CustomButton = styled.span`
     :hover {
         opacity: 0.5;
     }
+    @media screen and (max-width: 600px) {
+        width: 100%;
+        margin-bottom: 2rem;
+    }
 `;
 
 export const Fieldset = styled.fieldset`
