@@ -1,8 +1,8 @@
 // Modules or libs content
-import { FC, useState, useEffect } from 'react';
+import { FC, useState, useEffect, useContext } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import ReactStars from 'react-stars';
-import { firebaseDatabase } from '../../lib/firebase';
+import { firebaseDatabase, firebaseAuth } from '../../lib/firebase';
 // Components
 import {
     Container,
@@ -11,26 +11,37 @@ import {
     AvaliationSection,
 } from './styles';
 // Types
-import { State } from './types';
+import { State, Rate } from './types';
+// Context;
+import userContext from '../../context/UserContext';
+import { CenteredContainer } from '../Home/styles';
 
 const Post: FC = () => {
-    const getAverage = (
-        rate: string[],
-        setAverage: (average: number) => void
+    const getAverageRate = (
+        rate: Rate,
+        setAverageRate: (average: number) => void
     ) => {
-        const toNumber = rate.map(rate => parseInt(rate));
-        const sumAll: number = toNumber.reduce((a, v) => a + v, 0);
-        const average: number = sumAll / rate.length;
-        setAverage(average);
+        if (rate !== undefined) {
+            const toNumber = rate.map(rateObj => parseInt(rateObj.rate));
+            const sumAll: number = toNumber.reduce((a, v) => a + v, 0);
+            const average: number = sumAll / rate.length;
+            setAverageRate(average);
+        }
     };
 
-    const history = useHistory();
     const { state } = useLocation<State>();
-    const [rate, setRate] = useState<string[]>(JSON.parse(state[1][1].rate));
-    const [average, setAverage] = useState<number>();
-    console.log(rate);
+    const [rate, setRate] = useState<Rate>(
+        state && JSON.parse(state[1][1].rate)
+    );
+    const [averageRate, setAverageRate] = useState<number>();
+    const [personalRate, setPersonalRate] = useState<number>();
+
+    const user = firebaseAuth.currentUser;
+    const history = useHistory();
+    const context = useContext(userContext);
+
     useEffect(() => {
-        getAverage(rate, setAverage);
+        getAverageRate(rate, setAverageRate);
         return () => {
             (async () => {
                 try {
@@ -42,45 +53,96 @@ const Post: FC = () => {
                             rate: JSON.stringify(rate),
                         });
                 } catch (err) {
-                    console.error(err.message);
+                    if (err instanceof TypeError) console.log(err.message);
                 }
             })();
         };
     }, [rate, state]);
-
-    return (
-        <Container>
-            <PostContainer>
-                <CustomButton onClick={() => history.goBack()}>
-                    Go back
-                </CustomButton>
-                <h1>{state[1][1].title}</h1>
-                <small>{state[1][1].category}</small>
-                <hr />
-                <h2>{state[1][1].description}</h2>
-                <hr />
-                <article>
-                    <p>{state[1][1].content}</p>
-                </article>
-                <AvaliationSection>
-                    <h2>Comments</h2>
-                    <small>You must be logged in to comment!</small>
-                    <p>{state[1][1].comments}</p>
-                    <h2>Rate</h2>
-                    <small>You must be logged in to avaliate the post!</small>
-                    <ReactStars
-                        className="react-stars"
-                        value={average}
-                        onChange={rate => {
-                            setRate(oldRate => [...oldRate, String(rate)]);
-                        }}
-                        size={30}
-                        color2={'#ffd700'}
-                    />
-                </AvaliationSection>
-            </PostContainer>
-        </Container>
-    );
+    if (state === undefined) {
+        return (
+            <CenteredContainer>
+                <p>Something went wrong here ...</p>
+            </CenteredContainer>
+        );
+    } else {
+        return (
+            <Container>
+                <PostContainer>
+                    <CustomButton onClick={() => history.goBack()}>
+                        Go back
+                    </CustomButton>
+                    <h1>{state[1][1].title}</h1>
+                    <small>{state[1][1].category}</small>
+                    <hr />
+                    <h2>{state[1][1].description}</h2>
+                    <hr />
+                    <article>
+                        <p>{state[1][1].content}</p>
+                    </article>
+                    <AvaliationSection>
+                        <h2>Comments</h2>
+                        <small>You must be logged in to comment!</small>
+                        <p>{state[1][1].comments}</p>
+                        <h2>Rate</h2>
+                        <small>
+                            You must be logged in to avaliate the post!
+                        </small>
+                        <br />
+                        <small>Public rating</small>
+                        <ReactStars
+                            className="react-stars"
+                            value={averageRate}
+                            edit={false}
+                            size={30}
+                            color2={'#ffd700'}
+                        />
+                        <br />
+                        <small>Your rating</small>
+                        <ReactStars
+                            className="react-stars"
+                            value={personalRate}
+                            onChange={personalRate => {
+                                if (
+                                    context !== null &&
+                                    context.userData !== null &&
+                                    user !== null
+                                ) {
+                                    const { userID } = context.userData;
+                                    setPersonalRate(personalRate);
+                                    if (
+                                        rate.some(
+                                            rateObj => rateObj.userid === userID
+                                        )
+                                    ) {
+                                        const newRateArray: Rate = rate.map(
+                                            rateObj => {
+                                                if (rateObj.userid === userID) {
+                                                    return {
+                                                        userid: rateObj.userid,
+                                                        rate: String(personalRate),
+                                                    };
+                                                } else return rateObj;
+                                            }
+                                        );
+                                        setRate(newRateArray);
+                                    } else
+                                        setRate(oldRate => [
+                                            ...oldRate,
+                                            {
+                                                userid: userID,
+                                                rate: String(personalRate),
+                                            },
+                                        ]);
+                                } else history.push('/login');
+                            }}
+                            size={30}
+                            color2={'#ffd700'}
+                        />
+                    </AvaliationSection>
+                </PostContainer>
+            </Container>
+        );
+    }
 };
 
 export default Post;
