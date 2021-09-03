@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 import { CustomButton as Button } from '../PostsForm/styles';
 
+import { Link } from 'react-router-dom';
+
 export const Container = styled.main`
     display: flex;
     flex-direction: column;
@@ -46,18 +48,21 @@ export const PostContainer = styled.div`
     }
 `;
 
+export const Redirect = styled(Link)`
+    display: block;
+    margin: -1.4rem 0 2rem;
+    text-decoration: underline;
+    font-size: 1.2rem;
+    :hover {
+        opacity: 0.5;
+    }
+`;
+
 export const AvaliationSection = styled.aside`
     margin-top: 10rem;
+    width: 100%;
     h2 {
         font-weight: bolder;
         margin-bottom: 2rem;
-    }
-    small {
-        display: block;
-        margin: -1.4rem 0 2rem;
-        text-decoration: underline;
-    }
-    .react-stars {
-        margin-top: -2rem;
     }
 `;
