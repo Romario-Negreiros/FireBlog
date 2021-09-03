@@ -25,6 +25,7 @@ Some features I would like to add after mvp is done:
 * React toastify
 * Firebase lib
 * React stars
+* Moment js
 
 -----------------------------------------------------------------------------------------------------------------------------
 
@@ -45,9 +46,12 @@ Some features I would like to add after mvp is done:
 - [x] Users can only edit their own posts
 - [x] Users can delete their own posts
 - [x] Page for posts creation
+- [ ] Show creator name in dedicated page to post
 - [x] Posts filtering
 - [x] Search posts for categories
-- [ ] Comments
+- [x] Comments
+- [ ] Comments reply
+- [ ] Users profile page
 - [x] Rate
 
 -----------------------------------------------------------------------------------------------------------------------------
