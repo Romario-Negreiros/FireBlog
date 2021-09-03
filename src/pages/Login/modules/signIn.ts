@@ -1,8 +1,8 @@
 // Modules or libs content
-import { History } from 'history';
 import { firebaseAuth, firebaseDatabase } from '../../../lib/firebase';
 // Types
 import { Inputs, DatabaseResponse } from '../types';
+import { History } from 'history';
 // Context
 import { UserData } from '../../../context/UserContext';
 
@@ -10,7 +10,7 @@ const signIn = async (
     setUserData: (userData: UserData | null) => void,
     data: Inputs,
     setError: (error: string) => void,
-    history: History<unknown> | string[]
+    history: History
 ) => {
     try {
         const response = await firebaseAuth.signInWithEmailAndPassword(
@@ -26,15 +26,9 @@ const signIn = async (
                     .get();
                 const user = Object.values(response.val())[0] as DatabaseResponse;
                 setUserData({...user, userID: userId });
-                history.push('/home');
+                history.goBack();
             } catch (err) {        
-                if (err instanceof SyntaxError) {
-                    setError(err.message);
-                    console.log(err)
-                }
-                else {
-                    console.log(err)
-                }
+                if (err instanceof TypeError) setError(err.message);
             }
         } 
     } catch (err) {

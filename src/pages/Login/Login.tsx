@@ -53,7 +53,7 @@ const Login: FC = () => {
                     signIn(userData.setUserData, data, setError, history);
                 }
             } catch (err) {
-                if(err instanceof TypeError) console.log(err.message)
+                if(err instanceof TypeError) setError(err.message);
             } finally {
                 setIsLoaded(true);
             }
