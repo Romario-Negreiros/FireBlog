@@ -30,7 +30,13 @@ const PostsForm: FC<Props> = ({ setHasPostsChanged }) => {
                     .child(userID)
                     .push({
                         ...data,
-                        comments: [],
+                        comments: JSON.stringify([
+                            {
+                                author: 'initial',
+                                creation: '03/09/2021',
+                                comment: 'new rocket'
+                            }
+                        ]),
                         rate: JSON.stringify([
                             {
                                 userid: 'initial',

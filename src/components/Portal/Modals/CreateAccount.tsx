@@ -23,7 +23,6 @@ import { Inputs, Props } from './types';
 import userContext from '../../../context/UserContext';
 
 const CreateAccount: FC<Props> = ({ setIsModalVisible }) => {
-
     const userData = useContext(userContext);
 
     const [error, setError] = useState<string>('');
@@ -55,10 +54,16 @@ const CreateAccount: FC<Props> = ({ setIsModalVisible }) => {
                         is_valid_format.value &&
                         userData
                     ) {
-                        createAccount(userData.setUserData, data, setError, setIsModalVisible, history);
-                    } else setError("This email doesn't exist!");
+                        createAccount(
+                            userData.setUserData,
+                            data,
+                            setError,
+                            setIsModalVisible,
+                            history
+                        );
+                    } else throw new Error("This email doesn't exist!");
                 } catch (err) {
-                    setError(err.message);
+                    if (err instanceof TypeError || err instanceof Error) setError(err.message);
                 } finally {
                     setIsLoaded(true);
                 }
@@ -99,8 +104,8 @@ const CreateAccount: FC<Props> = ({ setIsModalVisible }) => {
                                 },
                                 maxLength: {
                                     value: 30,
-                                    message: 'Maximum of 30 characters'
-                                }
+                                    message: 'Maximum of 30 characters',
+                                },
                             })}
                         />
                         <p>{errors.name?.message}</p>
