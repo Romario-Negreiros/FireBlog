@@ -15,7 +15,7 @@ export const Comment = styled.li`
     flex-direction: column;
     justify-content: space-between;
     p {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
     @media screen and (min-width: 600px) {
         flex-direction: row;

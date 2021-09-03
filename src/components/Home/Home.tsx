@@ -177,7 +177,6 @@ const Home: FC = () => {
                 ) : (
                     <NoMatches>No matches were found!</NoMatches>
                 )}
-                ;
             </Container>
         );
     }
