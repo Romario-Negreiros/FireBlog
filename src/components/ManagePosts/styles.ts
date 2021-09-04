@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 import { Link as ReactRouterLink } from 'react-router-dom';
 
+import { CustomButton as Close} from '../PostsForm/styles';
+
 export const Container = styled.ul`
     display: grid;
     grid-template-columns: 1fr;
@@ -59,4 +61,8 @@ export const Delete = styled.span`
     :hover {
         color: ${({ theme: { colors } }) => colors.pink};
     }
+`;
+
+export const CustomButton = styled(Close)`
+    background: #fff;
 `;
