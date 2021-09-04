@@ -34,7 +34,12 @@ const PostsForm: FC<Props> = ({ setHasPostsChanged }) => {
                             {
                                 author: 'initial',
                                 creation: '03/09/2021',
-                                comment: 'new rocket'
+                                comment: 'new rocket',
+                                replies: [{
+                                    author: 'initial',
+                                    creation: '03/09/2021',
+                                    comment: 'new rocket',
+                                }]
                             }
                         ]),
                         rate: JSON.stringify([
