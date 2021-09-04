@@ -1,52 +1,38 @@
 // Modules or libs content
-import React, { FC, useState } from 'react';
-import moment from 'moment';
+import { FC, useState } from 'react';
 // Images
-import Send from '../../assets/send.svg';
+import ReplyIcon from '../../assets/reply-solid.svg';
 // Components
-import { Container, Comment, Data, Input } from './styles';
+import Input from '../Input/Input';
+import {
+    Container,
+    Comment,
+    Data,
+    Mechanisms,
+} from './styles';
 // Types
 import { Props } from './types';
 
 const Comments: FC<Props> = ({ setComments, comments, user }) => {
-    const [userComment, setUserComment] = useState<string>('');
 
-    const sendComment = () => {
-        const creationDate = moment().format('MMMM Do YYYY, h:mm:ss a');
-        setComments([
-            ...comments,
-            { author: user.name, creation: creationDate, comment: userComment },
-        ]);
-        setUserComment('');
-    };
-    
+    const [willReply, setWillReply] = useState<number | null>(null);
+
     return (
         <Container>
-            <Input>
-                <input
-                    value={userComment}
-                    onChange={event =>
-                        setUserComment(event.currentTarget.value)
-                    }
-                    onKeyPress={(
-                        event: React.KeyboardEvent<HTMLInputElement>
-                    ) => {
-                        if (event.key === 'Enter') {
-                            sendComment();
-                        }
-                    }}
-                />
-                <div onClick={() => sendComment()}>
-                    <img src={Send} alt="send comment"></img>
-                </div>
-            </Input>
+            <Input setComments={setComments} comments={comments} user={user}/>
             {comments.map((comment, index) => (
                 <Comment key={index}>
                     <p>{comment.comment}</p>
+                    <Mechanisms>
+                        <div onClick={() => setWillReply(index)}>
+                            <img src={ReplyIcon} alt="ReplyIcon" />
+                        </div>
+                    </Mechanisms>
                     <Data>
                         <span>{comment.author}</span>
                         <span>{comment.creation}</span>
                     </Data>
+                    {willReply === index ? <Input setComments={setComments} comments={comments} user={user} /> : ''}
                 </Comment>
             ))}
         </Container>

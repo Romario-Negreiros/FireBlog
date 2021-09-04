@@ -4,17 +4,20 @@ export const Container = styled.ul`
     width: 100%;
     background: #f5f5f5;
     margin-bottom: 1rem;
+    height: 500px;
+    overflow: auto;
 `;
 
 export const Comment = styled.li`
     display: block;
     width: 100%;
     padding: 1rem;
-    border-bottom: 1px solid ${({theme: { colors }}) => colors.pink };
+    border-bottom: 1px solid ${({ theme: { colors } }) => colors.pink};
     display: flex;
-    flex-direction: column;
+    flex-flow: row wrap;
     justify-content: space-between;
     p {
+        width: 100%;
         font-size: 1.3rem;
     }
     @media screen and (min-width: 600px) {
@@ -24,7 +27,7 @@ export const Comment = styled.li`
 `;
 
 export const Data = styled.div`
-    align-self: flex-start;
+    margin-top: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -33,27 +36,25 @@ export const Data = styled.div`
     }
 `;
 
-export const Input = styled.li`
+export const Mechanisms = styled.div`
+    margin-top: 1rem;
     width: 100%;
-    border-bottom: 1px solid ${({ theme: { colors } }) => colors.pink};
     display: flex;
     align-items: center;
     justify-content: space-between;
-    input {
-        width: 90%;
-        background: unset;
-        padding: 1.5rem;
-    }
     div {
-        width: 10%;
-        align-self: stretch;
-        cursor: pointer;
+        width: 30%;
         display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
+        cursor: pointer;
     }
     img {
-        width: 20px;
-        object-fit: cover;
+            width: 20px;
+            object-fit: cover;
     }
+`;
+
+export const Reply = styled.div`
+
 `;

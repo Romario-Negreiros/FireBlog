@@ -9,8 +9,11 @@ export const Container = styled.main`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 1rem 0rem;
     min-height: 100vh;
+    @media screen and (min-width: 400px) {
+        padding: 1rem;
+    }
 `;
 
 export const CustomButton = styled(Button)`
@@ -18,7 +21,7 @@ export const CustomButton = styled(Button)`
 `;
 
 export const PostContainer = styled.div`
-    padding: 1.5rem;
+    padding: .5rem;
     background: #fff;
     display: flex;
     flex-direction: column;
@@ -27,6 +30,9 @@ export const PostContainer = styled.div`
     min-height: 100vh;
     width: 100%;
     max-width: 800px;
+    @media screen and (min-width: 400px) {
+        padding: 1rem;
+    }
     h1 {
         font-size: 3rem;
         margin-bottom: 1rem;
