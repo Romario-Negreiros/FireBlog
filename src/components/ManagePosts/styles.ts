@@ -63,6 +63,11 @@ export const Delete = styled.span`
     }
 `;
 
+export const ButtonWrapper = styled.div`
+    margin: 3rem 1.5rem 1.5rem;
+`;
+
 export const CustomButton = styled(Close)`
     background: #fff;
+    border-radius: 5px;
 `;

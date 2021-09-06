@@ -4,7 +4,14 @@ import { useParams, useHistory } from 'react-router';
 import { firebaseAuth, firebaseDatabase } from '../../lib/firebase';
 import { ToastContainer, toast } from 'react-toastify';
 // Components
-import { Container, Post, Link, Delete, CustomButton } from './styles';
+import {
+    Container,
+    Post,
+    Link,
+    Delete,
+    CustomButton,
+    ButtonWrapper,
+} from './styles';
 import { Loader } from '..';
 import { CenteredContainer } from '../Home/styles';
 // Types
@@ -13,12 +20,12 @@ import { Posts } from './types';
 const ManagePosts: FC = () => {
     const { userID } = useParams<{ userID: string }>();
     const [wasDeleted, setWasDeleted] = useState<boolean>(false);
-
-    const history = useHistory();
-    const user = firebaseAuth.currentUser;
     const [posts, setPosts] = useState<Posts | null>(null);
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
+
+    const history = useHistory();
+    const user = firebaseAuth.currentUser;
 
     const userNotLogged = useCallback(() => {
         history.push('/login');
@@ -88,10 +95,12 @@ const ManagePosts: FC = () => {
                     closeButton={false}
                     style={{ fontSize: '16px' }}
                 />
-                <Container>
+                <ButtonWrapper>
                     <CustomButton onClick={() => history.goBack()}>
                         Go back
                     </CustomButton>
+                </ButtonWrapper>
+                <Container>
                     {posts?.map(post => (
                         <Post key={post[0]}>
                             <h2>{post[1].title}</h2>
@@ -110,7 +119,6 @@ const ManagePosts: FC = () => {
                             </Delete>
                         </Post>
                     ))}
-                    ;
                 </Container>
             </>
         );
