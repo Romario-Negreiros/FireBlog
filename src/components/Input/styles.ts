@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const InputWrapper = styled.li`
+export const InputWrapper = styled.div`
     width: 100%;
     border-bottom: 1px solid ${({ theme: { colors } }) => colors.pink};
     display: flex;
@@ -18,7 +18,9 @@ export const InputWrapper = styled.li`
         display: flex;
         justify-content: center;
         align-items: center;
-        padding-right: 1rem;
+        :hover {
+            opacity: .5;
+        }
     }
     img {
         width: 20px;
@@ -26,7 +28,7 @@ export const InputWrapper = styled.li`
     }
 `;
 
-export const Warning = styled.li`
+export const Warning = styled.div`
     width: 100%;
     p {
         font-size: 1.4rem;
