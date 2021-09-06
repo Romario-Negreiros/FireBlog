@@ -8,6 +8,7 @@ export const CenteredContainer = styled.main`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 1.5rem;
     align-items: center;
     height: 100vh;
     p {
