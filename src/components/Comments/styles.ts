@@ -4,7 +4,7 @@ export const Container = styled.ul`
     width: 100%;
     background: #f5f5f5;
     margin-bottom: 1rem;
-    height: 500px;
+    max-height: 500px;
     overflow: auto;
 `;
 
@@ -26,11 +26,29 @@ export const Comment = styled.li`
     }
 `;
 
+export const RepliesList = styled(Comment)`
+    
+`;
+
 export const Data = styled.div`
     margin-top: 1rem;
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
+    width: 100%;
+    div {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    button {
+        border: 0 none;
+        background: unset;
+        cursor: pointer;
+        font-size: 1.2rem;
+        :hover {
+            opacity: .5;
+        }
+    }
     span {
         font-size: 1.1rem;
     }
@@ -39,22 +57,20 @@ export const Data = styled.div`
 export const Mechanisms = styled.div`
     margin-top: 1rem;
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    text-align: left;
     div {
-        width: 30%;
-        display: flex;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
+        :hover {
+            opacity: 0.5;
+        }
     }
     img {
-            width: 20px;
-            object-fit: cover;
+        width: 20px;
+        object-fit: cover;
     }
 `;
 
-export const Reply = styled.div`
-
-`;
+export const Reply = styled.div``;
