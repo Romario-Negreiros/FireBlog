@@ -8,13 +8,19 @@ import { Container, Comment, Data, Mechanisms, RepliesList } from './styles';
 // Types
 import { Props } from './types';
 
-const Comments: FC<Props> = ({ setComments, comments, user }) => {
-    const [isRepliesVisible, setIsRepliesVisible] = useState<number | null>(null);
+const Comments: FC<Props> = ({ setComments, comments, userConnected }) => {
+    const [isRepliesVisible, setIsRepliesVisible] = useState<number | null>(
+        null
+    );
     const [willReply, setWillReply] = useState<number | null>(null);
 
     return (
         <Container>
-            <Input setComments={setComments} comments={comments} user={user} />
+            <Input
+                setComments={setComments}
+                comments={comments}
+                userConnected={userConnected}
+            />
             {comments.map((comment, index) => (
                 <Comment key={index}>
                     <p>{comment.comment}</p>
@@ -29,11 +35,7 @@ const Comments: FC<Props> = ({ setComments, comments, user }) => {
                             <span>{comment.creation}</span>
                         </div>
                         <div>
-                            <button
-                                onClick={() =>
-                                    setIsRepliesVisible(index)
-                                }
-                            >
+                            <button onClick={() => setIsRepliesVisible(index)}>
                                 Replies ({comment.replies.length})
                             </button>
                         </div>
@@ -42,7 +44,7 @@ const Comments: FC<Props> = ({ setComments, comments, user }) => {
                         <Input
                             setComments={setComments}
                             comments={comments}
-                            user={user}
+                            userConnected={userConnected}
                             reply={willReply}
                             setWillReply={setWillReply}
                         />

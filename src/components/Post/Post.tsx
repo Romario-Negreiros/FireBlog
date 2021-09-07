@@ -32,7 +32,7 @@ const Post: FC = () => {
     const user = firebaseAuth.currentUser;
     const context = useContext(userContext);
     const history = useHistory();
-
+    
     useEffect(() => {
         (async () => {
             try {
@@ -77,7 +77,7 @@ const Post: FC = () => {
                             <Comments
                                 setComments={setComments}
                                 comments={comments}
-                                user={context.userData}
+                                userConnected={context.userData}
                             />
                         ) : (
                             <Redirect to="/login">

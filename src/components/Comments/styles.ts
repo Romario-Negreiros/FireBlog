@@ -63,6 +63,7 @@ export const Mechanisms = styled.div`
         align-items: center;
         justify-content: center;
         cursor: pointer;
+        margin-right: 3rem;
         :hover {
             opacity: 0.5;
         }

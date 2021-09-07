@@ -13,7 +13,7 @@ import { CommentsType } from '../Comments/types';
 const Input: FC<Props> = ({
     setComments,
     comments,
-    user,
+    userConnected,
     reply,
     setWillReply,
 }) => {
@@ -29,9 +29,10 @@ const Input: FC<Props> = ({
             );
             setComments([
                 {
-                    author: user.name,
+                    author: userConnected.name,
                     creation: creationDate,
                     comment: userComment,
+                    rating: [],
                     replies: [],
                 },
                 ...comments,
@@ -55,7 +56,7 @@ const Input: FC<Props> = ({
                     1
                 );
                 getCommentBeingReplied[0].replies.push({
-                    author: user.name,
+                    author: userConnected.name,
                     creation: replyDate,
                     comment: userComment,
                 });
