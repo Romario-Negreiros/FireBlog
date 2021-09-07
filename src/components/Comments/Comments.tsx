@@ -9,6 +9,7 @@ import { Container, Comment, Data, Mechanisms, RepliesList } from './styles';
 import { Props } from './types';
 
 const Comments: FC<Props> = ({ setComments, comments, userConnected }) => {
+
     const [isRepliesVisible, setIsRepliesVisible] = useState<number | null>(
         null
     );
@@ -35,8 +36,8 @@ const Comments: FC<Props> = ({ setComments, comments, userConnected }) => {
                             <span>{comment.creation}</span>
                         </div>
                         <div>
-                            <button onClick={() => setIsRepliesVisible(index)}>
-                                Replies ({comment.replies.length})
+                            <button onClick={() => isRepliesVisible === index ? setIsRepliesVisible(null) : setIsRepliesVisible(index)}>
+                                {isRepliesVisible === index ? 'Close' : `Replies (${comment.replies.length})`}
                             </button>
                         </div>
                     </Data>
