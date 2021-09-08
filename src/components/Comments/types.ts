@@ -16,6 +16,10 @@ export type Rate = {
     like: boolean;
     dislike: boolean;
 };
+export interface RateProps {
+    commentIndex: number;
+    userRate?: Rate;
+}
 
 export type CommentsType = {
     author: string;
