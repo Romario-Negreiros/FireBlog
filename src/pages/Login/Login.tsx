@@ -53,7 +53,7 @@ const Login: FC = () => {
                     signIn(userData.setUserData, data, setError, history);
                 }
             } catch (err) {
-                if(err instanceof TypeError) setError(err.message);
+                setError(JSON.stringify(err));
             } finally {
                 setIsLoaded(true);
             }
@@ -72,7 +72,7 @@ const Login: FC = () => {
         return (
             <BannerArea bg={bg}>
                 <ContentArea>
-                    <p>{error}</p>
+                    <p>{JSON.parse(error).message}</p>
                     <button onClick={() => setError('')}>Dismiss</button>
                 </ContentArea>
             </BannerArea>

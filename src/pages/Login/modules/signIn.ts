@@ -24,15 +24,17 @@ const signIn = async (
                     .child('users')
                     .child(userId)
                     .get();
-                const user = Object.values(response.val())[0] as DatabaseResponse;
-                setUserData({...user, userID: userId });
+                const user = Object.values(
+                    response.val()
+                )[0] as DatabaseResponse;
+                setUserData({ ...user, userID: userId });
                 history.goBack();
-            } catch (err) {        
-                if (err instanceof TypeError) setError(err.message);
+            } catch (err) {
+                setError(JSON.stringify(err))
             }
-        } 
+        }
     } catch (err) {
-        if (err instanceof TypeError) setError(err.message);
+        setError(JSON.stringify(err))
     }
 };
 
