@@ -11,7 +11,7 @@ const Reset = createGlobalStyle`
         font-size: 10px;
     }
     body {
-      background: #f5f5f5;
+      background: ${({theme: { backgrounds }}) => backgrounds.elements};
       overflow-x: hidden;
     }
     fieldset {
@@ -20,8 +20,10 @@ const Reset = createGlobalStyle`
     ul {
         list-style: none;
     }
+    h1, h2, p, a, small, span, label, input, ::placeholder {
+      color: ${({theme: { fonts }}) => fonts.primary };
+    }
     a {
-        color: #000;
         text-decoration: none;
     }
     input {
@@ -40,13 +42,13 @@ const Reset = createGlobalStyle`
       width: 6px;
     }
     ::-webkit-scrollbar-track {
-      background: #081229;
+      background: ${({theme: { backgrounds }}) => backgrounds.primary};
     }
     ::-webkit-scrollbar-thumb {
-      background: #ff99ff;
+      background: ${({theme: { colors }}) => colors.secondary};
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: #ec5990;
+      background: ${({theme: { colors }}) => colors.primary};
     }
     input::-ms-reveal,
     input::-ms-clear {
