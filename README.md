@@ -26,6 +26,7 @@ Some features I would like to add after mvp is done:
 * Firebase lib
 * React stars
 * Moment js
+* React switcher
 
 -----------------------------------------------------------------------------------------------------------------------------
 
@@ -73,6 +74,12 @@ Some features I would like to add after mvp is done:
     ## After your pull request's merge has been done, you can delete your branch
 
 ```
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+### Credits
+
+- Theme Switcher - [RocketSeat](https://www.youtube.com/watch?v=ngVU74daJ8Y)
 
 -----------------------------------------------------------------------------------------------------------------------------
 
