@@ -1,7 +1,7 @@
-import { Data } from "../Home/types";
+import { PostObject } from "../../global/types";
 
 export type Posts = [
     string,
     string,
-    Data
+    PostObject
 ]

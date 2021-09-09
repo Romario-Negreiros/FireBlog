@@ -8,7 +8,8 @@ import { CenteredContainer, Post, Link } from '../Home/styles';
 import { Container, Title } from './styles';
 // Types
 import { Posts } from './types';
-import { PostsArray, PostObject } from '../Home/types';
+import { PostsArray } from '../Home/types';
+import { PostObject } from '../../global/types';
 
 const PostsForCategory: FC = () => {
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
@@ -35,12 +36,12 @@ const PostsForCategory: FC = () => {
                     });
                 });
                 if(!postsForCategory.length) {
-                    throw new Error('This category either doesn\'t exist or is empty')
+                    throw new Error(JSON.stringify({message: 'This category either doesn\'t exist or is empty'}))
                 } else {
                     setPostsForCategory(postsForCategory);
                 }
             } catch (err) {
-                if (err instanceof TypeError || err instanceof Error) setError(err.message);
+                setError(JSON.stringify(err))
             } finally {
                 setIsLoaded(true);
             }
@@ -56,7 +57,7 @@ const PostsForCategory: FC = () => {
     } else if (error) {
         return (
             <CenteredContainer>
-                <p>{error}</p>
+                <p>{JSON.parse(error).message}</p>
             </CenteredContainer>
         );
     } else {

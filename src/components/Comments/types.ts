@@ -18,6 +18,8 @@ export type Rate = {
 };
 export interface RateProps {
     commentIndex: number;
+    sendLike: (commentIndex: number, userRate?: Rate) => void;
+    sendDislike: (commentIndex: number, userRate?: Rate) => void;
     userRate?: Rate;
 }
 

@@ -1,18 +1,19 @@
 // Modules or libs content
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 import { useHistory } from 'react-router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { firebaseDatabase } from '../../lib/firebase';
-import { useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 // Components
 import { Fieldset, Form, CustomButton } from './styles';
 // Types
-import { Inputs, Props } from './types';
+import { Props } from './types';
+import { PostObject } from '../../global/types';
+// Context
+import userContext from '../../context/UserContext';
 
 const PostsForm: FC<Props> = ({ setHasPostsChanged }) => {
-    const { userID } = useParams<{ userID: string }>();
-
+    const context = useContext(userContext);
     const history = useHistory();
 
     const {
@@ -20,43 +21,50 @@ const PostsForm: FC<Props> = ({ setHasPostsChanged }) => {
         reset,
         handleSubmit,
         formState: { errors },
-    } = useForm<Inputs>();
+    } = useForm<PostObject>();
 
-    const onSubmit: SubmitHandler<Inputs> = data => {
+    const onSubmit: SubmitHandler<PostObject> = data => {
         (async () => {
             try {
-                await firebaseDatabase
-                    .child('posts')
-                    .child(userID)
-                    .push({
-                        ...data,
-                        comments: JSON.stringify([
-                            {
-                                author: 'initial',
-                                creation: '03/09/2021',
-                                comment: 'new rocket',
-                                rating: [{
-                                    user: 'initial',
-                                    like: false,
-                                    dislike: false,
-                                }],
-                                replies: [{
+                if (context?.userData) {
+                    await firebaseDatabase
+                        .child('posts')
+                        .child(context.userData.userID)
+                        .push({
+                            ...data,
+                            author: context.userData.name,
+                            comments: JSON.stringify([
+                                {
                                     author: 'initial',
                                     creation: '03/09/2021',
                                     comment: 'new rocket',
-                                }]
-                            }
-                        ]),
-                        rate: JSON.stringify([
-                            {
-                                userid: 'initial',
-                                rate: '0',
-                            },
-                        ]),
-                    });
-                toast.success('Succesfully created the post!');
-                reset();
-                setHasPostsChanged(true);
+                                    rating: [
+                                        {
+                                            user: 'initial',
+                                            like: false,
+                                            dislike: false,
+                                        },
+                                    ],
+                                    replies: [
+                                        {
+                                            author: 'initial',
+                                            creation: '03/09/2021',
+                                            comment: 'new rocket',
+                                        },
+                                    ],
+                                },
+                            ]),
+                            rate: JSON.stringify([
+                                {
+                                    userid: 'initial',
+                                    rate: '0',
+                                },
+                            ]),
+                        });
+                    toast.success('Succesfully created the post!');
+                    reset();
+                    setHasPostsChanged(true);
+                } else throw new Error("The user either doesn't exist or is not signed in")
             } catch (err) {
                 toast.error("We couldn't create the post, please try again!");
             }

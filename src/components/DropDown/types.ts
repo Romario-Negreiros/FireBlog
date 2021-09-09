@@ -1,3 +1,5 @@
+import { PostObject } from "../../global/types";
+
 export interface Props {
     isDropDownVisible: boolean;
     setIsDropDownVisible: (isDropDownVisible: boolean) => void;
@@ -11,12 +13,5 @@ export interface StyledProps {
 }
 
 export type Post = {
-    postID: {
-        title: string;
-        description: string;
-        category: string;
-        content: string;
-        comment: string;
-        rate: string;
-    };
+    postID: PostObject
 };

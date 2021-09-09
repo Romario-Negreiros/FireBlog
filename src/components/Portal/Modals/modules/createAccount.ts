@@ -30,11 +30,11 @@ const createAccount = async (
                 setUserData({name: data.name, email: data.email, userID: response.user.uid});
                 history.push('/home')
             } catch (err) {
-                if(err instanceof TypeError) setError(err.message)
+                setError(JSON.stringify(err))
             }
         }
     } catch (err) {
-        if(err instanceof TypeError) setError(err.message)
+        setError(JSON.stringify(err))
     }
 };
 

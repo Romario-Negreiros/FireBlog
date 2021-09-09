@@ -63,7 +63,7 @@ const CreateAccount: FC<Props> = ({ setIsModalVisible }) => {
                         );
                     } else throw new Error("This email doesn't exist!");
                 } catch (err) {
-                    if (err instanceof TypeError || err instanceof Error) setError(err.message);
+                    setError(JSON.stringify(err))
                 } finally {
                     setIsLoaded(true);
                 }
@@ -81,7 +81,7 @@ const CreateAccount: FC<Props> = ({ setIsModalVisible }) => {
         return (
             <Background>
                 <Container>
-                    <p>{error}</p>
+                    <p>{JSON.parse(error).message}</p>
                     <button onClick={() => setError('')}>Dismiss</button>
                 </Container>
             </Background>

@@ -1,12 +1,5 @@
-export type Post = {
-    title: string;
-    category: string;
-    description: string;
-    content: string;
-    comment: string;
-    rate: string;
-};
+import { PostObject } from '../../global/types';
 
-type KeyValue = [string, Post];
+type KeyValue = [string, PostObject];
 
 export type Posts = Array<KeyValue>;

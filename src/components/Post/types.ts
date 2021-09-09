@@ -1,4 +1,4 @@
-import { Post } from '../EditPosts/types';
+import { PostObject } from "../../global/types";
 
-export type State = [string, [string, Post]];
+export type State = [string, [string, PostObject]];
 

@@ -8,7 +8,8 @@ import { firebaseAuth, firebaseDatabase } from '../../lib/firebase';
 import { Container } from '../CreatePosts/styles';
 import { Form, Fieldset, CustomButton } from '../PostsForm/styles';
 // Types
-import { State, Inputs, Props } from './types';
+import { State, Props } from './types';
+import { PostObject } from '../../global/types';
 
 const EditPosts: FC<Props> = ({ setHasPostsChanged }) => {
     const { state } = useLocation<State>();
@@ -21,9 +22,9 @@ const EditPosts: FC<Props> = ({ setHasPostsChanged }) => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<Inputs>();
+    } = useForm<PostObject>();
 
-    const onSubmit: SubmitHandler<Inputs> = data => {
+    const onSubmit: SubmitHandler<PostObject> = data => {
         (async () => {
             try {
                 await firebaseDatabase

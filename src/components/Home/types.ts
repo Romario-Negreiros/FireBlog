@@ -1,19 +1,8 @@
-export type Data = {
-    title: string;
-    category: string;
-    description: string;
-    content: string;
-    comments: string;
-    rate: string;
-};
-
-export type PostObject = {
-    PostId: Data;
-};
+import { PostObject } from "../../global/types";
 
 export type PostsArray = [
     string,
-    Data
+    PostObject
 ]
 
 export type Posts = [string, PostObject[]][];

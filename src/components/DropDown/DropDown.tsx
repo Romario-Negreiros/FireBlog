@@ -1,13 +1,19 @@
 // Modules or libs content
 import { FC, useState, useEffect } from 'react';
 import { firebaseDatabase } from '../../lib/firebase';
+import { toast } from 'react-toastify';
 // Components
 import { Container, Link, CustomButton } from './styles';
 // Types
 import { Props, Post } from './types';
 
-const DropDown: FC<Props> = ({ isDropDownVisible, setIsDropDownVisible, setIsOpen, hasPostsChanged, setHasPostsChanged }) => {
-    
+const DropDown: FC<Props> = ({
+    isDropDownVisible,
+    setIsDropDownVisible,
+    setIsOpen,
+    hasPostsChanged,
+    setHasPostsChanged,
+}) => {
     const [categories, setCategories] = useState<string[]>([]);
 
     useEffect(() => {
@@ -32,9 +38,9 @@ const DropDown: FC<Props> = ({ isDropDownVisible, setIsDropDownVisible, setIsOpe
                 });
                 setCategories(getCategories);
             } catch (err) {
-                if(err instanceof TypeError) console.log(err.message)
+                toast.error(JSON.stringify(err));
             } finally {
-                if(hasPostsChanged) setHasPostsChanged(false);
+                if (hasPostsChanged) setHasPostsChanged(false);
             }
         })();
     }, [hasPostsChanged, setHasPostsChanged]);
@@ -45,14 +51,14 @@ const DropDown: FC<Props> = ({ isDropDownVisible, setIsDropDownVisible, setIsOpe
                 Close
             </CustomButton>
             {categories.map(category => (
-                <Link 
+                <Link
                     key={category}
                     to={{
-                        pathname: `/home/categories/${category}`
+                        pathname: `/home/categories/${category}`,
                     }}
                     onClick={() => {
-                        setIsDropDownVisible(false)
-                        setIsOpen(false)
+                        setIsDropDownVisible(false);
+                        setIsOpen(false);
                     }}
                 >
                     {category}

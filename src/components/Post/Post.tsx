@@ -2,6 +2,7 @@
 import { FC, useState, useEffect, useContext } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import { firebaseDatabase, firebaseAuth } from '../../lib/firebase';
+import { toast } from 'react-toastify';
 // Components
 import {
     Container,
@@ -32,7 +33,7 @@ const Post: FC = () => {
     const user = firebaseAuth.currentUser;
     const context = useContext(userContext);
     const history = useHistory();
-    
+
     useEffect(() => {
         (async () => {
             try {
@@ -45,7 +46,7 @@ const Post: FC = () => {
                         rate: JSON.stringify(rate),
                     });
             } catch (err) {
-                if (err instanceof TypeError) console.log(err.message);
+                toast.error(JSON.stringify(err));
             }
         })();
     }, [rate, comments, state]);

@@ -17,7 +17,8 @@ import {
 } from './styles';
 import Loader from '../Loader/Loader';
 // Types
-import { Posts, PostsArray, PostObject } from './types';
+import { Posts, PostsArray } from './types';
+import { PostObject } from '../../global/types';
 import { DatabaseResponse } from '../../pages/Login/types';
 // Context
 import userContext from '../../context/UserContext';
@@ -50,7 +51,7 @@ const Home: FC = () => {
                         userID: currentUser.uid,
                     });
                 } catch (err) {
-                    if(err instanceof TypeError) console.log(err.message)
+                    setError(JSON.stringify(err))
                 }
             })();
         }
@@ -67,7 +68,7 @@ const Home: FC = () => {
                         setPosts(Object.entries(response.val()));
                     }
                 } catch (err) {
-                    if(err instanceof TypeError) setError(err.message)
+                    setError(JSON.stringify(err))
                 } finally {
                     setIsLoaded(true);
                 }
@@ -84,13 +85,13 @@ const Home: FC = () => {
     } else if (error) {
         return (
             <CenteredContainer>
-                <p>{error}</p>
+                <p>{JSON.parse(error).message}</p>
             </CenteredContainer>
         );
     } else if (posts === null) {
         return (
             <CenteredContainer>
-                 <UserOption to={`/home/create/${context?.userData?.userID}`}>
+                 <UserOption to={'/home/create'}>
                     <p>Create new post</p>
                     <img src={PlusIcon} alt="plus icon"></img>
                 </UserOption>
@@ -113,6 +114,7 @@ const Home: FC = () => {
                         <Post key={post[0]}>
                             <h2>{post[1].title}</h2>
                             <small>{post[1].category}</small>
+                            <small>{post[1].author}</small>
                             <p>{post[1].description}</p>
                             <Link
                                 to={{
@@ -133,6 +135,7 @@ const Home: FC = () => {
                         <Post key={post[0]}>
                             <h2>{post[1].title}</h2>
                             <small>{post[1].category}</small>
+                            <small>{post[1].author}</small>
                             <p>{post[1].description}</p>
                             <Link
                                 to={{
