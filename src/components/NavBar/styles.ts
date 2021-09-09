@@ -10,13 +10,14 @@ export const Container = styled.header`
     align-items: center;
     height: 70px;
     padding: 0 0.5rem;
-    background: ${({ theme: { backgrounds } }) => backgrounds.secondaryblue};
-    border-bottom: 2px solid ${({ theme: { colors } }) => colors.pink};
-    color: ${({ theme: { colors } }) => colors.pink};
+    background: ${({ theme: { backgrounds } }) => backgrounds.secondary};
+    border-bottom: 2px solid ${({ theme: { colors } }) => colors.primary};
+    color: ${({ theme: { colors } }) => colors.primary};
     @media screen and (min-width: 300px) {
         padding: 0 1.5rem;
     }
     h2 {
+        color: ${({ theme: { colors } }) => colors.primary};
         font-size: 2.2rem;
     }
 `;
@@ -73,7 +74,7 @@ export const Burguer = styled.div`
 
 export const Line = styled.span`
     @media screen and (max-width: 600px) {
-        background: ${({ theme: { colors } }) => colors.pink};
+        background: ${({ theme: { colors } }) => colors.primary};
         width: 15px;
         height: 2px;
         display: block;
@@ -93,7 +94,7 @@ export const Line = styled.span`
 `;
 
 export const Link = styled(ReactRouterLink)`
-    color: ${({ theme: { colors } }) => colors.weakerpink};
+    color: ${({ theme: { colors } }) => colors.secondary};
     padding: 0 1.5rem;
     font-size: 1.6rem;
     height: 100%;
@@ -102,7 +103,7 @@ export const Link = styled(ReactRouterLink)`
     transition: background 0.3s ease, color 0.3s ease;
     :hover {
         background: rgba(25%, 29%, 58%, 0.5);
-        color: ${({ theme: { colors } }) => colors.pink};
+        color: ${({ theme: { colors } }) => colors.primary};
     }
     @media screen and (max-width: 600px) {
         line-height: 0;
@@ -114,7 +115,7 @@ export const Link = styled(ReactRouterLink)`
 `;
 
 export const Button = styled.button`
-    color: ${({ theme: { colors } }) => colors.weakerpink};
+    color: ${({ theme: { colors } }) => colors.secondary};
     padding: 0 1.5rem;
     font-size: 1.6rem;
     height: 100%;
@@ -126,7 +127,7 @@ export const Button = styled.button`
     transition: background 0.3s ease, color 0.3s ease;
     :hover {
         background: rgba(25%, 29%, 58%, 0.5);
-        color: ${({ theme: { colors } }) => colors.pink};
+        color: ${({ theme: { colors } }) => colors.primary};
     }
     @media screen and (max-width: 600px) {
         line-height: 0;
@@ -144,7 +145,7 @@ export const UserWrapper = styled.div`
     @media screen and (min-width: 400px) {
     }
     p {
-        color: ${({ theme: { colors } }) => colors.pink};
+        color: ${({ theme: { colors } }) => colors.primary};
         font-size: 1.6rem;
     }
     div {

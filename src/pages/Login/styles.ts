@@ -7,7 +7,7 @@ interface StyledProps {
 }
 
 export const BannerArea = styled.section<StyledProps>`
-    background: ${({ theme: { backgrounds } }) => backgrounds.primaryblue};
+    background: ${({ theme: { backgrounds } }) => backgrounds.primary };
     position: relative;
     width: 100vw;
     height: 100vh;
@@ -22,7 +22,7 @@ export const BannerArea = styled.section<StyledProps>`
     p {
         font-size: 1.4rem;
         text-align: center;
-        color: ${({ theme: { colors } }) => colors.error};
+        color: ${({ theme: { colors } }) => colors.primary };
         margin-bottom: 1.5rem;
     }
     button {
@@ -32,7 +32,7 @@ export const BannerArea = styled.section<StyledProps>`
         width: 100%;
         max-width: 300px;
         border-radius: 5px;
-        background: ${({ theme: { backgrounds } }) => backgrounds.primaryblue};
+        background: ${({ theme: { backgrounds } }) => backgrounds.primary };
         color: #fff;
         font-size: 1.4rem;
         cursor: pointer;
@@ -42,7 +42,7 @@ export const BannerArea = styled.section<StyledProps>`
             filter: brightness(0.8);
         }
         :active {
-            border-color: ${({ theme: { colors } }) => colors.pink};
+            border-color: ${({ theme: { colors } }) => colors.primary };
         }
     }
 `;
@@ -64,7 +64,7 @@ export const Form = styled.form`
     flex-direction: column;
     align-items: center;
     padding: 3rem 1.5rem;
-    background: ${({ theme: { backgrounds } }) => backgrounds.secondaryblue};
+    background: ${({ theme: { backgrounds } }) => backgrounds.secondary };
     @media screen and (max-height: 400px) {
         flex-flow: row wrap;
         max-width: unset;
@@ -103,7 +103,7 @@ export const Fieldset = styled.fieldset`
 export const Input = styled.input`
     padding: 1rem;
     background: transparent;
-    border-bottom: 2px solid ${({ theme: { colors } }) => colors.pink};
+    border-bottom: 2px solid ${({ theme: { colors } }) => colors.primary };
     margin-bottom: 1rem;
     transition: background 0.5s ease-in-out;
     color: #ffffff;
@@ -111,7 +111,7 @@ export const Input = styled.input`
     width: 100%;
     :hover,
     :focus {
-        background: ${({ theme: { backgrounds } }) => backgrounds.primaryblue};
+        background: ${({ theme: { backgrounds } }) => backgrounds.primary };
     }
 `;
 
@@ -119,7 +119,7 @@ export const OpenModal = styled.a`
     cursor: pointer;
     display: inline-block;
     margin: 1.5rem 0;
-    color: ${({ theme: { colors } }) => colors.pink};
+    color: ${({ theme: { colors } }) => colors.primary };
     font-size: 1.4rem;
     :hover {
         text-decoration: underline;

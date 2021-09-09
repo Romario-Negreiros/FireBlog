@@ -21,7 +21,7 @@ export const Post = styled.li`
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    background: #fff;
+    background: ${({theme: { backgrounds }}) => backgrounds.cards};
     padding: 1.5rem;
     border-radius: 5px;
     margin-bottom: 2rem;
@@ -46,20 +46,20 @@ export const Post = styled.li`
 `;
 
 export const Link = styled(ReactRouterLink)`
-    color: ${({ theme: { colors } }) => colors.weakerpink};
+    color: ${({ theme: { colors } }) => colors.primary};
     font-size: 1.4rem;
     :hover {
-        color: ${({ theme: { colors } }) => colors.pink};
+        color: ${({ theme: { colors } }) => colors.primary};
     }
 `;
 
 export const Delete = styled.span`
     cursor: pointer;
-    color: ${({ theme: { colors } }) => colors.weakerpink};
+    color: ${({ theme: { colors } }) => colors.primary};
     font-size: 1.4rem;
     margin-top: 1rem;
     :hover {
-        color: ${({ theme: { colors } }) => colors.pink};
+        color: ${({ theme: { colors } }) => colors.primary};
     }
 `;
 
@@ -68,6 +68,5 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const CustomButton = styled(Close)`
-    background: #fff;
     border-radius: 5px;
 `;

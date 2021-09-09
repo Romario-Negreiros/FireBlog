@@ -5,4 +5,5 @@ export default interface StyledProps {
 export interface Props {
     hasPostsChanged: boolean;
     setHasPostsChanged: (hasPostsChanged: boolean) => void;
+    toggleTheme: () => void;
 }

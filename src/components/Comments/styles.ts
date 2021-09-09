@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.ul`
     width: 100%;
-    background: #f5f5f5;
+    background: ${({theme: { backgrounds }}) => backgrounds.elements};
     margin-bottom: 1rem;
     max-height: 500px;
     overflow: auto;
@@ -12,7 +12,7 @@ export const Comment = styled.li`
     display: block;
     width: 100%;
     padding: 1rem;
-    border-bottom: 1px solid ${({ theme: { colors } }) => colors.pink};
+    border-bottom: 1px solid ${({ theme: { colors } }) => colors.primary};
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;

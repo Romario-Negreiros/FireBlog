@@ -28,7 +28,7 @@ export const Background = styled.section`
         width: 100%;
         max-width: 300px;
         border-radius: 5px;
-        background: ${({ theme: { backgrounds } }) => backgrounds.primaryblue};
+        background: ${({ theme: { backgrounds } }) => backgrounds.primary};
         color: #fff;
         font-size: 1.4rem;
         cursor: pointer;
@@ -38,7 +38,7 @@ export const Background = styled.section`
             filter: brightness(0.8);
         }
         :active {
-            border-color: ${({ theme: { colors } }) => colors.pink};
+            border-color: ${({ theme: { colors } }) => colors.primary};
         }
         @media screen and (max-height: 400px) {
             max-width: none;
@@ -58,7 +58,7 @@ export const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: ${({ theme: { backgrounds } }) => backgrounds.secondaryblue};
+    background: ${({ theme: { backgrounds } }) => backgrounds.secondary};
     height: 70vh;
     width: 100%;
     max-width: 500px;
@@ -73,7 +73,7 @@ export const InputWrapper = styled.div`
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
-    border-bottom: 2px solid ${({ theme: { colors } }) => colors.pink};
+    border-bottom: 2px solid ${({ theme: { colors } }) => colors.primary};
     input {
         padding: 1rem;
         width: 90%;
@@ -84,7 +84,7 @@ export const InputWrapper = styled.div`
         :hover,
         :focus {
             background: ${({ theme: { backgrounds } }) =>
-                backgrounds.primaryblue};
+                backgrounds.primary};
         }
     }
 `;

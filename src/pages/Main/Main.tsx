@@ -3,13 +3,16 @@ import { FC, useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 // Components
 import { NavBar, Home, CreatePosts, ManagePosts, EditPosts, Post, PostsForCategory } from '../../components/index';
-const Main: FC = () => {
+// Types
+import Props from './types';
+
+const Main: FC<Props> = ({ toggleTheme }) => {
 
     const [hasPostsChanged, setHasPostsChanged] = useState<boolean>(false);
 
     return (
         <>
-            <NavBar hasPostsChanged={hasPostsChanged} setHasPostsChanged={setHasPostsChanged} />
+            <NavBar hasPostsChanged={hasPostsChanged} setHasPostsChanged={setHasPostsChanged} toggleTheme={toggleTheme} />
             <Switch>
                 <Route exact path="/home">
                     <Home />

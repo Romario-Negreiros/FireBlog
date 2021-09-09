@@ -38,7 +38,7 @@ export const Container = styled.main`
 `;
 
 export const UserOption = styled(ReactRouterLink)`
-    background: #fff;
+    background: ${({theme: { backgrounds }}) => backgrounds.cards };
     border-radius: 5px;
     padding: 2rem 1.5rem;
     margin-bottom: 2rem;
@@ -54,10 +54,9 @@ export const UserOption = styled(ReactRouterLink)`
         width: 70%;
     }
     :hover {
-        border-color: ${({ theme: { colors } }) => colors.weakerpink};
+        border-color: ${({ theme: { colors } }) => colors.secondary};
     }
     p {
-        color: #333;
         font-size: 1.4rem;
     }
     img {
@@ -71,7 +70,7 @@ export const Post = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    background: #fff;
+    background: ${({theme: { backgrounds }}) => backgrounds.cards };
     padding: 1.5rem;
     border-radius: 5px;
     width: 100%;
@@ -98,10 +97,10 @@ export const Post = styled.div`
 `;
 
 export const Link = styled(ReactRouterLink)`
-    color: ${({ theme: { colors } }) => colors.weakerpink};
+    color: ${({ theme: { colors } }) => colors.secondary};
     font-size: 1.4rem;
     :hover {
-        color: ${({ theme: { colors } }) => colors.pink};
+        color: ${({ theme: { colors } }) => colors.primary};
     }
 `;
 
@@ -114,14 +113,9 @@ export const InputWrapper = styled.div`
 `;
 
 export const Input = styled(LoginInput)`
-    ::placeholder {
-        color: #333;
-    }
-    :focus,
+    color: ${({theme: { fonts }}) => fonts.primary };
     :hover {
-        ::placeholder {
-            color: #fff;
-        }
+        border-bottom-color: ${({theme: { colors }}) => colors.primary };
     }
     @media screen and (min-width: 700px) {
         width: 50%;
@@ -133,7 +127,7 @@ export const NoMatches = styled.p`
     width: 100%;
     text-align: center;
     font-size: 1.5rem;
-    color: ${({ theme: { colors } }) => colors.red};
+    color: ${({ theme: { colors } }) => colors.error };
     @media screen and (min-width: 700px) {
         grid-column: span 2;
     }

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const InputWrapper = styled.div`
     width: 100%;
-    border-bottom: 1px solid ${({ theme: { colors } }) => colors.pink};
+    border-bottom: 1px solid ${({ theme: { colors } }) => colors.primary};
     display: flex;
     align-items: center;
     justify-content: space-between;

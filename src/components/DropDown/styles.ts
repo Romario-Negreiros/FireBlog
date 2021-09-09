@@ -24,7 +24,7 @@ ${props =>
     overflow-y: auto;
     overflow-x: hidden;
     z-index: 12;
-    background: ${({ theme: { backgrounds } }) => backgrounds.secondaryblue};
+    background: ${({ theme: { backgrounds } }) => backgrounds.secondary};
     transition: all 0.5s ease-in-out;
     @media screen and (min-width: 600px) {
         height: 40vh;
@@ -38,7 +38,7 @@ ${props =>
 `;
 
 export const Link = styled(ReactRouterLink)`
-    color: ${({ theme: { colors } }) => colors.weakerpink};
+    color: ${({ theme: { colors } }) => colors.secondary};
     margin-bottom: 1.5rem;
     
     padding: 2rem 0;
@@ -49,7 +49,7 @@ export const Link = styled(ReactRouterLink)`
     text-align: center;
     :hover {
         background: rgba(25%, 29%, 58%, 0.5);
-        color: ${({ theme: { colors } }) => colors.pink};
+        color: ${({ theme: { colors } }) => colors.primary};
     }
     @media screen and (min-width: 600px) {
         padding: 1.5rem;

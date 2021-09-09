@@ -18,7 +18,7 @@ export const Container = styled.main`
 `;
 
 export const Title = styled.h1`
-    color: ${({theme: { colors }}) => colors.pink };
+    color: ${({theme: { colors }}) => colors.primary };
     width: 100%;
     padding: 2rem;
     text-align: center;

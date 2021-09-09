@@ -6,7 +6,7 @@ export const Form = styled.form`
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
-    background: #fff;
+    background: ${({ theme: { backgrounds } }) => backgrounds.cards};
     width: 100%;
     max-width: 800px;
     padding: 1.5rem;
@@ -16,7 +16,7 @@ export const Form = styled.form`
         width: 100%;
         max-width: 300px;
         border-radius: 5px;
-        background: ${({ theme: { backgrounds } }) => backgrounds.primaryblue};
+        background: ${({ theme: { backgrounds } }) => backgrounds.primary};
         color: #fff;
         font-size: 1.4rem;
         cursor: pointer;
@@ -26,16 +26,16 @@ export const Form = styled.form`
             filter: brightness(0.8);
         }
         :active {
-            border-color: ${({ theme: { colors } }) => colors.pink};
+            border-color: ${({ theme: { colors } }) => colors.primary};
         }
     }
 `;
 
 export const CustomButton = styled.span`
+    background: ${({ theme: { backgrounds } }) => backgrounds.cards};
     cursor: pointer;
     font-size: 1.4rem;
-    color: ${({ theme: { colors } }) => colors.pink};
-    background: #f5f5f5;
+    color: ${({ theme: { colors } }) => colors.primary};
     padding: 1.5rem;
     :hover {
         opacity: 0.5;
@@ -66,7 +66,7 @@ export const Fieldset = styled.fieldset`
         padding: 1rem;
         font-size: 1.2rem;
         border: 1px solid
-            ${({ theme: { backgrounds } }) => backgrounds.primaryblue};
+            ${({ theme: { backgrounds } }) => backgrounds.elements};
     }
     input {
         width: 100%;
@@ -75,7 +75,7 @@ export const Fieldset = styled.fieldset`
         background: unset;
         transition: background 0.3s ease;
         border-bottom: 1px solid
-            ${({ theme: { backgrounds } }) => backgrounds.primaryblue};
+            ${({ theme: { backgrounds } }) => backgrounds.elements};
         :focus {
             background: #f5f5f5;
         }
