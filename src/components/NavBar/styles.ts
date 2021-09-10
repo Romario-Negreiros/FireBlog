@@ -6,6 +6,7 @@ import { Link as ReactRouterLink } from 'react-router-dom';
 
 export const Container = styled.header`
     display: flex;
+    flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
     height: 70px;
@@ -19,6 +20,18 @@ export const Container = styled.header`
     h2 {
         color: ${({ theme: { colors } }) => colors.primary};
         font-size: 2.2rem;
+    }
+    .react-switch-desktop {
+        transform: translateY(300px);
+        @media screen and (min-width: 700px) {
+            transform: translateY(0px);
+        }
+    }
+    .react-switch-mobile {
+        transform: translateY(0px);
+        @media screen and (min-width: 700px) {
+            transform: translateY(300px);
+        }
     }
 `;
 
@@ -34,7 +47,7 @@ export const NavList = styled.ul<StyledProps>`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 700px) {
         ${props =>
             props.isOpen ? 'visibility: visible' : 'visibility: hidden'};
         ${props =>
@@ -63,17 +76,17 @@ export const Burguer = styled.div`
     position: absolute;
     top: 22px;
     right: 5px;
-    z-index: 11;
+    z-index: 30;
     @media screen and (min-width: 300px) {
         right: 25px;
     }
-    @media screen and (min-width: 600px) {
+    @media screen and (min-width: 700px) {
         display: none;
     }
 `;
 
 export const Line = styled.span`
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 700px) {
         background: ${({ theme: { colors } }) => colors.primary};
         width: 15px;
         height: 2px;
@@ -93,6 +106,12 @@ export const Line = styled.span`
     }
 `;
 
+export const Icon = styled.img`
+    width: 20px;
+    padding: 1px;
+    object-fit: cover;
+`;
+
 export const Link = styled(ReactRouterLink)`
     color: ${({ theme: { colors } }) => colors.secondary};
     padding: 0 1.5rem;
@@ -105,7 +124,7 @@ export const Link = styled(ReactRouterLink)`
         background: rgba(25%, 29%, 58%, 0.5);
         color: ${({ theme: { colors } }) => colors.primary};
     }
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 700px) {
         line-height: 0;
         height: fit-content;
         padding: 2rem 0;
@@ -129,7 +148,7 @@ export const Button = styled.button`
         background: rgba(25%, 29%, 58%, 0.5);
         color: ${({ theme: { colors } }) => colors.primary};
     }
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 700px) {
         line-height: 0;
         height: fit-content;
         padding: 2rem 0;

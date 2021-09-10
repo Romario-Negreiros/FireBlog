@@ -1,11 +1,13 @@
 // Modules or libs content
-import { FC, useState, useContext } from 'react';
+import React, { FC, useState, useContext } from 'react';
 import handleMenuOpen from './modules/handleMenuOpen';
 import { firebaseAuth } from '../../lib/firebase';
 import { ToastContainer, toast } from 'react-toastify';
 import { ThemeContext } from 'styled-components';
 // Images
 import UserIcon from '../../assets/user-solid.svg';
+import Moon from '../../assets/moon-solid.svg';
+import Sun from '../../assets/sun-solid.svg';
 // Components
 import Switch from 'react-switch';
 import {
@@ -17,6 +19,7 @@ import {
     Burguer,
     Line,
     UserWrapper,
+    Icon,
 } from './styles';
 import DropDown from '../DropDown/DropDown';
 // Types
@@ -24,8 +27,11 @@ import { Props } from './types';
 // Context
 import userContext from '../../context/UserContext';
 
-const NavBar: FC<Props> = ({ hasPostsChanged, setHasPostsChanged, toggleTheme }) => {
-    
+const NavBar: FC<Props> = ({
+    hasPostsChanged,
+    setHasPostsChanged,
+    toggleTheme,
+}) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [isDropDownVisible, setIsDropDownVisible] = useState<boolean>(false);
     const context = useContext(userContext);
@@ -41,6 +47,7 @@ const NavBar: FC<Props> = ({ hasPostsChanged, setHasPostsChanged, toggleTheme })
             <DropDown
                 isDropDownVisible={isDropDownVisible}
                 setIsDropDownVisible={setIsDropDownVisible}
+                isOpen={isOpen}
                 setIsOpen={setIsOpen}
                 hasPostsChanged={hasPostsChanged}
                 setHasPostsChanged={setHasPostsChanged}
@@ -55,24 +62,49 @@ const NavBar: FC<Props> = ({ hasPostsChanged, setHasPostsChanged, toggleTheme })
                         </div>
                     </UserWrapper>
                 )}
-                <Switch 
+                <Switch
+                    className="react-switch-desktop"
                     onChange={toggleTheme}
                     checked={theme.title === 'dark'}
-                    checkedIcon={false}
-                    uncheckedIcon={false}
-                    height={10}
-                    width={40}
-                    handleDiameter={20}
+                    checkedIcon={<Icon src={Sun} alt="turn to light mode" />}
+                    uncheckedIcon={<Icon src={Moon} alt="turn to dark mode" />}
+                    height={20}
+                    width={60}
+                    handleDiameter={25}
                     offColor={'#ee55c9'}
                     onColor={'#D6F5DD'}
                 />
                 <Navigation>
-                    <Burguer onClick={() => handleMenuOpen(setIsOpen, isOpen)}>
+                    <Burguer
+                        onClick={() => {
+                            if (isDropDownVisible) setIsDropDownVisible(false);
+                            handleMenuOpen(setIsOpen, isOpen);
+                        }}
+                    >
                         <Line className="first"></Line>
                         <Line className="second"></Line>
                         <Line className="third"></Line>
                     </Burguer>
+
                     <NavList isOpen={isOpen}>
+                        <li>
+                            <Switch
+                                className="react-switch-mobile"
+                                onChange={toggleTheme}
+                                checked={theme.title === 'dark'}
+                                checkedIcon={
+                                    <Icon src={Sun} alt="turn to light mode" />
+                                }
+                                uncheckedIcon={
+                                    <Icon src={Moon} alt="turn to dark mode" />
+                                }
+                                height={20}
+                                width={60}
+                                handleDiameter={25}
+                                offColor={'#ee55c9'}
+                                onColor={'#D6F5DD'}
+                            />
+                        </li>
                         <li>
                             <Link
                                 to="/home"
