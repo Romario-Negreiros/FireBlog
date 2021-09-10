@@ -64,9 +64,17 @@ const PostsForm: FC<Props> = ({ setHasPostsChanged }) => {
                     toast.success('Succesfully created the post!');
                     reset();
                     setHasPostsChanged(true);
-                } else throw new Error("The user either doesn't exist or is not signed in")
+                } else
+                    throw new Error(
+                        "The user either doesn't exist or is not signed in"
+                    );
             } catch (err) {
-                toast.error("We couldn't create the post, please try again!");
+                if (err instanceof Error) {
+                    toast.error(err);
+                } else
+                    toast.error(
+                        "We couldn't create the post, please try again!"
+                    );
             }
         })();
     };

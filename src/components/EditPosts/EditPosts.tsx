@@ -1,6 +1,6 @@
 // Modules or libs content
-import { FC, useEffect, useCallback } from 'react';
-import { useLocation, useParams, useHistory } from 'react-router-dom';
+import { FC, useEffect, useCallback, useContext } from 'react';
+import { useLocation, useHistory } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
 import { firebaseAuth, firebaseDatabase } from '../../lib/firebase';
@@ -10,10 +10,12 @@ import { Form, Fieldset, CustomButton } from '../PostsForm/styles';
 // Types
 import { State, Props } from './types';
 import { PostObject } from '../../global/types';
+// Context
+import userContext from '../../context/UserContext';
 
 const EditPosts: FC<Props> = ({ setHasPostsChanged }) => {
     const { state } = useLocation<State>();
-    const { userID } = useParams<{ userID: string }>();
+    const context = useContext(userContext);
     const history = useHistory();
 
     const user = firebaseAuth.currentUser;
@@ -27,14 +29,25 @@ const EditPosts: FC<Props> = ({ setHasPostsChanged }) => {
     const onSubmit: SubmitHandler<PostObject> = data => {
         (async () => {
             try {
-                await firebaseDatabase
-                    .child('posts')
-                    .child(userID)
-                    .child(state[0])
-                    .update({...data, comments: JSON.stringify(state[1].comments), rate: String(state[1].rate)})
-                toast.success('Update succeeded!');
+                if (context?.userData) {
+                    await firebaseDatabase
+                        .child('posts')
+                        .child(context.userData.userID)
+                        .child(state[0])
+                        .update({
+                            ...data,
+                            comments: JSON.stringify(state[1].comments),
+                            rate: String(state[1].rate),
+                        });
+                    toast.success('Update succeeded!');
+                } else
+                    throw new Error(
+                        "The user either doesn't exist or is not signed in"
+                    );
             } catch (err) {
-                toast.error('Update failed, please try again!');
+                if (err instanceof Error) {
+                    toast.error(err);
+                } else toast.error('Update failed, please try again!');
             } finally {
                 setHasPostsChanged(true);
             }
@@ -57,7 +70,9 @@ const EditPosts: FC<Props> = ({ setHasPostsChanged }) => {
                     closeButton={false}
                     style={{ fontSize: '16px' }}
                 />
-                <CustomButton onClick={() => history.goBack()}>Go back</CustomButton>
+                <CustomButton onClick={() => history.goBack()}>
+                    Go back
+                </CustomButton>
                 <Fieldset>
                     <div>
                         <label htmlFor="title">Title</label>

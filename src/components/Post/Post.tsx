@@ -65,6 +65,7 @@ const Post: FC = () => {
                         Go back
                     </CustomButton>
                     <h1>{state[1][1].title}</h1>
+                    <h3>{state[1][1].author}</h3>
                     <small>{state[1][1].category}</small>
                     <hr />
                     <h2>{state[1][1].description}</h2>

@@ -1,6 +1,6 @@
 // Modules or libs content
-import { FC, useState, useEffect, useCallback } from 'react';
-import { useParams, useHistory } from 'react-router';
+import { FC, useState, useEffect, useCallback, useContext } from 'react';
+import { useHistory } from 'react-router';
 import { firebaseAuth, firebaseDatabase } from '../../lib/firebase';
 import { ToastContainer, toast } from 'react-toastify';
 // Components
@@ -16,14 +16,15 @@ import { Loader } from '..';
 import { CenteredContainer } from '../Home/styles';
 // Types
 import { Posts } from './types';
+// Context
+import userContext from '../../context/UserContext';
 
 const ManagePosts: FC = () => {
-    const { userID } = useParams<{ userID: string }>();
     const [wasDeleted, setWasDeleted] = useState<boolean>(false);
     const [posts, setPosts] = useState<Posts | null>(null);
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
-
+    const context = useContext(userContext);
     const history = useHistory();
     const user = firebaseAuth.currentUser;
 
@@ -34,15 +35,22 @@ const ManagePosts: FC = () => {
     const deletePost = (postID: string) => {
         (async () => {
             try {
-                await firebaseDatabase
-                    .child('posts')
-                    .child(userID)
-                    .child(postID)
-                    .remove();
-                toast.success('Post succesfully deleted!');
-                setWasDeleted(true);
+                if (context?.userData) {
+                    await firebaseDatabase
+                        .child('posts')
+                        .child(context?.userData.userID)
+                        .child(postID)
+                        .remove();
+                    toast.success('Post succesfully deleted!');
+                    setWasDeleted(true);
+                } else
+                    throw new Error(
+                        "The user either doesn't exist or is not signed in"
+                    );
             } catch (err) {
-                toast.error('Failed to delete post, please try again!');
+                if (err instanceof Error) {
+                    toast.error(err);
+                } else toast.error('Failed to delete post, please try again!');
             }
         })();
     };
@@ -52,22 +60,29 @@ const ManagePosts: FC = () => {
         else {
             (async () => {
                 try {
-                    const response = await firebaseDatabase
-                        .child('posts')
-                        .child(userID)
-                        .get();
-                    if (response.val())
-                        setPosts(Object.entries(response.val()));
-                    else setPosts(null);
+                    if (context?.userData) {
+                        const response = await firebaseDatabase
+                            .child('posts')
+                            .child(context.userData.userID)
+                            .get();
+                        if (response.val())
+                            setPosts(Object.entries(response.val()));
+                        else setPosts(null);
+                    } else
+                        throw new Error(
+                            "The user either doesn't exist or is not signed in"
+                        );
                 } catch (err) {
-                    if (err instanceof TypeError) setError(err.message);
+                    if (err instanceof Error) {
+                        setError(err.message);
+                    } else setError(JSON.stringify(err));
                 } finally {
                     setIsLoaded(true);
                     setWasDeleted(false);
                 }
             })();
         }
-    }, [user, userNotLogged, userID, wasDeleted]);
+    }, [user, userNotLogged, wasDeleted, context?.userData]);
 
     if (!isLoaded) {
         return (
@@ -78,7 +93,7 @@ const ManagePosts: FC = () => {
     } else if (error) {
         return (
             <CenteredContainer>
-                <p>{error}</p>
+                <p>{JSON.parse(error).message}</p>
             </CenteredContainer>
         );
     } else if (!posts) {
@@ -108,7 +123,7 @@ const ManagePosts: FC = () => {
                             <p>{post[1].description}</p>
                             <Link
                                 to={{
-                                    pathname: `/home/edit/${userID}`,
+                                    pathname: '/home/edit',
                                     state: post,
                                 }}
                             >
