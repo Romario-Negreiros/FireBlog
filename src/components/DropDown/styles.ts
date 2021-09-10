@@ -26,7 +26,13 @@ ${props =>
     z-index: 12;
     background: ${({ theme: { backgrounds } }) => backgrounds.secondary};
     transition: all 0.5s ease-in-out;
-    @media screen and (min-width: 600px) {
+    .first-link {
+        margin-top: 5rem;
+        @media screen and (min-width: 700px) {
+            margin: 0;
+        }
+    }
+    @media screen and (min-width: 700px) {
         height: 40vh;
         padding: 2rem;
         flex-flow: row wrap;
@@ -39,8 +45,7 @@ ${props =>
 
 export const Link = styled(ReactRouterLink)`
     color: ${({ theme: { colors } }) => colors.secondary};
-    margin-bottom: 1.5rem;
-    
+    margin-bottom: 1.5rem; 
     padding: 2rem 0;
     font-size: 1.6rem;
     display: block;
@@ -51,7 +56,7 @@ export const Link = styled(ReactRouterLink)`
         background: rgba(25%, 29%, 58%, 0.5);
         color: ${({ theme: { colors } }) => colors.primary};
     }
-    @media screen and (min-width: 600px) {
+    @media screen and (min-width: 700px) {
         padding: 1.5rem;
         width: fit-content;
         text-align: center;
@@ -59,11 +64,12 @@ export const Link = styled(ReactRouterLink)`
 `;
 
 export const CustomButton = styled(Button)`
-    width: 100%;
-    text-align: center;
+    display: none;
     margin-top: 2rem;
     background: unset;
-    @media screen and (min-width: 600px) {
+    @media screen and (min-width: 700px) {
+        display: block;
+        width: 100%;
         text-align: left;
         margin: 0 0 2rem;
     }

@@ -3,6 +3,7 @@ import { PostObject } from "../../global/types";
 export interface Props {
     isDropDownVisible: boolean;
     setIsDropDownVisible: (isDropDownVisible: boolean) => void;
+    isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
     hasPostsChanged: boolean;
     setHasPostsChanged: (hasPostsChanged: boolean) => void;

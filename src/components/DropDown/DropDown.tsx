@@ -2,6 +2,7 @@
 import { FC, useState, useEffect } from 'react';
 import { firebaseDatabase } from '../../lib/firebase';
 import { toast } from 'react-toastify';
+import handleMenuOpen from '../NavBar/modules/handleMenuOpen';
 // Components
 import { Container, Link, CustomButton } from './styles';
 // Types
@@ -10,6 +11,7 @@ import { Props, Post } from './types';
 const DropDown: FC<Props> = ({
     isDropDownVisible,
     setIsDropDownVisible,
+    isOpen,
     setIsOpen,
     hasPostsChanged,
     setHasPostsChanged,
@@ -50,15 +52,16 @@ const DropDown: FC<Props> = ({
             <CustomButton onClick={() => setIsDropDownVisible(false)}>
                 Close
             </CustomButton>
-            {categories.map(category => (
+            {categories.map((category, i) => (
                 <Link
+                    className={i === 0 ? 'first-link' : ''}
                     key={category}
                     to={{
                         pathname: `/home/categories/${category}`,
                     }}
                     onClick={() => {
                         setIsDropDownVisible(false);
-                        setIsOpen(false);
+                        handleMenuOpen(setIsOpen, isOpen);
                     }}
                 >
                     {category}
