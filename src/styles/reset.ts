@@ -23,6 +23,9 @@ const Reset = createGlobalStyle`
     h1, h2, p, a, small, span, label, input, ::placeholder {
       color: ${({theme: { fonts }}) => fonts.primary };
     }
+    input:hover::placeholder, input:focus::placeholder {
+      color: ${({theme: { backgrounds }}) => backgrounds.cards };
+    }
     a {
         text-decoration: none;
     }
