@@ -152,6 +152,18 @@ const NavBar: FC<Props> = ({
                                 </Link>
                             )}
                         </li>
+                        {context?.userData && (
+                            <li>
+                                <Link
+                                    to={`/home/user/${context?.userData?.name}`}
+                                    onClick={() =>
+                                        handleMenuOpen(setIsOpen, isOpen)
+                                    }
+                                >
+                                    Profile
+                                </Link>
+                            </li>
+                        )}
                     </NavList>
                 </Navigation>
             </Container>
