@@ -65,8 +65,8 @@ export const Fieldset = styled.fieldset`
         height: 100px;
         padding: 1rem;
         font-size: 1.2rem;
-        border: 1px solid
-            ${({ theme: { backgrounds } }) => backgrounds.elements};
+        border-bottom: 1px solid ${({ theme: { colors } }) => colors.primary};
+        border-left: 1px solid ${({ theme: { colors } }) => colors.primary};
     }
     input {
         width: 100%;
@@ -74,11 +74,12 @@ export const Fieldset = styled.fieldset`
         padding: 0.5rem 1.5rem;
         background: unset;
         transition: background 0.3s ease;
-        border-bottom: 1px solid
-            ${({ theme: { backgrounds } }) => backgrounds.elements};
-        :focus {
-            background: #f5f5f5;
+        border-bottom: 1px solid ${({ theme: { colors } }) => colors.primary};
+        :focus, :hover {
+            color: ${({theme: { colors }}) => colors.primary};
+            background: ${({ theme: { backgrounds } }) => backgrounds.secondary};
         }
+        color: ${({ theme: { fonts } }) => fonts.primary};
     }
     p {
         font-size: 1.4rem;
