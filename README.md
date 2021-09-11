@@ -11,10 +11,14 @@ The mvp, basically is:
 logged in, all posts are readonly.
 
 Some features I would like to add after mvp is done:
-* Toggle light / dark mode
-* Comments
-* Posts rating
-* User's profile page
+* Toggle light / dark mode > ADDED ✔
+* Comments > ADDED ✔
+* Posts rating > ADDED ✔
+* User's profile page > IN PROGRESS 🛠
+##### In profile page:
+* Total comments
+* Total likes received
+* Posts' average rate
 
 -----------------------------------------------------------------------------------------------------------------------------
 
@@ -34,8 +38,13 @@ Some features I would like to add after mvp is done:
 * Login
 ![Snapshot](./src/assets/login.png)
 
-* Main
+* Main - LIGHT MODE
 ![Snapshot](./src/assets/main.png)
+
+* Main - DARK MODE
+Picture hasn't been taken yet :(
+
+
 
 -----------------------------------------------------------------------------------------------------------------------------
 
@@ -47,13 +56,16 @@ Some features I would like to add after mvp is done:
 - [x] Users can only edit their own posts
 - [x] Users can delete their own posts
 - [x] Page for posts creation
-- [ ] Show creator name in dedicated page to post
+- [x] Show creator name in dedicated page to post
 - [x] Posts filtering
 - [x] Search posts for categories
 - [x] Comments
-- [ ] Comments reply
-- [ ] Users profile page
+- [x] Comments reply
 - [x] Rate
+- [ ] Users profile page
+- [ ] Stats in profile page
+- [ ] Change password option
+- [ ] Delete account option
 
 -----------------------------------------------------------------------------------------------------------------------------
 
