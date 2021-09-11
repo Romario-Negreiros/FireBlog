@@ -1,3 +1,4 @@
+// Components
 export { default as Home } from './Home/Home';
 export { default as NavBar } from './NavBar/NavBar';
 export { default as Loader } from './Loader/Loader';
@@ -7,6 +8,6 @@ export { default as ManagePosts } from './ManagePosts/ManagePosts';
 export { default as EditPosts } from './EditPosts/EditPosts';
 export { default as Post } from './Post/Post';
 export { default as PostsForCategory } from './PostsForCategory/PostsForCategory';
-
+export { default as UserProfile } from './UserProfile/UserProfile';
 // Modal
 export { default as CreateAccount } from './Portal/Modals/CreateAccount';

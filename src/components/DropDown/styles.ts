@@ -6,7 +6,7 @@ import { CustomButton as Button } from '../PostsForm/styles';
 
 import { StyledProps } from './types';
 
-export const Container = styled.div<StyledProps>`
+export const Container = styled.main<StyledProps>`
 ${props =>
             props.isDropDownVisible ? 'visibility: visible' : 'visibility: hidden'};
         ${props =>

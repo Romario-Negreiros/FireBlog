@@ -2,7 +2,7 @@
 import { FC, useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 // Components
-import { NavBar, Home, CreatePosts, ManagePosts, EditPosts, Post, PostsForCategory } from '../../components/index';
+import { NavBar, Home, CreatePosts, ManagePosts, EditPosts, Post, PostsForCategory, UserProfile } from '../../components/index';
 // Types
 import Props from './types';
 
@@ -17,13 +17,13 @@ const Main: FC<Props> = ({ toggleTheme }) => {
                 <Route exact path="/home">
                     <Home />
                 </Route>
-                <Route path="/home/create/:userID">
+                <Route path="/home/create">
                     <CreatePosts setHasPostsChanged={setHasPostsChanged} />
                 </Route>
-                <Route path="/home/manage/:userID">
+                <Route path="/home/manage">
                     <ManagePosts />
                 </Route>
-                <Route path="/home/edit/:userID">
+                <Route path="/home/edit">
                     <EditPosts setHasPostsChanged={setHasPostsChanged} />
                 </Route>
                 <Route path="/home/posts/:postID">
@@ -31,6 +31,9 @@ const Main: FC<Props> = ({ toggleTheme }) => {
                 </Route>
                 <Route path="/home/categories/:category">
                     <PostsForCategory />
+                </Route>
+                <Route path="/home/user/:username">
+                    <UserProfile />
                 </Route>
             </Switch>
         </>

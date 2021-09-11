@@ -20,7 +20,7 @@ export const CustomButton = styled(Button)`
     align-self: flex-end;
 `;
 
-export const PostContainer = styled.div`
+export const PostContainer = styled.section`
     padding: .5rem;
     background: ${({theme: { backgrounds }}) => backgrounds.cards };
     display: flex;
