@@ -1,5 +1,5 @@
 // Modules or libs content
-import React, { FC, useState, useContext } from 'react';
+import { FC, useState, useContext } from 'react';
 import handleMenuOpen from './modules/handleMenuOpen';
 import { firebaseAuth } from '../../lib/firebase';
 import { ToastContainer, toast } from 'react-toastify';
@@ -53,119 +53,111 @@ const NavBar: FC<Props> = ({
                 setHasPostsChanged={setHasPostsChanged}
             />
             <Container>
-                <h2>FireBlog</h2>
-                {context?.userData && (
-                    <UserWrapper>
-                        <p>{context?.userData?.name}</p>
-                        <div>
-                            <img src={UserIcon} alt="user icon"></img>
-                        </div>
-                    </UserWrapper>
-                )}
-                <Switch
-                    className="react-switch-desktop"
-                    onChange={toggleTheme}
-                    checked={theme.title === 'dark'}
-                    checkedIcon={<Icon src={Sun} alt="turn to light mode" />}
-                    uncheckedIcon={<Icon src={Moon} alt="turn to dark mode" />}
-                    height={20}
-                    width={60}
-                    handleDiameter={25}
-                    offColor={'#ee55c9'}
-                    onColor={'#D6F5DD'}
-                />
-                <Navigation>
-                    <Burguer
-                        onClick={() => {
-                            if (isDropDownVisible) setIsDropDownVisible(false);
-                            handleMenuOpen(setIsOpen, isOpen);
-                        }}
-                    >
-                        <Line className="first"></Line>
-                        <Line className="second"></Line>
-                        <Line className="third"></Line>
-                    </Burguer>
-
-                    <NavList isOpen={isOpen}>
-                        <li>
-                            <Switch
-                                className="react-switch-mobile"
-                                onChange={toggleTheme}
-                                checked={theme.title === 'dark'}
-                                checkedIcon={
-                                    <Icon src={Sun} alt="turn to light mode" />
-                                }
-                                uncheckedIcon={
-                                    <Icon src={Moon} alt="turn to dark mode" />
-                                }
-                                height={20}
-                                width={60}
-                                handleDiameter={25}
-                                offColor={'#ee55c9'}
-                                onColor={'#D6F5DD'}
-                            />
-                        </li>
-                        <li>
-                            <Link
-                                to="/home"
-                                onClick={() =>
-                                    handleMenuOpen(setIsOpen, isOpen)
-                                }
-                            >
-                                Home
-                            </Link>
-                        </li>
-                        <li>
-                            <Button onClick={() => setIsDropDownVisible(true)}>
-                                Categories
-                            </Button>
-                        </li>
-                        <li>
-                            {context?.userData ? (
-                                <Button
-                                    onClick={() => {
-                                        (async () => {
-                                            try {
-                                                await firebaseAuth.signOut();
-                                                toast.success(
-                                                    'Succesfully signed out'
-                                                );
-                                                context.setUserData(null);
-                                            } catch (err) {
-                                                toast.error(
-                                                    'Failed to sign out'
-                                                );
-                                            }
-                                        })();
-                                    }}
-                                >
-                                    Sign out
-                                </Button>
-                            ) : (
-                                <Link
-                                    to="/login"
-                                    onClick={() =>
-                                        handleMenuOpen(setIsOpen, isOpen)
-                                    }
-                                >
-                                    Sign in
-                                </Link>
-                            )}
-                        </li>
-                        {context?.userData && (
+                <section>
+                    <h2>FireBlog</h2>
+                    <Navigation>
+                        <Burguer
+                            onClick={() => {
+                                if (isDropDownVisible)
+                                    setIsDropDownVisible(false);
+                                handleMenuOpen(setIsOpen, isOpen);
+                            }}
+                        >
+                            <Line className="first"></Line>
+                            <Line className="second"></Line>
+                            <Line className="third"></Line>
+                        </Burguer>
+                        <NavList isOpen={isOpen}>
                             <li>
                                 <Link
-                                    to={`/home/user/${context?.userData?.name}`}
+                                    to="/home"
                                     onClick={() =>
                                         handleMenuOpen(setIsOpen, isOpen)
                                     }
                                 >
-                                    Profile
+                                    Home
                                 </Link>
                             </li>
-                        )}
-                    </NavList>
-                </Navigation>
+                            <li>
+                                <Button
+                                    onClick={() => setIsDropDownVisible(true)}
+                                >
+                                    Categories
+                                </Button>
+                            </li>
+                            <li>
+                                {context?.userData ? (
+                                    <Button
+                                        onClick={() => {
+                                            (async () => {
+                                                try {
+                                                    await firebaseAuth.signOut();
+                                                    toast.success(
+                                                        'Succesfully signed out'
+                                                    );
+                                                    context.setUserData(null);
+                                                } catch (err) {
+                                                    toast.error(
+                                                        'Failed to sign out'
+                                                    );
+                                                }
+                                            })();
+                                        }}
+                                    >
+                                        Sign out
+                                    </Button>
+                                ) : (
+                                    <Link
+                                        to="/login"
+                                        onClick={() =>
+                                            handleMenuOpen(setIsOpen, isOpen)
+                                        }
+                                    >
+                                        Sign in
+                                    </Link>
+                                )}
+                            </li>
+                            {context?.userData && (
+                                <li>
+                                    <Link
+                                        to={`/home/user/${context?.userData?.name}`}
+                                        onClick={() =>
+                                            handleMenuOpen(setIsOpen, isOpen)
+                                        }
+                                    >
+                                        Profile
+                                    </Link>
+                                </li>
+                            )}
+                        </NavList>
+                    </Navigation>
+                </section>
+                <section>
+                    {context?.userData && (
+                        <UserWrapper>
+                            <p>{context?.userData?.name}</p>
+                            <div>
+                                <img src={UserIcon} alt="user icon"></img>
+                            </div>
+                        </UserWrapper>
+                    )}
+                    <Switch
+                        className="react-switch-desktop"
+                        onChange={toggleTheme}
+                        checked={theme.title === 'dark'}
+                        checkedIcon={
+                            <Icon src={Sun} alt="turn to light mode" />
+                        }
+                        uncheckedIcon={
+                            <Icon src={Moon} alt="turn to dark mode" />
+                        }
+                        height={20}
+                        width={60}
+                        handleDiameter={25}
+                        offColor={'#ee55c9'}
+                        onColor={'#D6F5DD'}
+                    />
+                </section>
             </Container>
         </>
     );

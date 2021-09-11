@@ -6,7 +6,7 @@ import { Link as ReactRouterLink } from 'react-router-dom';
 
 export const Container = styled.header`
     display: flex;
-    flex-direction: column;
+    flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
     height: fit-content;
@@ -15,29 +15,18 @@ export const Container = styled.header`
     border-bottom: 2px solid ${({ theme: { colors } }) => colors.primary};
     color: ${({ theme: { colors } }) => colors.primary};
     @media screen and (min-width: 300px) {
-        flex-direction: row;
         padding: 0 1.5rem;
-        height: 70px;
+    }
+    section {
+        width: 100%;
+        margin: 1rem 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
     h2 {
-        margin-top: 1rem;
         color: ${({ theme: { colors } }) => colors.primary};
         font-size: 2.2rem;
-        @media screen and (min-width: 300px) {
-            margin: 0;
-        }
-    }
-    .react-switch-desktop {
-        transform: translateY(-300px);
-        @media screen and (min-width: 700px) {
-            transform: translateY(0px);
-        }
-    }
-    .react-switch-mobile {
-        transform: translateY(0px);
-        @media screen and (min-width: 700px) {
-            transform: translateY(-300px);
-        }
     }
 `;
 
@@ -80,8 +69,8 @@ export const Burguer = styled.div`
     cursor: pointer;
     width: fit-content;
     position: absolute;
-    top: 22px;
-    right: 5px;
+    right: 10px;
+    top: 20px;
     z-index: 30;
     @media screen and (min-width: 300px) {
         right: 25px;
@@ -166,11 +155,6 @@ export const Button = styled.button`
 export const UserWrapper = styled.div`
     display: flex;
     align-items: center;
-    margin: 1rem 0 0 1rem;
-    @media screen and (min-width: 300px) {
-        margin: 0;
-        margin-left: 1rem;
-    }
     p {
         color: ${({ theme: { colors } }) => colors.primary};
         font-size: 1.6rem;
