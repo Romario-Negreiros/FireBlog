@@ -95,7 +95,7 @@ const Home: FC = () => {
                     <p>Create new post</p>
                     <img src={PlusIcon} alt="plus icon"></img>
                 </UserOption>
-                <UserOption to={`/home/manage/${context?.userData?.userID}`}>
+                <UserOption to={`/home/manage`}>
                     <p>Manage posts</p>
                     <img src={ManageIcon} alt="manage icon"></img>
                 </UserOption>
