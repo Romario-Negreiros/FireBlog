@@ -24,7 +24,7 @@ const Reset = createGlobalStyle`
       color: ${({theme: { fonts }}) => fonts.primary };
     }
     input:hover::placeholder, input:focus::placeholder {
-      color: ${({theme: { backgrounds }}) => backgrounds.cards };
+      color: ${({theme: { colors }}) => colors.primary };
     }
     a {
         text-decoration: none;
