@@ -9,6 +9,9 @@ const Reset = createGlobalStyle`
     }
     html {
         font-size: 10px;
+        .body-on-menu-active {
+            overflow-y: hidden;
+        }
     }
     body {
       background: ${({theme: { backgrounds }}) => backgrounds.elements};
@@ -20,7 +23,7 @@ const Reset = createGlobalStyle`
     ul {
         list-style: none;
     }
-    h1, h2, p, a, small, span, label, input, ::placeholder {
+    h1, h2, p, a, small, span, label, ::placeholder {
       color: ${({theme: { fonts }}) => fonts.primary };
     }
     input:hover::placeholder, input:focus::placeholder {
