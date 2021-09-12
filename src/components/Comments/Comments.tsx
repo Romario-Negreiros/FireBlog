@@ -14,7 +14,7 @@ const Comments: FC<Props> = ({ setComments, comments, userConnected }) => {
         null
     );
     const [willReply, setWillReply] = useState<number | null>(null);
-console.log(comments)
+
     const sendLike = (commentIndex: number, userRate?: Rate) => {
         if (userRate !== undefined) {
             const commentsCopy = [...comments];
