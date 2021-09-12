@@ -81,14 +81,14 @@ const PostsForm: FC<Props> = ({ setHasPostsChanged }) => {
 
     return (
         <Form onSubmit={handleSubmit(onSubmit)}>
+            <CustomButton onClick={() => history.goBack()}>
+                Go back
+            </CustomButton>
             <ToastContainer
                 autoClose={2000}
                 closeButton={false}
                 style={{ fontSize: '16px' }}
             />
-            <CustomButton onClick={() => history.goBack()}>
-                Go back
-            </CustomButton>
             <Fieldset>
                 <div>
                     <label htmlFor="title">Title</label>
