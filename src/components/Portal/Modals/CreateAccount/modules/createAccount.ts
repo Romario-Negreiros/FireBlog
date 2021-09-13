@@ -1,11 +1,11 @@
 // Modules or libs content
-import { firebaseAuth, firebaseDatabase } from '../../../../lib/firebase';
+import { firebaseAuth, firebaseDatabase } from '../../../../../lib/firebase';
 import { History } from 'history';
 import { toast } from 'react-toastify';
 // Types
 import { Inputs } from '../types';
 // Context
-import { UserData } from '../../../../context/UserContext';
+import { UserData } from '../../../../../context/UserContext';
 
 const createAccount = async (
     setUserData: (userData: UserData | null) => void,

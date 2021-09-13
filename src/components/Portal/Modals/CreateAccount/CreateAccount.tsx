@@ -4,23 +4,24 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import createAccount from './modules/createAccount';
 import { useHistory } from 'react-router-dom';
 // Images
-import Eye from '../../../assets/eye-solid.svg';
-import SlashedEye from '../../../assets/eye-slash-solid.svg';
+import Eye from '../../../../assets/eye-solid.svg';
+import SlashedEye from '../../../../assets/eye-slash-solid.svg';
 // Components
+import { Background } from '../../../../global/styles';
 import {
-    Background,
     Form,
     Container,
     IconWrapper,
     InputWrapper,
     Close,
 } from './styles';
-import { Fieldset, Input } from '../../../pages/Login/styles';
-import Loader from '../../Loader/Loader';
+import { Fieldset, Input } from '../../../../pages/Login/styles';
+import Loader from '../../../Loader/Loader';
 // Types
-import { Inputs, Props } from './types';
+import { Inputs } from './types';
+import { Props } from '../../types';
 // Contexts
-import userContext from '../../../context/UserContext';
+import userContext from '../../../../context/UserContext';
 
 const CreateAccount: FC<Props> = ({ setIsModalVisible }) => {
     const userData = useContext(userContext);
