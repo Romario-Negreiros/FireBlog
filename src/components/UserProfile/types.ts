@@ -1,7 +1,7 @@
 import { UserData } from "../../context/UserContext";
 
 export interface UserInfo {
-    user: UserData;
+    user: UserData | null;
     posts_created: number;
     posts_average_rate: string;
     total_comments: number;
