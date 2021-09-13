@@ -114,8 +114,8 @@ const Home: FC = () => {
                         <Post key={post[0]}>
                             <h2>{post[1].title}</h2>
                             <small>{post[1].category}</small>
-                            <small>{post[1].author}</small>
                             <p>{post[1].description}</p>
+                            <Link to={`/home/user/${post[1].author}`}>{post[1].author}</Link>
                             <Link
                                 to={{
                                     pathname: `/home/posts/${post[0]}`,
