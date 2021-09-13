@@ -10,4 +10,5 @@ export { default as Post } from './Post/Post';
 export { default as PostsForCategory } from './PostsForCategory/PostsForCategory';
 export { default as UserProfile } from './UserProfile/UserProfile';
 // Modal
-export { default as CreateAccount } from './Portal/Modals/CreateAccount';
+export { default as CreateAccount } from './Portal/Modals/CreateAccount/CreateAccount';
+export { default as ChangeAccountName } from './Portal/Modals/ChangeAccountName/ChangeAccountName';
