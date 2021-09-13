@@ -11,6 +11,7 @@ import {
     Redirect,
     AvaliationSection,
 } from './styles';
+import { Link } from '../Home/styles';
 import Comments from '../Comments/Comments';
 import Rating from '../Rating/Rating';
 // Types
@@ -65,7 +66,7 @@ const Post: FC = () => {
                         Go back
                     </CustomButton>
                     <h1>{state[1][1].title}</h1>
-                    <h3>{state[1][1].author}</h3>
+                    <Link to={`/home/user/${state[1][1].author}`}>{state[1][1].author}</Link>
                     <small>{state[1][1].category}</small>
                     <hr />
                     <h2>{state[1][1].description}</h2>
