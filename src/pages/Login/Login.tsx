@@ -13,7 +13,7 @@ import { Loader, Portal, CreateAccount } from '../../components/index';
 import {
     InputWrapper,
     IconWrapper,
-} from '../../components/Portal/Modals/styles';
+} from '../../components/Portal/Modals/CreateAccount/styles';
 import {
     BannerArea,
     ContentArea,
