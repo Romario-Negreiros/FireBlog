@@ -11,7 +11,7 @@ import {
     Redirect,
     AvaliationSection,
 } from './styles';
-import { Link } from '../Home/styles';
+import { Link } from '../../global/styles';
 import Comments from '../Comments/Comments';
 import Rating from '../Rating/Rating';
 // Types
@@ -20,7 +20,7 @@ import { Rate } from '../Rating/types';
 import { CommentsType } from '../Comments/types';
 // Context;
 import userContext from '../../context/UserContext';
-import { CenteredContainer } from '../Home/styles';
+import { CenteredContainer } from '../../global/styles';
 
 const Post: FC = () => {
     const { state } = useLocation<State>();

@@ -1,8 +1,6 @@
 // Modules or libs content
 import { FC, useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router';
-import { Loader } from '..';
-import { CenteredContainer } from '../Home/styles';
 import { firebaseAuth } from '../../lib/firebase';
 import getCurrentUser from './modules/getCurrentUser';
 import getTotalPostsCreated from './modules/getTotalPostsCreated';
@@ -12,6 +10,8 @@ import getTotalLikesInComments from './modules/getTotalLikesInComments';
 // Images
 import UserIcon from '../../assets/user-solid.svg';
 // Components
+import { CenteredContainer } from '../../global/styles';
+import { Loader } from '..';
 import { Container } from '../Post/styles';
 import { ProfileContainer, UserData, AccountOptions } from './styles';
 import { ChangeAccountName, Portal } from '..';
