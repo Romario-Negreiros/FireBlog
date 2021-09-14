@@ -4,16 +4,8 @@ import { useHistory } from 'react-router';
 import { firebaseAuth, firebaseDatabase } from '../../lib/firebase';
 import { ToastContainer, toast } from 'react-toastify';
 // Components
-import {
-    Container,
-    Post,
-    Link,
-    Delete,
-    CustomButton,
-    ButtonWrapper,
-} from './styles';
-import { Loader } from '..';
-import { CenteredContainer } from '../Home/styles';
+import { Container, CustomButton, ButtonWrapper } from './styles';
+import PostsListForManage from '../PostsListForManage/PostsListForManage';
 // Types
 import { Posts } from './types';
 // Context
@@ -21,7 +13,7 @@ import userContext from '../../context/UserContext';
 
 const ManagePosts: FC = () => {
     const [wasDeleted, setWasDeleted] = useState<boolean>(false);
-    const [posts, setPosts] = useState<Posts | null>(null);
+    const [posts, setPosts] = useState<Posts>([]);
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
     const context = useContext(userContext);
@@ -67,7 +59,6 @@ const ManagePosts: FC = () => {
                             .get();
                         if (response.val())
                             setPosts(Object.entries(response.val()));
-                        else setPosts(null);
                     } else
                         throw new Error(
                             "The user either doesn't exist or is not signed in"
@@ -84,60 +75,28 @@ const ManagePosts: FC = () => {
         }
     }, [user, userNotLogged, wasDeleted, context?.userData]);
 
-    if (!isLoaded) {
-        return (
-            <CenteredContainer>
-                <Loader />
-            </CenteredContainer>
-        );
-    } else if (error) {
-        return (
-            <CenteredContainer>
-                <p>{JSON.parse(error).message}</p>
-            </CenteredContainer>
-        );
-    } else if (!posts) {
-        return (
-            <CenteredContainer>
-                <p>You haven't created any post yet!</p>
-            </CenteredContainer>
-        );
-    } else {
-        return (
-            <>
-                <ToastContainer
-                    autoClose={3000}
-                    closeButton={false}
-                    style={{ fontSize: '16px' }}
+    return (
+        <>
+            <ToastContainer
+                autoClose={3000}
+                closeButton={false}
+                style={{ fontSize: '16px' }}
+            />
+            <ButtonWrapper>
+                <CustomButton onClick={() => history.goBack()}>
+                    Go back
+                </CustomButton>
+            </ButtonWrapper>
+            <Container>
+                <PostsListForManage
+                    isLoaded={isLoaded}
+                    error={error}
+                    posts={posts}
+                    deletePost={deletePost}
                 />
-                <ButtonWrapper>
-                    <CustomButton onClick={() => history.goBack()}>
-                        Go back
-                    </CustomButton>
-                </ButtonWrapper>
-                <Container>
-                    {posts?.map(post => (
-                        <Post key={post[0]}>
-                            <h2>{post[1].title}</h2>
-                            <small>{post[1].category}</small>
-                            <p>{post[1].description}</p>
-                            <Link
-                                to={{
-                                    pathname: '/home/edit',
-                                    state: post,
-                                }}
-                            >
-                                Edit post
-                            </Link>
-                            <Delete onClick={() => deletePost(post[0])}>
-                                Delete
-                            </Delete>
-                        </Post>
-                    ))}
-                </Container>
-            </>
-        );
-    }
+            </Container>
+        </>
+    );
 };
 
 export default ManagePosts;

@@ -3,12 +3,11 @@ import { FC, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { firebaseDatabase } from '../../lib/firebase';
 // Components
-import { Loader } from '..';
-import { CenteredContainer, Post, Link } from '../Home/styles';
 import { Container, Title } from './styles';
+import PostsListForCategory from '../PostsListForCategory/PostsListForCategory';
 // Types
-import { Posts } from './types';
 import { PostsArray } from '../Home/types';
+import { Posts } from './types';
 import { PostObject } from '../../global/types';
 
 const PostsForCategory: FC = () => {
@@ -35,57 +34,38 @@ const PostsForCategory: FC = () => {
                         }
                     });
                 });
-                if(!postsForCategory.length) {
-                    throw new Error(JSON.stringify({message: 'This category either doesn\'t exist or is empty'}))
+                if (!postsForCategory.length) {
+                    throw new Error(
+                        JSON.stringify({
+                            message:
+                                "This category either doesn't exist or is empty",
+                        })
+                    );
                 } else {
                     setPostsForCategory(postsForCategory);
                 }
             } catch (err) {
-                setError(JSON.stringify(err))
+                setError(JSON.stringify(err));
             } finally {
                 setIsLoaded(true);
             }
         })();
     }, [category]);
 
-    if (!isLoaded) {
-        return (
-            <CenteredContainer>
-                <Loader />
-            </CenteredContainer>
-        );
-    } else if (error) {
-        return (
-            <CenteredContainer>
-                <p>{JSON.parse(error).message}</p>
-            </CenteredContainer>
-        );
-    } else {
-        return (
-            <>
-                <Title>
-                    {category.charAt(0).toUpperCase() + category.substring(1)}
-                </Title>
-                <Container>
-                    {postsForCategory.map(post => (
-                        <Post key={post[1]}>
-                            <h2>{post[2].title}</h2>
-                            <small>{post[2].category}</small>
-                            <p>{post[2].description}</p>
-                            <Link
-                                to={{
-                                    pathname: `/home/posts/${post[0]}`,
-                                    state: [post[0], [post[1], post[2]]],
-                                }}
-                            >
-                                Read more
-                            </Link>
-                        </Post>
-                    ))}
-                </Container>
-            </>
-        );
-    }
+    return (
+        <>
+            <Title>
+                {category.charAt(0).toUpperCase() + category.substring(1)}
+            </Title>
+            <Container>
+                <PostsListForCategory
+                    isLoaded={isLoaded}
+                    error={error}
+                    postsForCategory={postsForCategory}
+                />
+            </Container>
+        </>
+    );
 };
 
 export default PostsForCategory;

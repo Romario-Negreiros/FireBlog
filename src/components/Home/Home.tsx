@@ -5,20 +5,10 @@ import { firebaseDatabase, firebaseAuth } from '../../lib/firebase';
 import PlusIcon from '../../assets/plus-solid.svg';
 import ManageIcon from '../../assets/hammer-solid.svg';
 // Components
-import {
-    Container,
-    UserOption,
-    Post,
-    Link,
-    CenteredContainer,
-    InputWrapper,
-    Input,
-    NoMatches,
-} from './styles';
-import Loader from '../Loader/Loader';
+import PostList from '../PostList/PostList';
+import { Container, UserOption, InputWrapper, Input } from './styles';
 // Types
-import { Posts, PostsArray } from './types';
-import { PostObject } from '../../global/types';
+import { Posts } from './types';
 import { DatabaseResponse } from '../../pages/Login/types';
 // Context
 import userContext from '../../context/UserContext';
@@ -30,7 +20,7 @@ const Home: FC = () => {
 
     const context = useContext(userContext);
 
-    const [posts, setPosts] = useState<Posts | null>(null);
+    const [posts, setPosts] = useState<Posts>([]);
     const [error, setError] = useState<string>('');
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
     const [filterValue, setFilterValue] = useState<string>('');
@@ -51,24 +41,20 @@ const Home: FC = () => {
                         userID: currentUser.uid,
                     });
                 } catch (err) {
-                    setError(JSON.stringify(err))
+                    setError(JSON.stringify(err));
                 }
             })();
         }
-        if (posts === null) {
+        if (!posts.length) {
             (async () => {
                 try {
                     const response = await firebaseDatabase
                         .child('posts')
                         .get();
-                    if (
-                        response.val() !== null &&
-                        response.val() !== undefined
-                    ) {
+                    if (response.val() !== null && response.val() !== undefined)
                         setPosts(Object.entries(response.val()));
-                    }
                 } catch (err) {
-                    setError(JSON.stringify(err))
+                    setError(JSON.stringify(err));
                 } finally {
                     setIsLoaded(true);
                 }
@@ -76,113 +62,38 @@ const Home: FC = () => {
         }
     }, [currentUser, context, posts]);
 
-    if (!isLoaded) {
-        return (
-            <CenteredContainer>
-                <Loader />
-            </CenteredContainer>
-        );
-    } else if (error) {
-        return (
-            <CenteredContainer>
-                <p>{JSON.parse(error).message}</p>
-            </CenteredContainer>
-        );
-    } else if (posts === null) {
-        return (
-            <CenteredContainer>
-                 <UserOption to={'/home/create'}>
-                    <p>Create new post</p>
-                    <img src={PlusIcon} alt="plus icon"></img>
-                </UserOption>
-                <UserOption to={`/home/manage`}>
-                    <p>Manage posts</p>
-                    <img src={ManageIcon} alt="manage icon"></img>
-                </UserOption>
-                <p>Hmmm, something went wrong!</p>
-            </CenteredContainer>
-        );
-    } else {
-        const filteredPosts: JSX.Element[] = [];
-        posts?.forEach(keyValPair => {
-            const postsForId: PostsArray[] = Object.entries(
-                keyValPair[1] as unknown as PostObject
-            );
-            postsForId.forEach(post => {
-                if (!filterValue) {         
-                    filteredPosts.push(
-                        <Post key={post[0]}>
-                            <h2>{post[1].title}</h2>
-                            <small>{post[1].category}</small>
-                            <p>{post[1].description}</p>
-                            <Link to={`/home/user/${post[1].author}`}>{post[1].author}</Link>
-                            <Link
-                                to={{
-                                    pathname: `/home/posts/${post[0]}`,
-                                    state: [keyValPair[0], post],
-                                }}
-                            >
-                                Read more
-                            </Link>
-                        </Post>
-                    );
-                } else if (
-                    post[1].title
-                        .toLowerCase()
-                        .includes(filterValue.toLowerCase())
-                ) {
-                    filteredPosts.push(
-                        <Post key={post[0]}>
-                            <h2>{post[1].title}</h2>
-                            <small>{post[1].category}</small>
-                            <small>{post[1].author}</small>
-                            <p>{post[1].description}</p>
-                            <Link
-                                to={{
-                                    pathname: `/home/posts/${post[0]}`,
-                                    state: [keyValPair[0], post],
-                                }}
-                            >
-                                Read more
-                            </Link>
-                        </Post>
-                    );
-                }
-            });
-        });
-
-        return (
-            <Container>
-                <InputWrapper>
-                    <Input
-                        onChange={event =>
-                            setFilterValue(event.currentTarget.value)
-                        }
-                        onKeyPress={event =>
-                            event.key === 'Enter'
-                                ? setFilterValue(event.currentTarget.value)
-                                : ''
-                        }
-                        placeholder="Search for posts"
-                        value={filterValue}
-                    />
-                </InputWrapper>
-                <UserOption to={`/home/create/${context?.userData?.userID}`}>
-                    <p>Create new post</p>
-                    <img src={PlusIcon} alt="plus icon"></img>
-                </UserOption>
-                <UserOption to={`/home/manage/${context?.userData?.userID}`}>
-                    <p>Manage posts</p>
-                    <img src={ManageIcon} alt="manage icon"></img>
-                </UserOption>
-                {filteredPosts.length > 0 ? (
-                    filteredPosts
-                ) : (
-                    <NoMatches>No matches were found!</NoMatches>
-                )}
-            </Container>
-        );
-    }
+    return (
+        <Container>
+            <InputWrapper>
+                <Input
+                    onChange={event =>
+                        setFilterValue(event.currentTarget.value)
+                    }
+                    onKeyPress={event =>
+                        event.key === 'Enter'
+                            ? setFilterValue(event.currentTarget.value)
+                            : ''
+                    }
+                    placeholder="Search for posts"
+                    value={filterValue}
+                />
+            </InputWrapper>
+            <UserOption to={`/home/create/${context?.userData?.userID}`}>
+                <p>Create new post</p>
+                <img src={PlusIcon} alt="plus icon"></img>
+            </UserOption>
+            <UserOption to={`/home/manage/${context?.userData?.userID}`}>
+                <p>Manage posts</p>
+                <img src={ManageIcon} alt="manage icon"></img>
+            </UserOption>
+            <PostList
+                isLoaded={isLoaded}
+                error={error}
+                posts={posts}
+                filterValue={filterValue}
+            />
+        </Container>
+    );
 };
 
 export default Home;

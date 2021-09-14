@@ -4,21 +4,6 @@ import { Link as ReactRouterLink } from 'react-router-dom';
 
 import { Input as LoginInput } from '../../pages/Login/styles';
 
-export const CenteredContainer = styled.main`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1.5rem;
-    align-items: center;
-    height: 100vh;
-    p {
-        font-size: 1.4rem;
-        text-align: center;
-        color: ${({ theme: { colors } }) => colors.error};
-        margin-bottom: 1.5rem;
-    }
-`;
-
 export const Container = styled.main`
     position: relative;
     width: 100%;
@@ -65,45 +50,6 @@ export const UserOption = styled(ReactRouterLink)`
     }
 `;
 
-export const Post = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    background: ${({theme: { backgrounds }}) => backgrounds.cards };
-    padding: 1.5rem;
-    border-radius: 5px;
-    width: 100%;
-    margin-bottom: 1rem;
-
-    @media screen and (min-width: 700px) {
-        margin: 0rem;
-    }
-    h2 {
-        font-size: 2.4rem;
-        margin-bottom: 1rem;
-        word-break: break-all;
-    }
-    small {
-        font-size: 1.2rem;
-        margin-bottom: 1rem;
-        word-break: break-all;
-    }
-    p {
-        font-size: 1.4rem;
-        margin-bottom: 1rem;
-        word-break: break-all;
-    }
-`;
-
-export const Link = styled(ReactRouterLink)`
-    color: ${({ theme: { colors } }) => colors.secondary};
-    font-size: 1.4rem;
-    :hover {
-        color: ${({ theme: { colors } }) => colors.primary};
-    }
-`;
-
 export const InputWrapper = styled.div`
     width: 100%;
     text-align: center;
@@ -119,16 +65,5 @@ export const Input = styled(LoginInput)`
     }
     @media screen and (min-width: 700px) {
         width: 50%;
-    }
-`;
-
-export const NoMatches = styled.p`
-    display: block;
-    width: 100%;
-    text-align: center;
-    font-size: 1.5rem;
-    color: ${({ theme: { colors } }) => colors.error };
-    @media screen and (min-width: 700px) {
-        grid-column: span 2;
     }
 `;
