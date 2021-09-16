@@ -41,7 +41,9 @@ const Home: FC = () => {
                         userID: currentUser.uid,
                     });
                 } catch (err) {
-                    setError(JSON.stringify(err));
+                    if(err instanceof Error) {
+                        setError(err.message);
+                    }
                 }
             })();
         }
@@ -54,7 +56,9 @@ const Home: FC = () => {
                     if (response.val() !== null && response.val() !== undefined)
                         setPosts(Object.entries(response.val()));
                 } catch (err) {
-                    setError(JSON.stringify(err));
+                    if(err instanceof Error) {
+                        setError(err.message);
+                    };
                 } finally {
                     setIsLoaded(true);
                 }
