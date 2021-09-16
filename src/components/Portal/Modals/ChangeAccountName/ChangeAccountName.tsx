@@ -39,7 +39,6 @@ const ChangeAccountName: FC<Props> = ({
         (async () => {
             try {
                 const posts = await firebaseDatabase.child('posts').get();
-                console.log(posts.val());
                 const getEntries: [string, Response][] = Object.entries(
                     posts.val()
                 );

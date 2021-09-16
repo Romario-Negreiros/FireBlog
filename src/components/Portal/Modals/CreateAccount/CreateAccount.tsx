@@ -3,23 +3,20 @@ import { FC, useState, useContext } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import createAccount from './modules/createAccount';
 import { useHistory } from 'react-router-dom';
+import { firebaseDatabase } from '../../../../lib/firebase';
+import verifyIfNameAlreadyExists from './modules/verifyIfNameAlreadyExists';
 // Images
 import Eye from '../../../../assets/eye-solid.svg';
 import SlashedEye from '../../../../assets/eye-slash-solid.svg';
 // Components
 import { Background } from '../../../../global/styles';
-import {
-    Form,
-    Container,
-    IconWrapper,
-    InputWrapper,
-    Close,
-} from './styles';
+import { Form, Container, IconWrapper, InputWrapper, Close } from './styles';
 import { Fieldset, Input } from '../../../../pages/Login/styles';
 import Loader from '../../../Loader/Loader';
 // Types
 import { Inputs } from './types';
 import { Props } from '../../types';
+import { DatabaseResponse } from '../../../../pages/Login/types';
 // Contexts
 import userContext from '../../../../context/UserContext';
 
@@ -55,16 +52,32 @@ const CreateAccount: FC<Props> = ({ setIsModalVisible }) => {
                         is_valid_format.value &&
                         userData
                     ) {
-                        createAccount(
-                            userData.setUserData,
-                            data,
-                            setError,
-                            setIsModalVisible,
-                            history
+                        const response = await firebaseDatabase
+                            .child('users')
+                            .get();
+                        const getValues: { firebaseUid: DatabaseResponse }[] =
+                            Object.values(response.val());
+                        const usersData: DatabaseResponse[][] = getValues.map(
+                            value => Object.values(value)
                         );
+                        const doNameExist = await verifyIfNameAlreadyExists(
+                            usersData,
+                            data.name
+                        );
+                        if (!doNameExist) {
+                            createAccount(
+                                userData.setUserData,
+                                data,
+                                setError,
+                                setIsModalVisible,
+                                history
+                            );
+                        } else throw new Error("This name already exists, please, try another one!")
                     } else throw new Error("This email doesn't exist!");
                 } catch (err) {
-                    setError(JSON.stringify(err))
+                    if(err instanceof Error) {
+                        setError(err.message);
+                    }
                 } finally {
                     setIsLoaded(true);
                 }
@@ -82,7 +95,7 @@ const CreateAccount: FC<Props> = ({ setIsModalVisible }) => {
         return (
             <Background>
                 <Container>
-                    <p>{JSON.parse(error).message}</p>
+                    <p>{error}</p>
                     <button onClick={() => setError('')}>Dismiss</button>
                 </Container>
             </Background>
