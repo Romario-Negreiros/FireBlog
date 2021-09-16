@@ -32,6 +32,7 @@ const NavBar: FC<Props> = ({
     setHasPostsChanged,
     toggleTheme,
 }) => {
+
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [isDropDownVisible, setIsDropDownVisible] = useState<boolean>(false);
     const context = useContext(userContext);
