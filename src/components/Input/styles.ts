@@ -7,6 +7,10 @@ export const InputWrapper = styled.div`
     align-items: center;
     justify-content: space-between;
     input {
+        :focus, :hover {
+            color: ${({theme: { colors }}) => colors.primary};
+        }
+        color: ${({ theme: { fonts } }) => fonts.primary};
         width: 90%;
         background: unset;
         padding: 1.5rem;

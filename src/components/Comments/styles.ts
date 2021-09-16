@@ -41,6 +41,7 @@ export const Data = styled.div`
         justify-content: space-between;
     }
     button {
+        color: ${({theme: { fonts }}) => fonts.primary };
         border: 0 none;
         background: unset;
         cursor: pointer;
