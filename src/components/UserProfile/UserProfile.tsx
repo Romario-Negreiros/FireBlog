@@ -19,6 +19,7 @@ import { ChangeAccountName, Portal } from '..';
 import { UserInfo } from './types';
 
 const UserProfile: FC = () => {
+
     const [action, setAction] = useState<string>('');
     const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
@@ -27,17 +28,21 @@ const UserProfile: FC = () => {
     const { username } = useParams<{ username: string }>();
 
     const switchModal = () => {
-        switch (action) {
-            case 'changename':
-                return (
-                    <ChangeAccountName
-                        setIsModalVisible={setIsModalVisible}
-                        formerName={username}
-                    />
-                );
-            default:
-                return <div>hello world</div>;
-        }
+        if (userProfileData?.user) {
+            switch (action) {
+                case 'changename':
+                    return (
+                        <ChangeAccountName
+                            setIsModalVisible={setIsModalVisible}
+                            uid={userProfileData.user.userID}
+                            firebaseUid={userProfileData.user.firebaseUid}
+                            formerName={username}
+                        />
+                    );
+                default:
+                    return <div>hello world</div>;
+            }
+        }   
     };
 
     const getUserInfo = useCallback(async () => {
@@ -142,10 +147,10 @@ const UserProfile: FC = () => {
                                     <span>Change account name</span>
                                 </li>
                                 <li>
-                                    <span>Private profile?</span>
+                                    <span>Two-factor authentication</span>
                                 </li>
                                 <li>
-                                    <span>Two-factor authentication</span>
+                                    <span>Delete profile</span>
                                 </li>
                             </AccountOptions>
                         ) : (

@@ -1,4 +1,8 @@
-import { UserData } from "../../context/UserContext";
+import { UserData as Type } from "../../context/UserContext";
+
+export interface UserData extends Type {
+    firebaseUid: string;
+}
 
 export interface UserInfo {
     user: UserData | null;
