@@ -7,10 +7,10 @@ A blog system, built with react, typescript and firebase 🔥
 #### Brief
 
 The mvp, basically is:
-* Users can create their account, or simply login they have created already, create and edit their own posts, if they're not
-logged in, all posts are readonly.
+* Users can create their account, or simply login if they have created already, create and edit their own posts, and if they're not
+logged in, all posts are read-only.
 
-Some features I would like to add after mvp is done:
+Some features I would like to add after mvp has been done:
 * Toggle light / dark mode > ADDED ✔
 * Comments > ADDED ✔
 * Posts rating > ADDED ✔
@@ -19,6 +19,10 @@ Some features I would like to add after mvp is done:
 * Total comments
 * Total likes received
 * Posts' average rate
+###### For the profile owner, you have the options of:
+* Delete the profile
+* Change account name
+* Change password
 
 -----------------------------------------------------------------------------------------------------------------------------
 
@@ -63,8 +67,9 @@ Picture hasn't been taken yet :(
 - [x] Comments reply
 - [x] Rate
 - [ ] Users profile page
-- [ ] Stats in profile page
-- [ ] Change password option
+- [x] Stats in profile page
+- [x] Change password option
+- [x] Change name option
 - [ ] Delete account option
 
 -----------------------------------------------------------------------------------------------------------------------------
