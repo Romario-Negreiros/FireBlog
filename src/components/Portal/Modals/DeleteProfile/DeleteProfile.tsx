@@ -1,42 +1,47 @@
 // Modules or libs content
-import { FC, useContext, useState } from 'react';
+import { FC, useState, useContext } from 'react';
+import { firebaseDatabase, firebaseAuth } from '../../../../lib/firebase';
+import { useHistory } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { firebaseDatabase } from '../../../../lib/firebase';
-import { ToastContainer, toast } from 'react-toastify';
-import changeName from './modules/changeName';
-import { useHistory } from 'react-router';
+import { toast } from 'react-toastify';
+import deleteCommentsAndReplies from './modules/deleteCommentsAndReplies';
 // Images
 import Eye from '../../../../assets/eye-solid.svg';
 import SlashedEye from '../../../../assets/eye-slash-solid.svg';
 // Components
+import { ToastContainer } from 'react-toastify';
 import { Background } from '../../../../global/styles';
-import { Form, InputWrapper, IconWrapper } from '../CreateAccount/styles';
-import { Fieldset, Input } from '../../../../pages/Login/styles';
-import { Close } from '../CreateAccount/styles';
+import { Fieldset } from '../../../../pages/Login/styles';
+import {
+    Form,
+    InputWrapper,
+    IconWrapper,
+    Close,
+} from '../CreateAccount/styles';
 // Types
-import { Props, Inputs, Response } from './types';
+import { Props, Response } from '../ChangeAccountName/types';
 import { PostObject } from '../../../../global/types';
 // Context
 import userContext from '../../../../context/UserContext';
 
-const ChangeAccountName: FC<Props> = ({
+interface Inputs {
+    password: string;
+}
+
+const DeleteProfile: FC<Omit<Props & { username: string }, 'formerName'>> = ({
     setIsModalVisible,
     uid,
     firebaseUid,
-    formerName,
+    username,
 }) => {
+    const context = useContext(userContext);
     const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
     const history = useHistory();
-    const context = useContext(userContext);
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<Inputs>({
-        defaultValues: {
-            name: formerName,
-        },
-    });
+    } = useForm<Inputs>();
 
     const onSubmit: SubmitHandler<Inputs> = data => {
         (async () => {
@@ -46,41 +51,39 @@ const ChangeAccountName: FC<Props> = ({
                     .child(uid)
                     .child(firebaseUid)
                     .get();
-                if (user.val().password === data.password) {
-                    const posts = await firebaseDatabase.child('posts').get();
-                    const getEntries: [string, Response][] = Object.entries(
-                        posts.val()
-                    );
-                    const getPosts: [string, [string, PostObject][]][] =
-                        getEntries.map(entry => [
-                            entry[0],
-                            Object.entries(entry[1]),
-                        ]);
-                    await changeName(getPosts, data.name, formerName);
-                    await firebaseDatabase
-                        .child('users')
+                if (user.val() && user.val().password === data.password) {
+                    const currentUser = firebaseAuth.currentUser;
+                    if (currentUser) {
+                        await currentUser.delete();
+                        await firebaseDatabase
+                            .child('users')
+                            .child(uid)
+                            .remove();
+                        const posts = await firebaseDatabase
+                            .child('posts')
+                            .get();
+                        const getEntries: [string, Response][] = Object.entries(
+                            posts.val()
+                        );
+                        const getPosts: [string, [string, PostObject][]][] =
+                            getEntries.map(entry => [
+                                entry[0],
+                                Object.entries(entry[1]),
+                            ]);
+                        await deleteCommentsAndReplies(getPosts, username);
+                        await firebaseDatabase
+                        .child('posts')
                         .child(uid)
-                        .child(firebaseUid)
-                        .update({
-                            name: data.name,
-                        });
-                    toast.success('Name changed!');
-                    setIsModalVisible(false);
-                    if (context?.setUserData && context?.userData) {
-                        context.setUserData({
-                            userID: context.userData.userID,
-                            email: context.userData.email,
-                            name: data.name,
-                        });
-                        history.push(`/home/user/${data.name}`);
+                        .remove();
+                        toast.success('The user has been deleted!');
+                        context?.setUserData(null);
+                        firebaseAuth.signOut();
+                        history.push(`/home/user/`);
                     }
                 } else throw new Error('Password is wrong!');
             } catch (err) {
                 if (err instanceof Error) {
-                    toast.error(
-                        'Unable to change name, please try again!: ' +
-                            err.message
-                    );
+                    toast.error('Unable to delete profile: ' + err.message);
                 }
             }
         })();
@@ -99,22 +102,6 @@ const ChangeAccountName: FC<Props> = ({
                         Close modal
                     </Close>
                     <Fieldset>
-                        <label htmlFor="name">Name</label>
-                        <Input
-                            {...register('name', {
-                                required: 'Name cannot be empty!',
-                                minLength: {
-                                    value: 6,
-                                    message: 'Minimum of 6 characters',
-                                },
-                                maxLength: {
-                                    value: 30,
-                                    message: 'Maximum of 30 characters',
-                                },
-                            })}
-                        />
-                        <p>{errors.name?.message}</p>
-
                         <label htmlFor="password">Confirm password</label>
                         <InputWrapper>
                             <input
@@ -148,4 +135,4 @@ const ChangeAccountName: FC<Props> = ({
     );
 };
 
-export default ChangeAccountName;
+export default DeleteProfile;

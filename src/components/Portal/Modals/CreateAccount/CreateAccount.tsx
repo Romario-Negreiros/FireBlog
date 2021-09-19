@@ -55,16 +55,29 @@ const CreateAccount: FC<Props> = ({ setIsModalVisible }) => {
                         const response = await firebaseDatabase
                             .child('users')
                             .get();
-                        const getValues: { firebaseUid: DatabaseResponse }[] =
-                            Object.values(response.val());
-                        const usersData: DatabaseResponse[][] = getValues.map(
-                            value => Object.values(value)
-                        );
-                        const doNameExist = await verifyIfNameAlreadyExists(
-                            usersData,
-                            data.name
-                        );
-                        if (!doNameExist) {
+                        if (response.val() && response.val() !== undefined) {
+                            const getValues: {
+                                firebaseUid: DatabaseResponse;
+                            }[] = Object.values(response.val());
+                            const usersData: DatabaseResponse[][] =
+                                getValues.map(value => Object.values(value));
+                            const doNameExist = await verifyIfNameAlreadyExists(
+                                usersData,
+                                data.name
+                            );
+                            if (!doNameExist) {
+                                createAccount(
+                                    userData.setUserData,
+                                    data,
+                                    setError,
+                                    setIsModalVisible,
+                                    history
+                                );
+                            } else
+                                throw new Error(
+                                    'This name already exists, please, try another one!'
+                                );
+                    } else
                             createAccount(
                                 userData.setUserData,
                                 data,
@@ -72,10 +85,9 @@ const CreateAccount: FC<Props> = ({ setIsModalVisible }) => {
                                 setIsModalVisible,
                                 history
                             );
-                        } else throw new Error("This name already exists, please, try another one!")
                     } else throw new Error("This email doesn't exist!");
                 } catch (err) {
-                    if(err instanceof Error) {
+                    if (err instanceof Error) {
                         setError(err.message);
                     }
                 } finally {

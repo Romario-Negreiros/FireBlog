@@ -9,6 +9,7 @@ export interface Props extends GlobalProps {
 
 export interface Inputs {
     name: string;
+    password: string;
 }
 
 export interface Response {

@@ -24,17 +24,27 @@ const createAccount = async (
                 firebaseDatabase.child('users').child(response.user.uid).push({
                     name: data.name,
                     email: data.email,
+                    password: data.password,
+                    isProfilePrivate: false,
                 });
                 toast.success('User created!');
                 setIsModalVisible(false);
-                setUserData({name: data.name, email: data.email, userID: response.user.uid});
-                history.push('/home')
+                setUserData({
+                    name: data.name,
+                    email: data.email,
+                    userID: response.user.uid,
+                });
+                history.push('/home');
             } catch (err) {
-                setError(JSON.stringify(err))
+                if (err instanceof Error) {
+                    setError(err.message);
+                }
             }
         }
     } catch (err) {
-        setError(JSON.stringify(err))
+        if (err instanceof Error) {
+            setError(err.message);
+        }
     }
 };
 
