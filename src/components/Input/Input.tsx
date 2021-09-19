@@ -1,5 +1,5 @@
 // Modules or libs content
-import { FC, useState } from 'react';
+import { FC, useState, useRef, useEffect } from 'react';
 import moment from 'moment';
 // Images
 import Send from '../../assets/send.svg';
@@ -19,6 +19,7 @@ const Input: FC<Props> = ({
 }) => {
     const [userComment, setUserComment] = useState<string>('');
     const [warning, setWarning] = useState<string>('');
+    const inputRef = useRef<HTMLInputElement>(null);
 
     const sendComment = () => {
         if (userComment.length > 50) {
@@ -68,10 +69,15 @@ const Input: FC<Props> = ({
         }
     };
 
+    useEffect(() => {
+        inputRef.current?.focus()
+    }, [inputRef])
+
     return (
         <>
             <InputWrapper>
                 <input
+                    ref={inputRef}
                     value={userComment}
                     placeholder="Leave your comment!"
                     onChange={event =>

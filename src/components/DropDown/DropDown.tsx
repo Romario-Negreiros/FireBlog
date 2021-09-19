@@ -22,25 +22,29 @@ const DropDown: FC<Props> = ({
         (async () => {
             try {
                 const response = await firebaseDatabase.child('posts').get();
-                const getValues = Object.values(response.val());
-                const getEntries = getValues.map(post =>
-                    Object.entries(post as Post)
-                );
-                const getCategories: string[] = [];
-                getEntries.forEach(postArr => {
-                    postArr.forEach(post => {
-                        if (
-                            !getCategories.some(
-                                category => category === post[1].category
-                            )
-                        ) {
-                            getCategories.push(post[1].category);
-                        }
+                if (response.val() && response.val() !== undefined) {
+                    const getValues = Object.values(response.val());
+                    const getEntries = getValues.map(post =>
+                        Object.entries(post as Post)
+                    );
+                    const getCategories: string[] = [];
+                    getEntries.forEach(postArr => {
+                        postArr.forEach(post => {
+                            if (
+                                !getCategories.some(
+                                    category => category === post[1].category
+                                )
+                            ) {
+                                getCategories.push(post[1].category);
+                            }
+                        });
                     });
-                });
-                setCategories(getCategories);
+                    setCategories(getCategories);
+                } else throw new Error('No posts have been created yet!');
             } catch (err) {
-                toast.error(JSON.stringify(err));
+                if (err instanceof Error) {
+                    toast.error(err.message);
+                }
             } finally {
                 if (hasPostsChanged) setHasPostsChanged(false);
             }

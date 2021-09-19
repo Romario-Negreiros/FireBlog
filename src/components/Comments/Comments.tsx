@@ -91,7 +91,7 @@ const Comments: FC<Props> = ({ setComments, comments, userConnected }) => {
                     rate => rate.user === userConnected.name
                 );
                 return (
-                    <Comment key={comment.creation}>
+                    <Comment key={index}>
                         <p>{comment.comment}</p>
                         <Mechanisms>
                             <div onClick={() => setWillReply(index)}>
