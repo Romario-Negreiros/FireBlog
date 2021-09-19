@@ -2,6 +2,7 @@ import { UserData as Type } from "../../context/UserContext";
 
 export interface UserData extends Type {
     firebaseUid: string;
+    isProfilePrivate: boolean;
 }
 
 export interface UserInfo {

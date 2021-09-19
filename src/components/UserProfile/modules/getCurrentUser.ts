@@ -4,6 +4,7 @@ import { UserData } from '../types';
 interface user {
     email: string;
     name: string;
+    isProfilePrivate: boolean;
 }
 
 interface Response {
@@ -25,6 +26,7 @@ const getCurrentUser = async (username: string): Promise<UserData | null> => {
             userData['userID'] = user[0];
             userData['email'] = user[2][0].email;
             userData['name'] = user[2][0].name;
+            userData['isProfilePrivate'] = user[2][0].isProfilePrivate
         }
     });
     if (userData.userID === undefined) return null;
