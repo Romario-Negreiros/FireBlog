@@ -14,7 +14,7 @@ Some features I would like to add after mvp has been done:
 * Toggle light / dark mode > ADDED ✔
 * Comments > ADDED ✔
 * Posts rating > ADDED ✔
-* User's profile page > IN PROGRESS 🛠
+* User's profile page > ADDED ✔
 ##### In profile page:
 * Total comments
 * Total likes received
@@ -23,6 +23,7 @@ Some features I would like to add after mvp has been done:
 * Delete the profile
 * Change account name
 * Change password
+* Change profile picture
 
 -----------------------------------------------------------------------------------------------------------------------------
 
@@ -66,11 +67,12 @@ Picture hasn't been taken yet :(
 - [x] Comments
 - [x] Comments reply
 - [x] Rate
-- [ ] Users profile page
+- [x] Users profile page
 - [x] Stats in profile page
 - [x] Change password option
 - [x] Change name option
-- [ ] Delete account option
+- [x] Delete account option
+- [ ] Change profile picture option
 
 -----------------------------------------------------------------------------------------------------------------------------
 
