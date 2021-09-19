@@ -9,6 +9,7 @@ export interface Props {
 
 export interface DatabaseResponse {
     name: string,
-    email: string
+    email: string,
+    password: string,
 }
 
