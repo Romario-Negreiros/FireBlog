@@ -12,3 +12,6 @@ export { default as UserProfile } from './UserProfile/UserProfile';
 // Modal
 export { default as CreateAccount } from './Portal/Modals/CreateAccount/CreateAccount';
 export { default as ChangeAccountName } from './Portal/Modals/ChangeAccountName/ChangeAccountName';
+export { default as ChangePassword } from './Portal/Modals/ChangePassword/ChangePassword';
+export { default as DeleteProfile } from './Portal/Modals/DeleteProfile/DeleteProfile';
+export { default as PrivateProfile } from './Portal/Modals/PrivateProfile/PrivateProfile';
