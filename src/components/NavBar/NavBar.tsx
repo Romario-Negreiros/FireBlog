@@ -5,7 +5,7 @@ import { firebaseAuth } from '../../lib/firebase';
 import { ToastContainer, toast } from 'react-toastify';
 import { ThemeContext } from 'styled-components';
 // Images
-import UserIcon from '../../assets/user-solid.svg';
+import UserDefaultIcon from '../../assets/user-solid.svg';
 import Moon from '../../assets/moon-solid.svg';
 import Sun from '../../assets/sun-solid.svg';
 // Components
@@ -138,7 +138,7 @@ const NavBar: FC<Props> = ({
                         <UserWrapper>
                             <p>{context?.userData?.name}</p>
                             <div>
-                                <img src={UserIcon} alt="user icon"></img>
+                                <img src={context?.userData?.profileImg ? context?.userData?.profileImg : UserDefaultIcon} alt="user icon"></img>
                             </div>
                         </UserWrapper>
                     )}
