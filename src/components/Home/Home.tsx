@@ -1,6 +1,6 @@
 // Modules or libs content
 import { FC, useContext, useState, useEffect } from 'react';
-import { firebaseDatabase, firebaseAuth } from '../../lib/firebase';
+import { firebaseDatabase, firebaseAuth, firebaseStorage } from '../../lib/firebase';
 // Images
 import PlusIcon from '../../assets/plus-solid.svg';
 import ManageIcon from '../../assets/hammer-solid.svg';
@@ -36,9 +36,11 @@ const Home: FC = () => {
                     const userData = Object.values(
                         response.val()
                     )[0] as DatabaseResponse;
+                    const profileImgURL = await firebaseStorage.child('userimages').child(currentUser.uid).getDownloadURL();
                     context?.setUserData({
                         ...userData,
                         userID: currentUser.uid,
+                        profileImg: profileImgURL as string ? profileImgURL as string : '',
                     });
                 } catch (err) {
                     if(err instanceof Error) {
