@@ -9,7 +9,7 @@ export const themes: DefaultTheme = {
         cards: '#fff',
     },
     colors: {
-        primary: '#ec5990',
+        primary: '#ec5990', 
         secondary: '#ff99ff',
         error: '#ff0008',
     },
