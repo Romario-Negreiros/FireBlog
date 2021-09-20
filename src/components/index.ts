@@ -15,3 +15,4 @@ export { default as ChangeAccountName } from './Portal/Modals/ChangeAccountName/
 export { default as ChangePassword } from './Portal/Modals/ChangePassword/ChangePassword';
 export { default as DeleteProfile } from './Portal/Modals/DeleteProfile/DeleteProfile';
 export { default as PrivateProfile } from './Portal/Modals/PrivateProfile/PrivateProfile';
+export { default as ChangePicture } from './Portal/Modals/ChangePicture/ChangePicture';
