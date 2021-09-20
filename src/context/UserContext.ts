@@ -4,6 +4,7 @@ export interface UserData {
     userID: string,
     name: string,
     email: string,
+    profileImg?: string,
 }
 
 interface User {
