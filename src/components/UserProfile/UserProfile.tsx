@@ -19,6 +19,7 @@ import {
     ChangePassword,
     DeleteProfile,
     PrivateProfile,
+    ChangePicture,
     Portal,
 } from '..';
 // Types
@@ -70,6 +71,13 @@ const UserProfile: FC = () => {
                             currentState={userProfileData.user.isProfilePrivate}
                         />
                     );
+                    case 'changepic':
+                        return (
+                            <ChangePicture 
+                                setIsModalVisible={setIsModalVisible}
+                                uid={userProfileData.user.userID}
+                            />
+                        );
                 default:
                     return <div>hello world</div>;
             }
@@ -202,6 +210,13 @@ const UserProfile: FC = () => {
                                         }
                                     >
                                         <span>Make profile private</span>
+                                    </li>
+                                    <li
+                                        onClick={() =>
+                                            openModal('changepic')
+                                        }
+                                    >
+                                        <span>Change profile picture</span>
                                     </li>
                                 </AccountOptions>
                             )}
