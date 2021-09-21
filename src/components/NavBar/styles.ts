@@ -155,6 +155,12 @@ export const Button = styled.button`
 export const UserWrapper = styled.div`
     display: flex;
     align-items: center;
+    #usericon {
+        width: fit-content;
+        border-radius: 50%;
+        padding: .05rem;  
+        object-fit: contain;
+    }
     p {
         color: ${({ theme: { colors } }) => colors.primary};
         font-size: 1.6rem;

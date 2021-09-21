@@ -138,7 +138,7 @@ const NavBar: FC<Props> = ({
                         <UserWrapper>
                             <p>{context?.userData?.name}</p>
                             <div>
-                                <img src={context?.userData?.profileImg ? context?.userData?.profileImg : UserDefaultIcon} alt="user icon"></img>
+                                <img id="usericon" src={context?.userData?.profileImg ? context?.userData?.profileImg : UserDefaultIcon} alt="user icon"></img>
                             </div>
                         </UserWrapper>
                     )}
