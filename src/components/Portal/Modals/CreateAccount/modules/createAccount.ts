@@ -21,7 +21,7 @@ const createAccount = async (
         );
         if (response.user?.uid) {
             try {
-                firebaseDatabase.child('users').child(response.user.uid).push({
+                await firebaseDatabase.child('users').child(response.user.uid).push({
                     name: data.name,
                     email: data.email,
                     password: data.password,

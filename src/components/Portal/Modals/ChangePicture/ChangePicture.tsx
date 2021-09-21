@@ -35,7 +35,7 @@ const ChangePicture: FC<Omit<Props, 'formerName' | 'firebaseUid'>> = ({
                 'state_changed',
                 snapshot => {
                     const percentage =
-                        (snapshot.bytesTransferred / 100) * snapshot.totalBytes;
+                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                     const progressBar = document.querySelector(
                         '#file_progress'
                     ) as HTMLProgressElement;
