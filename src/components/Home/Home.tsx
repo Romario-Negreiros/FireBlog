@@ -36,12 +36,16 @@ const Home: FC = () => {
                     const userData = Object.values(
                         response.val()
                     )[0] as DatabaseResponse;
-                    const profileImgURL = await firebaseStorage.child('userimages').child(currentUser.uid).getDownloadURL();
-                    context?.setUserData({
-                        ...userData,
-                        userID: currentUser.uid,
-                        profileImg: profileImgURL as string ? profileImgURL as string : '',
-                    });
+                    try {
+                        const profileImgURL = await firebaseStorage.child('userimages').child(currentUser.uid).getDownloadURL();
+                        context?.setUserData({
+                            ...userData,
+                            userID: currentUser.uid,
+                            profileImg: profileImgURL as string ? profileImgURL as string : '',
+                        });
+                    } catch(err) {
+                        console.log(err);
+                    }   
                 } catch (err) {
                     if(err instanceof Error) {
                         setError(err.message);
