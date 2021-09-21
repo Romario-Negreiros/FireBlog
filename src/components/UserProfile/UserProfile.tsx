@@ -78,8 +78,6 @@ const UserProfile: FC = () => {
                                 uid={userProfileData.user.userID}
                             />
                         );
-                default:
-                    return <div>hello world</div>;
             }
         }
     };
