@@ -1,4 +1,4 @@
-import { firebaseDatabase } from '../../../lib/firebase';
+import { firebaseDatabase, firebaseStorage } from '../../../lib/firebase';
 import { UserData } from '../types';
 
 interface user {
@@ -30,7 +30,15 @@ const getCurrentUser = async (username: string): Promise<UserData | null> => {
         }
     });
     if (userData.userID === undefined) return null;
-    else return userData as UserData;
+    else {
+        try {
+            const imageURL = await firebaseStorage.child('userimages').child(userData.userID).getDownloadURL();   
+            if(imageURL) userData['profileImg'] = imageURL
+        } catch(err) {
+            console.log(err)
+        }    
+        return userData as UserData
+    }
 };
 
 export default getCurrentUser;

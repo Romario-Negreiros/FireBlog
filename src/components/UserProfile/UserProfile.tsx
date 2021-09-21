@@ -8,7 +8,7 @@ import getPostsAverageRate from './modules/getPostsAverageRate';
 import getTotalComments from './modules/getTotalComments';
 import getTotalLikesInComments from './modules/getTotalLikesInComments';
 // Images
-import UserIcon from '../../assets/user-solid.svg';
+import UserDefaultIcon from '../../assets/user-solid.svg';
 // Components
 import { CenteredContainer } from '../../global/styles';
 import { Loader } from '..';
@@ -186,7 +186,7 @@ const UserProfile: FC = () => {
                                     </p>
                                 </li>
                                 <li>
-                                    <img src={UserIcon} alt={`${username}'`} />
+                                    <img src={userProfileData.user?.profileImg ? userProfileData.user?.profileImg : UserDefaultIcon} alt={`${username}'`} />
                                 </li>
                             </UserData>
                             {user && user.uid === userProfileData.user?.userID && (
