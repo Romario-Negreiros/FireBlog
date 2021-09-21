@@ -37,7 +37,7 @@ export const BannerArea = styled.section<StyledProps>`
         font-size: 1.4rem;
         cursor: pointer;
         border: 1px solid transparent;
-        transition: filter 0.4s, border 0.3s ease;
+        transition: filter 0.4s ease, border 0.3s ease;
         :hover {
             filter: brightness(0.8);
         }

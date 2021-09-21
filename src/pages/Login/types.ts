@@ -1,7 +1,4 @@
-export type Inputs = {
-    email: string,
-    password: string
-}
+export interface Inputs extends Omit<DatabaseResponse, 'name'>{}
 
 export interface Props {
     setUserID: (userID: string) => void,

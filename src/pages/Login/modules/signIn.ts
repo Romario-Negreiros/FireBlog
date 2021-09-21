@@ -18,23 +18,23 @@ const signIn = async (
             data.password
         );
         if (response.user) {
-            const userId = response.user.uid;
+            const { uid } = response.user;
             try {
                 const response = await firebaseDatabase
                     .child('users')
-                    .child(userId)
+                    .child(uid)
                     .get();
                 const user = Object.values(
                     response.val()
                 )[0] as DatabaseResponse;
-                setUserData({ ...user, userID: userId });
+                setUserData({ ...user, userID: uid });
                 history.goBack();
             } catch (err) {
-                setError(JSON.stringify(err))
+                if (err instanceof Error) setError(err.message);
             }
         }
     } catch (err) {
-        setError(JSON.stringify(err))
+        if (err instanceof Error) setError(err.message);
     }
 };
 
