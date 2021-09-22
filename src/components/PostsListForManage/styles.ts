@@ -5,7 +5,7 @@ export const Post = styled.li`
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    background: ${({theme: { backgrounds }}) => backgrounds.cards};
+    background: ${({ theme: { backgrounds } }) => backgrounds.cards};
     padding: 1.5rem;
     border-radius: 5px;
     margin-bottom: 2rem;

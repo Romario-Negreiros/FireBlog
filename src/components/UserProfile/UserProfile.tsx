@@ -71,13 +71,13 @@ const UserProfile: FC = () => {
                             currentState={userProfileData.user.isProfilePrivate}
                         />
                     );
-                    case 'changepic':
-                        return (
-                            <ChangePicture 
-                                setIsModalVisible={setIsModalVisible}
-                                uid={userProfileData.user.userID}
-                            />
-                        );
+                case 'changepic':
+                    return (
+                        <ChangePicture
+                            setIsModalVisible={setIsModalVisible}
+                            uid={userProfileData.user.userID}
+                        />
+                    );
             }
         }
     };
@@ -184,7 +184,15 @@ const UserProfile: FC = () => {
                                     </p>
                                 </li>
                                 <li>
-                                    <img src={userProfileData.user?.profileImg ? userProfileData.user?.profileImg : UserDefaultIcon} alt={`${username}'`} />
+                                    <img
+                                        src={
+                                            userProfileData.user?.profileImg
+                                                ? userProfileData.user
+                                                      ?.profileImg
+                                                : UserDefaultIcon
+                                        }
+                                        alt={`${username}'`}
+                                    />
                                 </li>
                             </UserData>
                             {user && user.uid === userProfileData.user?.userID && (
@@ -209,11 +217,7 @@ const UserProfile: FC = () => {
                                     >
                                         <span>Make profile private</span>
                                     </li>
-                                    <li
-                                        onClick={() =>
-                                            openModal('changepic')
-                                        }
-                                    >
+                                    <li onClick={() => openModal('changepic')}>
                                         <span>Change profile picture</span>
                                     </li>
                                 </AccountOptions>

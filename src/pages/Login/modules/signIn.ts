@@ -1,5 +1,9 @@
 // Modules or libs content
-import { firebaseAuth, firebaseDatabase } from '../../../lib/firebase';
+import {
+    firebaseAuth,
+    firebaseDatabase,
+    firebaseStorage,
+} from '../../../lib/firebase';
 // Types
 import { Inputs, DatabaseResponse } from '../types';
 import { History } from 'history';
@@ -29,6 +33,21 @@ const signIn = async (
                 )[0] as DatabaseResponse;
                 setUserData({ ...user, userID: uid });
                 history.goBack();
+                try {
+                    const profileImgURL = await firebaseStorage
+                        .child('userimages')
+                        .child(uid)
+                        .getDownloadURL();
+                    setUserData({
+                        ...user,
+                        userID: uid,
+                        profileImg: (profileImgURL as string)
+                            ? (profileImgURL as string)
+                            : '',
+                    });
+                } catch (err) {
+                    console.log(err);
+                }
             } catch (err) {
                 if (err instanceof Error) setError(err.message);
             }

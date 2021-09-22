@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { Link as ReactRouterLink } from 'react-router-dom';
 
-import { CustomButton as Close} from '../PostsForm/styles';
+import { CustomButton as Close } from '../PostsForm/styles';
 
 export const Container = styled.ul`
     display: grid;

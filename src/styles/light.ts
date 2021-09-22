@@ -1,4 +1,4 @@
-import { DefaultTheme } from "styled-components";
+import { DefaultTheme } from 'styled-components';
 
 export const themes: DefaultTheme = {
     title: 'light',
@@ -9,13 +9,13 @@ export const themes: DefaultTheme = {
         cards: '#fff',
     },
     colors: {
-        primary: '#ec5990', 
+        primary: '#ec5990',
         secondary: '#ff99ff',
         error: '#ff0008',
     },
     fonts: {
         primary: '#000',
-    }
+    },
 };
 
 export default themes;

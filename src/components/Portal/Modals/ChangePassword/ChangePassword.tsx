@@ -67,6 +67,7 @@ const ChangePassword: FC<Omit<Props, 'formerName'>> = ({
     return (
         <>
             <ToastContainer
+                position="top-left"
                 autoClose={2000}
                 closeButton={false}
                 style={{ fontSize: '16px' }}

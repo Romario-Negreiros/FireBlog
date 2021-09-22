@@ -75,9 +75,11 @@ export const Fieldset = styled.fieldset`
         background: unset;
         transition: background 0.3s ease;
         border-bottom: 1px solid ${({ theme: { colors } }) => colors.primary};
-        :focus, :hover {
-            color: ${({theme: { colors }}) => colors.primary};
-            background: ${({ theme: { backgrounds } }) => backgrounds.secondary};
+        :focus,
+        :hover {
+            color: ${({ theme: { colors } }) => colors.primary};
+            background: ${({ theme: { backgrounds } }) =>
+                backgrounds.secondary};
         }
         color: ${({ theme: { fonts } }) => fonts.primary};
     }

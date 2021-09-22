@@ -8,11 +8,10 @@ import PostsForm from '../PostsForm/PostsForm';
 // Types
 import { Props } from '../PostsForm/types';
 
-const CreatePosts: FC<Props> = ({ setHasPostsChanged}) => {
-    
+const CreatePosts: FC<Props> = ({ setHasPostsChanged }) => {
     const history = useHistory();
     const user = firebaseAuth.currentUser;
-    
+
     const userNotLogged = useCallback(() => {
         history.push('/login');
     }, [history]);

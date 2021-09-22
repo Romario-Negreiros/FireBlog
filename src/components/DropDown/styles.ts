@@ -7,12 +7,12 @@ import { CustomButton as Button } from '../PostsForm/styles';
 import { StyledProps } from './types';
 
 export const Container = styled.main<StyledProps>`
-${props =>
-            props.isDropDownVisible ? 'visibility: visible' : 'visibility: hidden'};
-        ${props =>
-            props.isDropDownVisible
-                ? 'transform: translateY(0)'
-                : 'transform: translateY(-600px)'};
+    ${props =>
+        props.isDropDownVisible ? 'visibility: visible' : 'visibility: hidden'};
+    ${props =>
+        props.isDropDownVisible
+            ? 'transform: translateY(0)'
+            : 'transform: translateY(-600px)'};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -45,7 +45,7 @@ ${props =>
 
 export const Link = styled(ReactRouterLink)`
     color: ${({ theme: { colors } }) => colors.secondary};
-    margin-bottom: 1.5rem; 
+    margin-bottom: 1.5rem;
     padding: 2rem 0;
     font-size: 1.6rem;
     display: block;

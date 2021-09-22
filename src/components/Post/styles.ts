@@ -21,8 +21,8 @@ export const CustomButton = styled(Button)`
 `;
 
 export const PostContainer = styled.section`
-    padding: .5rem;
-    background: ${({theme: { backgrounds }}) => backgrounds.cards };
+    padding: 0.5rem;
+    background: ${({ theme: { backgrounds } }) => backgrounds.cards};
     display: flex;
     flex-direction: column;
     align-items: flex-start;

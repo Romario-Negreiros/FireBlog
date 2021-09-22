@@ -78,6 +78,7 @@ const ManagePosts: FC = () => {
     return (
         <>
             <ToastContainer
+                position="top-left"
                 autoClose={3000}
                 closeButton={false}
                 style={{ fontSize: '16px' }}

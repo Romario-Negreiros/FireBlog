@@ -1,11 +1,8 @@
 // https://www.youtube.com/watch?v=ngVU74daJ8Y
 
-import { useState, useEffect, Dispatch, SetStateAction} from 'react';
+import { useState, useEffect, Dispatch, SetStateAction } from 'react';
 
-type Response<T> = [
-    T,
-    Dispatch<SetStateAction<T>>
-]
+type Response<T> = [T, Dispatch<SetStateAction<T>>];
 
 const usePersistedState = <T>(key: string, initialState: T): Response<T> => {
     const [state, setState] = useState(() => {

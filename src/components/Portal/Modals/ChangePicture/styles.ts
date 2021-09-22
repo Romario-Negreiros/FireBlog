@@ -26,7 +26,7 @@ export const InputFileLabel = styled.label`
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
-    padding: .5rem;
+    padding: 0.5rem;
     border-bottom: 1px solid ${({ theme: { colors } }) => colors.primary};
     :hover {
         opacity: 0.5;

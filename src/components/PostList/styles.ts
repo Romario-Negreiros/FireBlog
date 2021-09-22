@@ -5,7 +5,7 @@ export const NoMatches = styled.p`
     width: 100%;
     text-align: center;
     font-size: 1.5rem;
-    color: ${({ theme: { colors } }) => colors.error };
+    color: ${({ theme: { colors } }) => colors.error};
     @media screen and (min-width: 700px) {
         grid-column: span 2;
     }

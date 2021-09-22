@@ -1,4 +1,4 @@
-import { PostObject } from "../../global/types";
+import { PostObject } from '../../global/types';
 
 export interface Props {
     isDropDownVisible: boolean;
@@ -14,5 +14,5 @@ export interface StyledProps {
 }
 
 export type Post = {
-    postID: PostObject
+    postID: PostObject;
 };

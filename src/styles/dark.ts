@@ -1,4 +1,4 @@
-import { DefaultTheme } from "styled-components";
+import { DefaultTheme } from 'styled-components';
 
 export const themes: DefaultTheme = {
     title: 'dark',
@@ -15,7 +15,7 @@ export const themes: DefaultTheme = {
     },
     fonts: {
         primary: '#fff',
-    }
+    },
 };
 
 export default themes;

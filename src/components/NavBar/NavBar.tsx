@@ -32,7 +32,6 @@ const NavBar: FC<Props> = ({
     setHasPostsChanged,
     toggleTheme,
 }) => {
-
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [isDropDownVisible, setIsDropDownVisible] = useState<boolean>(false);
     const context = useContext(userContext);
@@ -41,6 +40,7 @@ const NavBar: FC<Props> = ({
     return (
         <>
             <ToastContainer
+                position="top-left"
                 autoClose={3000}
                 closeButton={false}
                 style={{ fontSize: '16px' }}
@@ -138,7 +138,15 @@ const NavBar: FC<Props> = ({
                         <UserWrapper>
                             <p>{context?.userData?.name}</p>
                             <div>
-                                <img id="usericon" src={context?.userData?.profileImg ? context?.userData?.profileImg : UserDefaultIcon} alt="user icon"></img>
+                                <img
+                                    id="usericon"
+                                    src={
+                                        context?.userData?.profileImg
+                                            ? context?.userData?.profileImg
+                                            : UserDefaultIcon
+                                    }
+                                    alt="user icon"
+                                ></img>
                             </div>
                         </UserWrapper>
                     )}

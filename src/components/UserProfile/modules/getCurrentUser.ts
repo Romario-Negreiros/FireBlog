@@ -26,18 +26,21 @@ const getCurrentUser = async (username: string): Promise<UserData | null> => {
             userData['userID'] = user[0];
             userData['email'] = user[2][0].email;
             userData['name'] = user[2][0].name;
-            userData['isProfilePrivate'] = user[2][0].isProfilePrivate
+            userData['isProfilePrivate'] = user[2][0].isProfilePrivate;
         }
     });
     if (userData.userID === undefined) return null;
     else {
         try {
-            const imageURL = await firebaseStorage.child('userimages').child(userData.userID).getDownloadURL();   
-            if(imageURL) userData['profileImg'] = imageURL
-        } catch(err) {
-            console.log(err)
-        }    
-        return userData as UserData
+            const imageURL = await firebaseStorage
+                .child('userimages')
+                .child(userData.userID)
+                .getDownloadURL();
+            if (imageURL) userData['profileImg'] = imageURL;
+        } catch (err) {
+            console.log(err);
+        }
+        return userData as UserData;
     }
 };
 

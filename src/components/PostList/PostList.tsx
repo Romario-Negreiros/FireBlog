@@ -1,7 +1,7 @@
 // Modules or libs content
 import { FC } from 'react';
 // Components
-import { LoaderHOC } from '../../HOCs/index'
+import { LoaderHOC } from '../../HOCs/index';
 import { NoMatches } from './styles';
 import { Post, Link } from '../../global/styles';
 // Types

@@ -156,10 +156,10 @@ export const UserWrapper = styled.div`
     display: flex;
     align-items: center;
     #usericon {
-        width: fit-content;
+        width: 100%;
+        height: 100%;
         border-radius: 50%;
-        padding: .05rem;  
-        object-fit: contain;
+        padding: 0.05rem;
     }
     p {
         color: ${({ theme: { colors } }) => colors.primary};

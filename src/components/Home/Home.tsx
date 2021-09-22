@@ -1,6 +1,10 @@
 // Modules or libs content
 import { FC, useContext, useState, useEffect } from 'react';
-import { firebaseDatabase, firebaseAuth, firebaseStorage } from '../../lib/firebase';
+import {
+    firebaseDatabase,
+    firebaseAuth,
+    firebaseStorage,
+} from '../../lib/firebase';
 // Images
 import PlusIcon from '../../assets/plus-solid.svg';
 import ManageIcon from '../../assets/hammer-solid.svg';
@@ -37,17 +41,22 @@ const Home: FC = () => {
                         response.val()
                     )[0] as DatabaseResponse;
                     try {
-                        const profileImgURL = await firebaseStorage.child('userimages').child(currentUser.uid).getDownloadURL();
+                        const profileImgURL = await firebaseStorage
+                            .child('userimages')
+                            .child(currentUser.uid)
+                            .getDownloadURL();
                         context?.setUserData({
                             ...userData,
                             userID: currentUser.uid,
-                            profileImg: profileImgURL as string ? profileImgURL as string : '',
+                            profileImg: (profileImgURL as string)
+                                ? (profileImgURL as string)
+                                : '',
                         });
-                    } catch(err) {
+                    } catch (err) {
                         console.log(err);
-                    }   
+                    }
                 } catch (err) {
-                    if(err instanceof Error) {
+                    if (err instanceof Error) {
                         setError(err.message);
                     }
                 }
@@ -62,9 +71,9 @@ const Home: FC = () => {
                     if (response.val() !== null && response.val() !== undefined)
                         setPosts(Object.entries(response.val()));
                 } catch (err) {
-                    if(err instanceof Error) {
+                    if (err instanceof Error) {
                         setError(err.message);
-                    };
+                    }
                 } finally {
                     setIsLoaded(true);
                 }

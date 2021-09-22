@@ -1,3 +1,3 @@
 export default interface Props {
-    toggleTheme: () => void
+    toggleTheme: () => void;
 }

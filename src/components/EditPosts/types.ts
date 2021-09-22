@@ -1,4 +1,4 @@
-import { PostObject } from "../../global/types";
+import { PostObject } from '../../global/types';
 
 export type State = [string, PostObject];
 

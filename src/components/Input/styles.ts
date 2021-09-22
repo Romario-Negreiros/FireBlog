@@ -7,8 +7,9 @@ export const InputWrapper = styled.div`
     align-items: center;
     justify-content: space-between;
     input {
-        :focus, :hover {
-            color: ${({theme: { colors }}) => colors.primary};
+        :focus,
+        :hover {
+            color: ${({ theme: { colors } }) => colors.primary};
         }
         color: ${({ theme: { fonts } }) => fonts.primary};
         width: 90%;
@@ -23,7 +24,7 @@ export const InputWrapper = styled.div`
         justify-content: center;
         align-items: center;
         :hover {
-            opacity: .5;
+            opacity: 0.5;
         }
     }
     img {

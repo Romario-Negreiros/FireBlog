@@ -19,10 +19,10 @@ const changeName = async (
                     comment.author = newName;
                 }
                 comment.replies.forEach(reply => {
-                    if(reply.author === formerName) {
+                    if (reply.author === formerName) {
                         reply.author = newName;
                     }
-                })
+                });
             });
             post[1].comments = JSON.stringify(comments);
         });

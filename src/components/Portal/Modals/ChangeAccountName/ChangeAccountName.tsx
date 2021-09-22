@@ -89,6 +89,7 @@ const ChangeAccountName: FC<Props> = ({
     return (
         <>
             <ToastContainer
+                position="top-left"
                 autoClose={2000}
                 closeButton={false}
                 style={{ fontSize: '16px' }}

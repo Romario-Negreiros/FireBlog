@@ -14,7 +14,7 @@ const Reset = createGlobalStyle`
         }
     }
     body {
-      background: ${({theme: { backgrounds }}) => backgrounds.elements};
+      background: ${({ theme: { backgrounds } }) => backgrounds.elements};
       overflow-x: hidden;
     }
     fieldset {
@@ -24,10 +24,10 @@ const Reset = createGlobalStyle`
         list-style: none;
     }
     h1, h2, p, a, small, span, label, ::placeholder {
-      color: ${({theme: { fonts }}) => fonts.primary };
+      color: ${({ theme: { fonts } }) => fonts.primary};
     }
     input:hover::placeholder, input:focus::placeholder {
-      color: ${({theme: { colors }}) => colors.primary };
+      color: ${({ theme: { colors } }) => colors.primary};
     }
     a {
         text-decoration: none;
@@ -48,13 +48,13 @@ const Reset = createGlobalStyle`
       width: 6px;
     }
     ::-webkit-scrollbar-track {
-      background: ${({theme: { backgrounds }}) => backgrounds.primary};
+      background: ${({ theme: { backgrounds } }) => backgrounds.primary};
     }
     ::-webkit-scrollbar-thumb {
-      background: ${({theme: { colors }}) => colors.secondary};
+      background: ${({ theme: { colors } }) => colors.secondary};
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: ${({theme: { colors }}) => colors.primary};
+      background: ${({ theme: { colors } }) => colors.primary};
     }
     input::-ms-reveal,
     input::-ms-clear {

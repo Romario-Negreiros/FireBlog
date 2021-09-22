@@ -1,7 +1,3 @@
-import { PostObject } from "../../global/types";
+import { PostObject } from '../../global/types';
 
-export type Posts = [
-    string,
-    string,
-    PostObject
-]
+export type Posts = [string, string, PostObject];

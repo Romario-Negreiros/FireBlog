@@ -66,6 +66,7 @@ const EditPosts: FC<Props> = ({ setHasPostsChanged }) => {
         <Container>
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <ToastContainer
+                    position="top-left"
                     autoClose={2000}
                     closeButton={false}
                     style={{ fontSize: '16px' }}

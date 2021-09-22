@@ -72,9 +72,9 @@ const DeleteProfile: FC<Omit<Props & { username: string }, 'formerName'>> = ({
                             ]);
                         await deleteCommentsAndReplies(getPosts, username);
                         await firebaseDatabase
-                        .child('posts')
-                        .child(uid)
-                        .remove();
+                            .child('posts')
+                            .child(uid)
+                            .remove();
                         toast.success('The user has been deleted!');
                         context?.setUserData(null);
                         firebaseAuth.signOut();
@@ -92,6 +92,7 @@ const DeleteProfile: FC<Omit<Props & { username: string }, 'formerName'>> = ({
     return (
         <>
             <ToastContainer
+                position="top-left"
                 autoClose={2000}
                 closeButton={false}
                 style={{ fontSize: '16px' }}

@@ -9,7 +9,7 @@ export const Container = styled.section`
     background: ${({ theme: { backgrounds } }) => backgrounds.primary};
     width: 100%;
     max-width: 800px;
-    padding: 1.5rem; 
+    padding: 1.5rem;
     h2 {
         width: 100%;
         text-align: center;

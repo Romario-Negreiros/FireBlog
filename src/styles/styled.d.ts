@@ -18,6 +18,6 @@ declare module 'styled-components' {
         };
         fonts: {
             primary: string;
-        }
+        };
     }
 }

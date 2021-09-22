@@ -16,10 +16,10 @@ const Comments: FC<Props> = ({ setComments, comments, userConnected }) => {
     const [willReply, setWillReply] = useState<number | null>(null);
 
     const sendLike = (commentIndex: number, userRate?: Rate) => {
-        if (userRate !== undefined) {
-            const commentsCopy = [...comments];
-            commentsCopy.forEach((comment, index) => {
-                if (index === commentIndex) {
+        const commentsCopy = [...comments];
+        commentsCopy.forEach((comment, index) => {
+            if (index === commentIndex) {
+                if (userRate !== undefined) {
                     comment.rating.forEach(rate => {
                         if (rate.user === userRate.user) {
                             if (userRate.like) userRate.like = false;
@@ -29,29 +29,23 @@ const Comments: FC<Props> = ({ setComments, comments, userConnected }) => {
                             }
                         }
                     });
-                }
-            });
-            setComments(commentsCopy);
-        } else {
-            const commentsCopy = [...comments];
-            commentsCopy.forEach((comment, index) => {
-                if (index === commentIndex) {
+                } else {
                     comment.rating.push({
                         user: userConnected.name,
                         like: true,
                         dislike: false,
                     });
                 }
-            });
-            setComments(commentsCopy);
-        }
+            }
+        });
+        setComments(commentsCopy);
     };
 
     const sendDislike = (commentIndex: number, userRate?: Rate) => {
-        if (userRate !== undefined) {
-            const commentsCopy = [...comments];
-            commentsCopy.forEach((comment, index) => {
-                if (index === commentIndex) {
+        const commentsCopy = [...comments];
+        commentsCopy.forEach((comment, index) => {
+            if (index === commentIndex) {
+                if (userRate !== undefined) {
                     comment.rating.forEach(rate => {
                         if (rate.user === userRate.user) {
                             if (userRate.dislike) userRate.dislike = false;
@@ -61,22 +55,16 @@ const Comments: FC<Props> = ({ setComments, comments, userConnected }) => {
                             }
                         }
                     });
-                }
-            });
-            setComments(commentsCopy);
-        } else {
-            const commentsCopy = [...comments];
-            commentsCopy.forEach((comment, index) => {
-                if (index === commentIndex) {
+                } else {
                     comment.rating.push({
                         user: userConnected.name,
                         like: false,
                         dislike: true,
                     });
                 }
-            });
-            setComments(commentsCopy);
-        }
+            }
+        });
+        setComments(commentsCopy);
     };
 
     return (

@@ -1,3 +1,3 @@
 export interface Props {
-    setIsModalVisible: (isModalVisible: boolean) => void
+    setIsModalVisible: (isModalVisible: boolean) => void;
 }

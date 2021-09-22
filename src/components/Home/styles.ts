@@ -23,7 +23,7 @@ export const Container = styled.main`
 `;
 
 export const UserOption = styled(ReactRouterLink)`
-    background: ${({theme: { backgrounds }}) => backgrounds.cards };
+    background: ${({ theme: { backgrounds } }) => backgrounds.cards};
     border-radius: 5px;
     padding: 2rem 1.5rem;
     margin-bottom: 2rem;
@@ -32,8 +32,10 @@ export const UserOption = styled(ReactRouterLink)`
     align-items: center;
     width: 100%;
     border: 1px solid transparent;
+    grid-column: span 2;
     @media screen and (min-width: 700px) {
         margin: 0;
+        grid-column: span 1;
     }
     @media screen and (min-width: 1100px) {
         width: 70%;
@@ -53,15 +55,13 @@ export const UserOption = styled(ReactRouterLink)`
 export const InputWrapper = styled.div`
     width: 100%;
     text-align: center;
-    @media screen and (min-width: 700px) {
-        grid-column: span 2;
-    }
+    grid-column: span 2;
 `;
 
 export const Input = styled(LoginInput)`
-    color: ${({theme: { fonts }}) => fonts.primary };
+    color: ${({ theme: { fonts } }) => fonts.primary};
     :hover {
-        border-bottom-color: ${({theme: { colors }}) => colors.primary };
+        border-bottom-color: ${({ theme: { colors } }) => colors.primary};
     }
     @media screen and (min-width: 700px) {
         width: 50%;

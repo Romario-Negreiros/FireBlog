@@ -61,7 +61,7 @@ const ChangePicture: FC<Omit<Props, 'formerName' | 'firebaseUid'>> = ({
                                 ...context.userData,
                                 profileImg: downloadURL as string,
                             });
-                            toast.success('Image updated')
+                            toast.success('Image updated');
                             setIsModalVisible(false);
                         }
                     } catch (err) {
@@ -82,6 +82,7 @@ const ChangePicture: FC<Omit<Props, 'formerName' | 'firebaseUid'>> = ({
     return (
         <>
             <ToastContainer
+                position="top-left"
                 autoClose={2000}
                 closeButton={false}
                 style={{ fontSize: '16px' }}

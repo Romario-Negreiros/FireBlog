@@ -1,8 +1,5 @@
-import { PostObject } from "../../global/types";
+import { PostObject } from '../../global/types';
 
-export type PostsArray = [
-    string,
-    PostObject
-]
+export type PostsArray = [string, PostObject];
 
 export type Posts = [string, PostObject[]][];

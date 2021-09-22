@@ -77,7 +77,7 @@ const CreateAccount: FC<Props> = ({ setIsModalVisible }) => {
                                 throw new Error(
                                     'This name already exists, please, try another one!'
                                 );
-                    } else
+                        } else
                             createAccount(
                                 userData.setUserData,
                                 data,

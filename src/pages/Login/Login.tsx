@@ -53,7 +53,7 @@ const Login: FC = () => {
                     signIn(userData.setUserData, data, setError, history);
                 }
             } catch (err) {
-                if(err instanceof Error) setError(err.message);
+                if (err instanceof Error) setError(err.message);
             } finally {
                 setIsLoaded(true);
             }
@@ -81,6 +81,7 @@ const Login: FC = () => {
         return (
             <BannerArea bg={bg}>
                 <ToastContainer
+                    position="top-left"
                     autoClose={2000}
                     closeButton={false}
                     style={{ fontSize: '16px' }}

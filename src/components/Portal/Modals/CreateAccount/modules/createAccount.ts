@@ -21,12 +21,15 @@ const createAccount = async (
         );
         if (response.user?.uid) {
             try {
-                await firebaseDatabase.child('users').child(response.user.uid).push({
-                    name: data.name,
-                    email: data.email,
-                    password: data.password,
-                    isProfilePrivate: false,
-                });
+                await firebaseDatabase
+                    .child('users')
+                    .child(response.user.uid)
+                    .push({
+                        name: data.name,
+                        email: data.email,
+                        password: data.password,
+                        isProfilePrivate: false,
+                    });
                 toast.success('User created!');
                 setIsModalVisible(false);
                 setUserData({

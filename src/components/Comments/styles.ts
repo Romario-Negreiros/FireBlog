@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.ul`
     width: 100%;
-    background: ${({theme: { backgrounds }}) => backgrounds.elements};
+    background: ${({ theme: { backgrounds } }) => backgrounds.elements};
     margin-bottom: 1rem;
     max-height: 500px;
     overflow: auto;
@@ -26,9 +26,7 @@ export const Comment = styled.li`
     }
 `;
 
-export const RepliesList = styled(Comment)`
-    
-`;
+export const RepliesList = styled(Comment)``;
 
 export const Data = styled.div`
     margin-top: 1rem;
@@ -41,13 +39,13 @@ export const Data = styled.div`
         justify-content: space-between;
     }
     button {
-        color: ${({theme: { fonts }}) => fonts.primary };
+        color: ${({ theme: { fonts } }) => fonts.primary};
         border: 0 none;
         background: unset;
         cursor: pointer;
         font-size: 1.2rem;
         :hover {
-            opacity: .5;
+            opacity: 0.5;
         }
     }
     span {
@@ -74,5 +72,3 @@ export const Mechanisms = styled.div`
         object-fit: cover;
     }
 `;
-
-export const Reply = styled.div``;

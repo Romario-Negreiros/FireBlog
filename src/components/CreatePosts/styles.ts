@@ -8,4 +8,3 @@ export const Container = styled.main`
     justify-content: center;
     align-items: center;
 `;
-

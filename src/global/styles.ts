@@ -7,7 +7,7 @@ export const Post = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    background: ${({theme: { backgrounds }}) => backgrounds.cards };
+    background: ${({ theme: { backgrounds } }) => backgrounds.cards};
     padding: 1.5rem;
     border-radius: 5px;
     width: 100%;
@@ -42,21 +42,21 @@ export const Link = styled(ReactRouterLink)`
 `;
 
 export const CenteredContainer = styled.main`
-display: flex;
-flex-direction: column;
-justify-content: center;
-gap: 1.5rem;
-align-items: center;
-grid-column: span 2;
-width: 100vw;
-flex-basis: 100vh;
-height: 100vh;
-p {
-    font-size: 1.4rem;
-    text-align: center;
-    color: ${({ theme: { colors } }) => colors.error};
-    margin-bottom: 1.5rem;
-}
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+    align-items: center;
+    grid-column: span 2;
+    width: 100vw;
+    flex-basis: 100vh;
+    height: 100vh;
+    p {
+        font-size: 1.4rem;
+        text-align: center;
+        color: ${({ theme: { colors } }) => colors.error};
+        margin-bottom: 1.5rem;
+    }
 `;
 
 export const Background = styled.section`

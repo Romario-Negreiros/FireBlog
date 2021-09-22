@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.main`
     position: relative;
@@ -18,7 +18,7 @@ export const Container = styled.main`
 `;
 
 export const Title = styled.h1`
-    color: ${({theme: { colors }}) => colors.primary };
+    color: ${({ theme: { colors } }) => colors.primary};
     width: 100%;
     padding: 2rem;
     text-align: center;

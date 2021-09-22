@@ -51,18 +51,16 @@ const Input: FC<Props> = ({
                 const replyDate: string = moment().format(
                     'MMMM Do YYYY, h:mm:ss a'
                 );
-                const commentsCopy: CommentsType = [...comments]
-                const getCommentBeingReplied: CommentsType = commentsCopy.splice(
-                    reply,
-                    1
-                );
+                const commentsCopy: CommentsType = [...comments];
+                const getCommentBeingReplied: CommentsType =
+                    commentsCopy.splice(reply, 1);
                 getCommentBeingReplied[0].replies.push({
                     author: userConnected.name,
                     creation: replyDate,
                     comment: userComment,
                 });
-                commentsCopy.splice(reply, 0 , getCommentBeingReplied[0])
-                setComments(commentsCopy)
+                commentsCopy.splice(reply, 0, getCommentBeingReplied[0]);
+                setComments(commentsCopy);
                 setWarning('');
                 setUserComment('');
             }
@@ -70,8 +68,8 @@ const Input: FC<Props> = ({
     };
 
     useEffect(() => {
-        inputRef.current?.focus()
-    }, [inputRef])
+        inputRef.current?.focus();
+    }, [inputRef]);
 
     return (
         <>
@@ -91,7 +89,11 @@ const Input: FC<Props> = ({
                         }
                     }}
                 />
-                <div onClick={() => (reply !== undefined ? sendReply() : sendComment())}>
+                <div
+                    onClick={() =>
+                        reply !== undefined ? sendReply() : sendComment()
+                    }
+                >
                     <img src={Send} alt="send comment"></img>
                 </div>
                 {setWillReply && (

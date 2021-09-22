@@ -6,9 +6,11 @@ import { CenteredContainer } from '../../global/styles';
 // Types
 import { HOCProps } from './types';
 
-const LoaderHOC = <P extends object>(WrappedComponent: ComponentType<P>): FC<P & HOCProps> => {
+const LoaderHOC = <P extends object>(
+    WrappedComponent: ComponentType<P>
+): FC<P & HOCProps> => {
     // P Represents the props of the component passed into the HOC
-    return ({isLoaded, error, ...props}: HOCProps) => {
+    return ({ isLoaded, error, ...props }: HOCProps) => {
         // Here a component to return from the HOC is defined
         // And specifies that this component includes the props from the component
         // passed in the HOC.
@@ -25,10 +27,10 @@ const LoaderHOC = <P extends object>(WrappedComponent: ComponentType<P>): FC<P &
                 </CenteredContainer>
             );
         } else {
-            return <WrappedComponent{...props as P} />
+            return <WrappedComponent {...(props as P)} />;
         }
     };
-}
+};
 
 export default LoaderHOC;
 

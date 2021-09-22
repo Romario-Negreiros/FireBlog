@@ -8,7 +8,12 @@ import ThumbsDown from '../../assets/dislike.svg';
 // Types
 import { RateProps } from './types';
 
-const CommentRate: FC<RateProps> = ({ userRate, commentIndex, sendLike, sendDislike }) => {
+const CommentRate: FC<RateProps> = ({
+    userRate,
+    commentIndex,
+    sendLike,
+    sendDislike,
+}) => {
     if (userRate !== undefined) {
         return (
             <>

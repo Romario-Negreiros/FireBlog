@@ -6,7 +6,6 @@ import ReactStars from 'react-stars';
 import { Rate, Props } from './types';
 
 const Rating: FC<Props> = ({ setRate, rate, user }) => {
-
     const [averageRate, setAverageRate] = useState<number>();
     const [personalRate, setPersonalRate] = useState<number>();
 
@@ -37,7 +36,7 @@ const Rating: FC<Props> = ({ setRate, rate, user }) => {
     useEffect(() => {
         getAverageRate(rate, setAverageRate);
         getPersonalRateInitialValue(rate, setPersonalRate, user.userID);
-    }, [rate, user])
+    }, [rate, user]);
 
     return (
         <>
@@ -53,21 +52,24 @@ const Rating: FC<Props> = ({ setRate, rate, user }) => {
             <ReactStars
                 value={personalRate}
                 onChange={personalRate => {
-                        const { userID } = user;
-                        setPersonalRate(personalRate);
-                        if (rate.some(rateObj => rateObj.userid === userID)) {
-                            const newRateArray: Rate = rate.map(rateObj => {
-                                if (rateObj.userid === userID) {
-                                    return {
-                                        userid: rateObj.userid,
-                                        rate: String(personalRate),
-                                    };
-                                } else return rateObj;
-                            });
-                            setRate(newRateArray);
-                        } else {
-                            setRate([...rate, { userid: userID, rate: String(personalRate) }]);
-                        }
+                    const { userID } = user;
+                    setPersonalRate(personalRate);
+                    if (rate.some(rateObj => rateObj.userid === userID)) {
+                        const newRateArray: Rate = rate.map(rateObj => {
+                            if (rateObj.userid === userID) {
+                                return {
+                                    userid: rateObj.userid,
+                                    rate: String(personalRate),
+                                };
+                            } else return rateObj;
+                        });
+                        setRate(newRateArray);
+                    } else {
+                        setRate([
+                            ...rate,
+                            { userid: userID, rate: String(personalRate) },
+                        ]);
+                    }
                 }}
                 size={30}
                 color2={'#ffd700'}

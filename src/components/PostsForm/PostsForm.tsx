@@ -85,6 +85,7 @@ const PostsForm: FC<Props> = ({ setHasPostsChanged }) => {
                 Go back
             </CustomButton>
             <ToastContainer
+                position="top-left"
                 autoClose={2000}
                 closeButton={false}
                 style={{ fontSize: '16px' }}
