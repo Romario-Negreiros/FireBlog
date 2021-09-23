@@ -9,6 +9,7 @@ export { default as EditPosts } from './EditPosts/EditPosts';
 export { default as Post } from './Post/Post';
 export { default as PostsForCategory } from './PostsForCategory/PostsForCategory';
 export { default as UserProfile } from './UserProfile/UserProfile';
+export { default as CustomInput } from './CustomInput/CustomInput';
 // Modal
 export { default as CreateAccount } from './Portal/Modals/CreateAccount/CreateAccount';
 export { default as ChangeAccountName } from './Portal/Modals/ChangeAccountName/ChangeAccountName';
