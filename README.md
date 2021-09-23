@@ -72,7 +72,7 @@ Picture hasn't been taken yet :(
 - [x] Change password option
 - [x] Change name option
 - [x] Delete account option
-- [ ] Change profile picture option
+- [x] Change profile picture option
 
 -----------------------------------------------------------------------------------------------------------------------------
 
