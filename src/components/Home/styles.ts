@@ -12,10 +12,16 @@ export const Container = styled.main`
     grid-template-columns: 1fr;
     grid-template-rows: repeat(3, 50px) auto;
     justify-items: center;
+    div {
+        grid-column: span 2;
+    }
     @media screen and (min-width: 700px) {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 50px 50px auto;
         gap: 2rem;
+        div:nth-child(n + 2) {
+            grid-column: unset;
+        }
     }
     @media screen and (min-width: 1300px) {
         padding: 2rem 5rem;
@@ -55,7 +61,6 @@ export const UserOption = styled(ReactRouterLink)`
 export const InputWrapper = styled.div`
     width: 100%;
     text-align: center;
-    grid-column: span 2;
 `;
 
 export const Input = styled(LoginInput)`
