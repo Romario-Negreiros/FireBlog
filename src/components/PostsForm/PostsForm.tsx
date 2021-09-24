@@ -16,7 +16,7 @@ import userContext from '../../context/UserContext';
 const PostsForm: FC<Props> = ({ setHasPostsChanged }) => {
     const context = useContext(userContext);
     const history = useHistory();
-
+// https://remirror.io/docs
     const {
         register,
         reset,

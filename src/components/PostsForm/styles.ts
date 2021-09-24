@@ -68,12 +68,6 @@ export const Fieldset = styled.fieldset`
         background: unset;
         border-bottom: 1px solid ${({ theme: { colors } }) => colors.primary};
         border-left: 1px solid ${({ theme: { colors } }) => colors.primary};
-        :focus,
-        :hover {
-            color: ${({ theme: { colors } }) => colors.primary};
-            background: ${({ theme: { backgrounds } }) =>
-                backgrounds.secondary};
-        }
         color: ${({ theme: { fonts } }) => fonts.primary};
     }
     input {
