@@ -47,7 +47,7 @@ Some features I would like to add after mvp has been done:
 ![Snapshot](./src/assets/main.png)
 
 * Main - DARK MODE
-![Snapshot]('./src/assets/main-dark.png)
+![Snapshot](./src/assets/main-dark.png)
 
 
 
