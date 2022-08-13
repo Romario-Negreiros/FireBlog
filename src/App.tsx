@@ -14,7 +14,7 @@ import Login from './pages/Login/Login';
 import userContext, { UserData } from './context/UserContext';
 
 const App: FC = () => {
-    const [theme, setTheme] = usePersistedState<DefaultTheme>('theme', light);
+    const [theme, setTheme] = usePersistedState<DefaultTheme>('theme', dark);
     const [userData, setUserData] = useState<UserData | null>(null);
     const history = useHistory();
 
