@@ -53,9 +53,14 @@ const DropDown: FC<Props> = ({
 
     return (
         <Container isDropDownVisible={isDropDownVisible}>
-            <CustomButton onClick={() => setIsDropDownVisible(false)}>
-                Close
-            </CustomButton>
+            <div style={{ width: '100%' }}>
+                <CustomButton
+                    style={{ width: 'fit-content' }}
+                    onClick={() => setIsDropDownVisible(false)}
+                >
+                    Close
+                </CustomButton>
+            </div>
             {categories.map((category, i) => (
                 <Link
                     className={i === 0 ? 'first-link' : ''}
